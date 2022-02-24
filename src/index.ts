@@ -1,5 +1,4 @@
 export * from "./block";
-export * from "./browser";
 export * from "./button";
 export * from "./date";
 export * from "./drawer";
@@ -12,6 +11,7 @@ export * from "./layout";
 export * from "./link";
 export * from "./menu";
 export * from "./page";
+export * from "./responsive";
 export * from "./router";
 export * from "./sdk";
 export * from "./session";
