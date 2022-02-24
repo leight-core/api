@@ -1,4 +1,4 @@
-import {IBlockContext, INavigate} from "@leight-core/api";
+import {INavigate} from "@leight-core/api";
 import {FormInstance} from "antd";
 import CancelablePromise from "cancelable-promise";
 import {NamePath} from "rc-field-form/lib/interface";
@@ -83,11 +83,6 @@ export interface IFormContext<TValues = any> {
 	 * Force form refresh (just revalidate and reset fields to get current sync with visible fields).
 	 */
 	refresh(): void;
-
-	/**
-	 * Quick access to form's blocking context.
-	 */
-	readonly blockContext: IBlockContext;
 
 	/**
 	 * Resolve with true or false.
