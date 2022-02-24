@@ -1,0 +1,41 @@
+{
+	"version": "0.5.0",
+	"name": "@leight-core/api",
+	"description": "Package with all interfaces used in the whole @leight-core.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/leight-core/api.git"
+	},
+	"engines": {
+		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+	},
+	"main": "lib/cjs/index.js",
+	"module": "lib/esm/index.js",
+	"files": [
+		"lib"
+	],
+	"scripts": {
+		"lint": "eslint src",
+		"build": "npm run lint && tsc -p tsconfig.json && tsc -p tsconfig.json -m es6 --outDir lib/esm"
+	},
+	"dependencies": {
+	},
+	"peerDependencies": {
+		"react": "^17.0.2",
+		"next": "^12.1.0",
+		"antd": "^4.18.8",
+		"i18next": "^21.6.12",
+		"cancelable-promise": "^4.2.1",
+		"react-query": "^3.34.16"
+	},
+	"devDependencies": {
+		"@types/node": "^16.11.9",
+		"@types/react": "^17.0.39",
+		"@typescript-eslint/eslint-plugin": "^5.4.0",
+		"@typescript-eslint/parser": "^5.4.0",
+		"eslint": "^8.3.0",
+		"eslint-plugin-unicorn": "^39.0.0",
+		"typescript": "^4.5.2"
+	}
+}
