@@ -1,3 +1,5 @@
+import {UseQueryResult} from "react-query";
+
 export interface IFingerprintContext {
-	readonly fingerprint: string;
+	readonly fingerprint: UseQueryResult<string>;
 }
