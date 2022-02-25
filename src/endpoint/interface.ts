@@ -13,15 +13,15 @@ export interface IEndpointParams<TRequest, TResponse, TQuery extends IQueryParam
 	res: NextApiResponse<TResponse>;
 }
 
-export interface IEndpointHandler<TRequest, TResponse, TQuery extends IQueryParams = void> {
-	(params: IEndpointParams<TRequest, TResponse, TQuery>): void;
-}
-
 /**
  * Generic endpoint; SDK generates as POST by default.
  */
 export type IEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = void> = (params: IEndpointParams<TRequest, TResponse, TQuery>) => void;
 export type IEndpointCallback<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => IEndpoint<TName, TRequest, TResponse, TQuery>;
+
+// export const Endpoint = <TName extends string, TRequest, TResponse, TQuery extends IQueryParams = void>(handler: IEndpoint<TName, TRequest, TResponse, TQuery>): IEndpointCallback<TName, TRequest, TResponse, TQuery> => {
+// 	return (req, res) => handler({req, res});
+// }
 
 /**
  * When fetching an individual item, done by GET.
