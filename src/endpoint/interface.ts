@@ -13,7 +13,7 @@ export interface IEndpointParams<TRequest, TResponse, TQuery extends IQueryParam
 	res: NextApiResponse<TResponse>;
 }
 
-export interface IEndpointCallback<TRequest, TResponse, TQuery extends IQueryParams = void> {
+export interface IEndpointHandler<TRequest, TResponse, TQuery extends IQueryParams = void> {
 	(params: IEndpointParams<TRequest, TResponse, TQuery>): void;
 }
 
@@ -21,15 +21,19 @@ export interface IEndpointCallback<TRequest, TResponse, TQuery extends IQueryPar
  * Generic endpoint; SDK generates as POST by default.
  */
 export type IEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = (params: IEndpointParams<TRequest, TResponse, TQuery>) => void;
+export type IEndpointCallback<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => IEndpoint<TName, TRequest, TResponse, TQuery>;
 
 /**
  * When fetching an individual item, done by GET.
  */
 export type IFetchEndpoint<TName, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TName, void, TResponse, TQuery>
+export type IFetchEndpointCallback<TName, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, void>, res: NextApiResponse<TResponse>) => IFetchEndpoint<TName, TResponse, TQuery>;
+
 /**
  * When fetching a list of items (arrayed by default), done by GET.
  */
 export type IListEndpoint<TName, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TName, void, TResponse, TQuery>
+export type IListEndpointCallback<TName, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, void>, res: NextApiResponse<TResponse>) => IListEndpoint<TName, TResponse, TQuery>;
 
 /**
  * Mutation endpoint is a general endpoint used to do some server-side effect (some updated data or so).
@@ -37,24 +41,31 @@ export type IListEndpoint<TName, TResponse, TQuery extends IQueryParams = void> 
  * Defaults to POST.
  */
 export type IMutationEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TName, TRequest, TResponse, TQuery>;
+export type IMutationEndpointCallback<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
+
 /**
  * Good old creation endpoint.
  *
  * Defaults by POST.
  */
 export type ICreateEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
+export type ICreateEndpointCallback<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => ICreateEndpoint<TName, TRequest, TResponse, TQuery>;
+
 /**
  * Endpoint used to partially update data
  *
  * Defaults to PATCH.
  */
 export type IPatchEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
+export type IPatchEndpointCallback<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => IPatchEndpointCallback<TName, TRequest, TResponse, TQuery>;
+
 /**
  * Endpoint used to query data on a server.
  *
  * Defaults to POST.
  */
 export type IQueryEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TName, TRequest, IQueryResult<TResponse>, TQuery>;
+export type IQueryEndpointCallback<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => IQueryEndpoint<TName, TRequest, TResponse, TQuery>;
 
 /**
  * Endpoint used to remove something.
@@ -62,3 +73,4 @@ export type IQueryEndpoint<TName, TRequest, TResponse, TQuery extends IQueryPara
  * Defaults to DELETE.
  */
 export type IDeleteEndpoint<TName, TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<TName, void, TResponse, TQuery>;
+export type IDeleteEndpointCallback<TName, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, void>, res: NextApiResponse<TResponse>) => IDeleteEndpoint<TName, TResponse, TQuery>;
