@@ -20,45 +20,45 @@ export interface IEndpointCallback<TRequest, TResponse, TQuery extends IQueryPar
 /**
  * Generic endpoint; SDK generates as POST by default.
  */
-export type IEndpoint<TRequest, TResponse, TQuery extends IQueryParams = void> = (params: IEndpointParams<TRequest, TResponse, TQuery>) => void;
+export type IEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = (params: IEndpointParams<TRequest, TResponse, TQuery>) => void;
 
 /**
  * When fetching an individual item, done by GET.
  */
-export type IFetchEndpoint<TResponse, TQuery extends IQueryParams = void> = IEndpoint<void, TResponse, TQuery>
+export type IFetchEndpoint<TName, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TName, void, TResponse, TQuery>
 /**
  * When fetching a list of items (arrayed by default), done by GET.
  */
-export type IListEndpoint<TResponse, TQuery extends IQueryParams = void> = IEndpoint<void, TResponse, TQuery>
+export type IListEndpoint<TName, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TName, void, TResponse, TQuery>
 
 /**
  * Mutation endpoint is a general endpoint used to do some server-side effect (some updated data or so).
  *
  * Defaults to POST.
  */
-export type IMutationEndpoint<TRequest, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TRequest, TResponse, TQuery>;
+export type IMutationEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TName, TRequest, TResponse, TQuery>;
 /**
  * Good old creation endpoint.
  *
  * Defaults by POST.
  */
-export type ICreateEndpoint<TRequest, TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<TRequest, TResponse, TQuery>;
+export type ICreateEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
 /**
  * Endpoint used to partially update data
  *
  * Defaults to PATCH.
  */
-export type IPatchEndpoint<TRequest, TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<TRequest, TResponse, TQuery>;
+export type IPatchEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
 /**
  * Endpoint used to query data on a server.
  *
  * Defaults to POST.
  */
-export type IQueryEndpoint<TRequest, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TRequest, IQueryResult<TResponse>, TQuery>;
+export type IQueryEndpoint<TName, TRequest, TResponse, TQuery extends IQueryParams = void> = IEndpoint<TName, TRequest, IQueryResult<TResponse>, TQuery>;
 
 /**
  * Endpoint used to remove something.
  *
  * Defaults to DELETE.
  */
-export type IDeleteEndpoint<TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<void, TResponse, TQuery>;
+export type IDeleteEndpoint<TName, TResponse, TQuery extends IQueryParams = void> = IMutationEndpoint<TName, void, TResponse, TQuery>;
