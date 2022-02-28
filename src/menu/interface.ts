@@ -1,9 +1,3 @@
-export interface IMenuElementContext {
-	readonly element?: Element | null;
-
-	setElement(element?: Element | null): void;
-}
-
 export interface IMenuSelectionContext {
 	/**
 	 * Currently selected menu items.
