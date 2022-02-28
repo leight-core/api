@@ -3,7 +3,6 @@ export * from "./browser";
 export * from "./button";
 export * from "./date";
 export * from "./drawer";
-export * from "./endpoint";
 export * from "./entity";
 export * from "./event";
 export * from "./form";
