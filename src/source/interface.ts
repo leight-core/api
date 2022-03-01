@@ -63,7 +63,7 @@ export interface IQueryResult<TItem> {
 	readonly items: TItem[];
 }
 
-export interface ISourceContext<TQuery extends IQueryParams, TResponse, TOrderBy, TFilter> {
+export interface ISourceContext<TQuery extends IQueryParams, TResponse, TOrderBy = void, TFilter = void> {
 	readonly result: UseQueryResult<IQueryResult<TResponse>, any>;
 	/**
 	 * Current page
