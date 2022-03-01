@@ -24,11 +24,11 @@ export interface IPromiseMutationCallback<TQuery extends IQueryParams = IQueryPa
 }
 
 export interface IQueryHookCallback<TQuery extends IQueryParams = IQueryParams, TRequest = any, TResponse = any> {
-	(request?: TRequest, query?: TQuery, options?: IQueryOptions<TResponse>): UseQueryResult<TResponse, any>;
+	(options?: IQueryOptions<TResponse>): (request?: TRequest, query?: TQuery) => UseQueryResult<TResponse, any>;
 }
 
 export interface IMutationHookCallback<TQuery extends IQueryParams = IQueryParams, TRequest = any, TResponse = any> {
-	(query?: TQuery, options?: IMutationOptions<TResponse, any, TRequest, undefined>): UseMutationResult<TResponse, any, TRequest, undefined>;
+	(options?: IMutationOptions<TResponse, any, TRequest, undefined>): (query?: TQuery) => UseMutationResult<TResponse, any, TRequest, undefined>;
 }
 
 export interface IQuery<TOrderBy = void, TFilter = void> {
