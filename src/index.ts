@@ -6,6 +6,7 @@ export * from "./drawer";
 export * from "./endpoint";
 export * from "./entity";
 export * from "./event";
+export * from "./file";
 export * from "./form";
 export * from "./interface";
 export * from "./layout";
