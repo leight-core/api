@@ -4,13 +4,13 @@ import {IQueryParams, IQueryResult} from "@leight-core/api";
 export interface INextApiRequest<TQuery extends IQueryParams, TRequest> extends Omit<NextApiRequest, "query"> {
 	query: TQuery;
 	body: TRequest;
-
-	toBody(): Promise<Buffer>;
 }
 
 export interface IEndpointParams<TRequest, TResponse, TQuery extends IQueryParams = void> {
 	req: INextApiRequest<TQuery, TRequest>;
 	res: NextApiResponse<TResponse>;
+
+	toBody(): Promise<Buffer>;
 }
 
 /**
