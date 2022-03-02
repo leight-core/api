@@ -7,14 +7,14 @@ export interface ITableColumnProps<TItem> extends Omit<ColumnProps<TItem>, "data
 	readonly dataIndex?: keyof TItem;
 }
 
-export interface IITableChildren<TQuery extends IQueryParams, TResponse, TOrderBy, TFilter> {
+export interface IITableChildren<TResponse, TQuery extends IQueryParams = IQueryParams, TOrderBy = any, TFilter = any> {
 	column(props: ITableColumnProps<TResponse>): ReactNode;
 
-	readonly sourceContext: ISourceContext<TQuery, TResponse, TOrderBy, TFilter>;
+	readonly sourceContext: ISourceContext<TResponse, TQuery, TOrderBy, TFilter>;
 }
 
-export interface ITableChildrenCallback<TQuery extends IQueryParams, TResponse, TOrderBy, TFilter> {
-	(children: IITableChildren<TQuery, TResponse, TOrderBy, TFilter>): ReactNode;
+export interface ITableChildrenCallback<TResponse, TQuery extends IQueryParams = IQueryParams, TOrderBy = any, TFilter = any> {
+	(children: IITableChildren<TResponse, TQuery, TOrderBy, TFilter>): ReactNode;
 }
 
 export interface ITableToFilter<TResponse, TFilter> {
