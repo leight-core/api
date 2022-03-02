@@ -1,34 +1,13 @@
 import {IQueryParams} from "@leight-core/api";
 import {TablePaginationConfig} from "antd";
 import {PaginationConfig} from "antd/es/pagination";
-import {UseMutationResult, UseQueryResult} from "react-query";
-import {UseMutationOptions, UseQueryOptions} from "react-query/types/react/types";
+import {UseMutationOptions, UseMutationResult, UseQueryResult} from "react-query";
 import {AxiosRequestConfig} from "axios";
+import {UseQueryOptions} from "react-query/types/react/types";
 
-export type IQueryOptions<TResponse> = Omit<UseQueryOptions<TResponse, any, TResponse, any>, "queryKey" | "queryFn">
-export type IMutationOptions<TResponse, TError = any, TVariables = any, TContext = unknown> = Omit<UseMutationOptions<TResponse, TError, TVariables, TContext>, "mutationKey" | "mutationFn">
-
-export interface IHookPromise<TRequest = any, TResponse = any, TQuery extends IQueryParams = IQueryParams> {
-	(request?: TRequest, query?: TQuery, config?: AxiosRequestConfig): Promise<TResponse>;
-}
-
-export interface IPromiseQueryCallback<TQuery extends IQueryParams = IQueryParams, TRequest = any, TResponse = any> {
-	(link: string, query?: TQuery, request?: TRequest): IHookPromise<TRequest, TResponse>;
-
-	(link: string, query?: TQuery): IHookPromise<TRequest, TResponse>;
-}
-
-export interface IPromiseMutationCallback<TQuery extends IQueryParams = IQueryParams, TRequest = any, TResponse = any> {
-	(link: string, query?: TQuery): IHookPromise<TRequest, TResponse>;
-}
-
-export interface IQueryHookCallback<TQuery extends IQueryParams = IQueryParams, TRequest = any, TResponse = any> {
-	(options?: IQueryOptions<TResponse>): (request?: TRequest, query?: TQuery) => UseQueryResult<TResponse, any>;
-}
-
-export interface IMutationHookCallback<TQuery extends IQueryParams = IQueryParams, TRequest = any, TResponse = any> {
-	(options?: IMutationOptions<TResponse, any, TRequest, undefined>): (query?: TQuery) => UseMutationResult<TResponse, any, TRequest, undefined>;
-}
+export type IQueryHook<TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = (request?: TRequest, query?: TQuery, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
+export type IMutationHook<TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = (query?: TQuery, options?: UseMutationOptions<TResponse, any, TRequest>, config?: AxiosRequestConfig<TRequest>) => UseMutationResult<TResponse, any, TRequest>;
+export type IHookCallback<TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = () => (request?: TRequest, query?: TQuery, config?: AxiosRequestConfig<TRequest>) => Promise<TResponse>;
 
 export interface IQuery<TOrderBy = void, TFilter = void> {
 	/** currently requested page */
