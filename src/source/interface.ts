@@ -3,14 +3,13 @@ import {TablePaginationConfig} from "antd";
 import {PaginationConfig} from "antd/es/pagination";
 import {UseMutationResult, UseQueryResult} from "react-query";
 import {UseMutationOptions, UseQueryOptions} from "react-query/types/react/types";
+import {AxiosRequestConfig} from "axios";
 
 export type IQueryOptions<TResponse> = Omit<UseQueryOptions<TResponse, any, TResponse, any>, "queryKey" | "queryFn">
 export type IMutationOptions<TResponse, TError = any, TVariables = any, TContext = unknown> = Omit<UseMutationOptions<TResponse, TError, TVariables, TContext>, "mutationKey" | "mutationFn">
 
-export interface IHookPromise<TRequest = any, TResponse = any> {
-	(request?: TRequest): Promise<TResponse>;
-
-	(): Promise<TResponse>;
+export interface IHookPromise<TRequest = any, TResponse = any, TQuery extends IQueryParams = IQueryParams> {
+	(request?: TRequest, query?: TQuery, config?: AxiosRequestConfig): Promise<TResponse>;
 }
 
 export interface IPromiseQueryCallback<TQuery extends IQueryParams = IQueryParams, TRequest = any, TResponse = any> {
