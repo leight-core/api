@@ -21,7 +21,7 @@ export interface IIFileServiceDeps {
 	config?: IFileServiceConfig;
 }
 
-export type IFilePersistor = (file: IFile) => void;
+export type IFilePersistor = (file: IFile) => IFile;
 
 export interface IFileStoreRequest {
 	/**
