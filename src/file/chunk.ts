@@ -16,6 +16,8 @@ export interface IChunkServiceDeps {
 }
 
 export interface IChunkService {
+	toFile(chunkId: string): string;
+
 	chunk(chunkId: string, chunk: Promise<Buffer>): Promise<void>;
 
 	commit(chunkId: string, commit: IChunkCommit): IFile;
