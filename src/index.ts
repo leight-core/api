@@ -1,4 +1,5 @@
 export * from "./block";
+export * from "./bootstrap";
 export * from "./browser";
 export * from "./date";
 export * from "./drawer";
