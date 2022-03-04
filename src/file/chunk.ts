@@ -1,4 +1,4 @@
-import {IFile, IFileService} from "@leight-core/api";
+import {IEndpointParams, IFile, IFileService, IQueryParams} from "@leight-core/api";
 
 export interface IChunkCommit {
 	path: string;
@@ -24,3 +24,5 @@ export interface IChunkService {
 }
 
 export type IChunkServiceFactory = (deps: IChunkServiceDeps) => IChunkService;
+
+export type IOnChunkCommit = <TRequest, TResponse, TQuery extends IQueryParams = IQueryParams>(file: IFile, params: IEndpointParams<TRequest, TResponse, TQuery>) => IFile;

@@ -1,6 +1,3 @@
-import {IEndpointParams} from "../endpoint";
-import {IQueryParams} from "../link";
-
 export interface IFile {
 	id: string;
 	path: string;
@@ -63,5 +60,3 @@ export interface IFileService {
 }
 
 export type IFileServiceFactory = (deps: IIFileServiceDeps) => IFileService;
-
-export type IFileEndpointPersistor = <TRequest, TResponse, TQuery extends IQueryParams = IQueryParams>(file: IFile, params: IEndpointParams<TRequest, TResponse, TQuery>) => IFile;
