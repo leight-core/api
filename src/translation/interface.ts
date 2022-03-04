@@ -12,7 +12,7 @@ export interface ITranslation {
 
 export interface ITranslations {
 	readonly language: string;
-	readonly namespace: string;
+	readonly namespace?: string;
 	readonly translations: ITranslation[];
 }
 
