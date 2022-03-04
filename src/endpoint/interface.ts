@@ -16,7 +16,7 @@ export interface IEndpointParams<TRequest, TResponse, TQuery extends IQueryParam
 /**
  * Generic endpoint; SDK generates as POST by default.
  */
-export type IEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = void> = (params: IEndpointParams<TRequest, TResponse, TQuery>) => Promise<TResponse | undefined>;
+export type IEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = void> = (params: IEndpointParams<TRequest, TResponse, TQuery>) => Promise<TResponse> | void;
 export type IEndpointCallback<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = void> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
