@@ -21,7 +21,7 @@ export interface IChunkCommit {
 }
 
 export interface IChunkService {
-	chunk(chunkId: string, chunk: Promise<Buffer>): void;
+	chunk(chunkId: string, chunk: Promise<Buffer>): Promise<void>;
 
 	commit(chunkId: string, commit: IChunkCommit): IFile;
 }
