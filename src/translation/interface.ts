@@ -16,4 +16,8 @@ export interface ITranslations {
 	readonly translations: ITranslation[];
 }
 
-export type ITranslationsQuery = IQueryHook<void, ITranslations, void>;
+export interface ITranslationBundle {
+	readonly translations: ITranslations[];
+}
+
+export type ITranslationsQuery = IQueryHook<void, ITranslationBundle, void>;
