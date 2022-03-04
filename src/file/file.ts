@@ -21,6 +21,8 @@ export interface IIFileServiceDeps {
 	config?: IFileServiceConfig;
 }
 
+export type IFilePersistor = (file: IFile) => void;
+
 export interface IFileStoreRequest {
 	/**
 	 * File to store (absolute path); the source file will not be touched.
@@ -55,11 +57,6 @@ export interface IFileService {
 	 * Generates (absolute) file path based on the file id.
 	 */
 	toLocation(fileId: string): string;
-
-	/**
-	 * Callback used to save file's metadata (to whatever place, for example a database).
-	 */
-	persistor(file: IFile): void;
 
 	store(store: IFileStoreRequest): IFile;
 }
