@@ -9,6 +9,7 @@ export interface INextApiRequest<TQuery extends IQueryParams, TRequest> extends 
 export interface IEndpointParams<TRequest, TResponse, TQuery extends IQueryParams = void> {
 	req: INextApiRequest<TQuery, TRequest>;
 	res: NextApiResponse<TResponse>;
+	query: TQuery;
 
 	toBody(): Promise<Buffer>;
 }
