@@ -6,12 +6,13 @@ export interface II18NextContext {
 }
 
 export interface ITranslation {
-	readonly language: string;
-	readonly label: string;
-	readonly text: string;
+	readonly key: string;
+	readonly value: string;
 }
 
 export interface ITranslations {
+	readonly language: string;
+	readonly namespace: string;
 	readonly translations: ITranslation[];
 }
 
