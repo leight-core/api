@@ -13,8 +13,6 @@ export interface IFile {
 export interface IFileServiceConfig {
 	path: string;
 	defaultMimeType?: string;
-
-	persistor?(file: IFile): void;
 }
 
 export interface IIFileServiceDeps {

@@ -17,19 +17,25 @@ export interface IEndpointParams<TRequest, TResponse, TQuery extends IQueryParam
 /**
  * Generic endpoint; SDK generates as POST by default.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = (params: IEndpointParams<TRequest, TResponse, TQuery>) => Promise<TResponse | void>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IEndpointCallback<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
  * When fetching an individual item, done by GET.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IFetchEndpoint<TName extends string, TResponse, TQuery extends IQueryParams = IQueryParams> = IEndpoint<TName, void, TResponse, TQuery>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IFetchEndpointCallback<TName extends string, TResponse, TQuery extends IQueryParams = IQueryParams> = (req: INextApiRequest<TQuery, void>, res: NextApiResponse<TResponse>) => void;
 
 /**
  * When fetching a list of items (arrayed by default), done by GET.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IListEndpoint<TName extends string, TResponse, TQuery extends IQueryParams = IQueryParams> = IEndpoint<TName, void, TResponse, TQuery>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IListEndpointCallback<TName extends string, TResponse, TQuery extends IQueryParams = IQueryParams> = (req: INextApiRequest<TQuery, void>, res: NextApiResponse<TResponse>) => void;
 
 /**
@@ -37,7 +43,9 @@ export type IListEndpointCallback<TName extends string, TResponse, TQuery extend
  *
  * Defaults to POST.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IMutationEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = IEndpoint<TName, TRequest, TResponse, TQuery>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IMutationEndpointCallback<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
@@ -45,7 +53,9 @@ export type IMutationEndpointCallback<TName extends string, TRequest, TResponse,
  *
  * Defaults by POST.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ICreateEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ICreateEndpointCallback<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
@@ -53,7 +63,9 @@ export type ICreateEndpointCallback<TName extends string, TRequest, TResponse, T
  *
  * Defaults to PATCH.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IPatchEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IPatchEndpointCallback<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
@@ -61,7 +73,9 @@ export type IPatchEndpointCallback<TName extends string, TRequest, TResponse, TQ
  *
  * Defaults to POST.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IQueryEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = IEndpoint<TName, TRequest, IQueryResult<TResponse>, TQuery>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IQueryEndpointCallback<TName extends string, TRequest, TResponse, TQuery extends IQueryParams = IQueryParams> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
@@ -69,5 +83,7 @@ export type IQueryEndpointCallback<TName extends string, TRequest, TResponse, TQ
  *
  * Defaults to DELETE.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IDeleteEndpoint<TName extends string, TResponse, TQuery extends IQueryParams = IQueryParams> = IMutationEndpoint<TName, void, TResponse, TQuery>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IDeleteEndpointCallback<TName extends string, TResponse, TQuery extends IQueryParams = IQueryParams> = (req: INextApiRequest<TQuery, void>, res: NextApiResponse<TResponse>) => void;
