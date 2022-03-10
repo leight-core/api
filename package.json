@@ -23,6 +23,7 @@
 	"dependencies": {
 	},
 	"peerDependencies": {
+		"@prisma/client": "^3.10.0",
 		"react": "^17.0.2",
 		"next": "^12.1.0",
 		"antd": "^4.18.9",

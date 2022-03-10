@@ -14,6 +14,7 @@ export * from "./layout";
 export * from "./link";
 export * from "./menu";
 export * from "./page";
+export * from "./prisma";
 export * from "./responsive";
 export * from "./router";
 export * from "./sdk";
