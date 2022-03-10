@@ -1,6 +1,5 @@
 export interface IJob<TParams = void> {
 	id: string;
-	agenda: string;
 	status: IJobStatus;
 	total: number;
 	success?: number | null;
