@@ -8,7 +8,7 @@ export interface IJob {
 	failure?: number;
 	failureRatio?: number;
 	created: Date;
-	userId: string;
+	userId?: string;
 }
 
 export type IJobStatus = 'NEW' | 'RUNNING' | 'SUCCESS' | 'FAILURE' | 'DONE';
