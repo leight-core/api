@@ -1,4 +1,4 @@
-export interface IJob {
+export interface IJob<TParams = void> {
 	id: string;
 	agenda: string;
 	status: IJobStatus;
@@ -9,6 +9,7 @@ export interface IJob {
 	failureRatio?: number | null;
 	created: Date;
 	userId?: string | null;
+	params?: TParams;
 }
 
 export type IJobStatus = 'NEW' | 'RUNNING' | 'SUCCESS' | 'FAILURE' | 'DONE';
