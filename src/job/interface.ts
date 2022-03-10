@@ -14,4 +14,4 @@ export interface IJob<TParams = void> {
 	params?: TParams;
 }
 
-export type IJobStatus = 'NEW' | 'RUNNING' | 'SUCCESS' | 'FAILURE' | 'DONE';
+export type IJobStatus = 'NEW' | 'RUNNING' | 'SUCCESS' | 'FAILURE';
