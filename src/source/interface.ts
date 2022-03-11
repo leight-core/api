@@ -4,7 +4,7 @@ import {UseMutationOptions, UseMutationResult, UseQueryResult} from "react-query
 import {AxiosRequestConfig} from "axios";
 import {UseQueryOptions} from "react-query/types/react/types";
 
-export type ISortOrder = 'asc' | 'desc';
+export type ISortOrder = 'asc' | 'desc' | undefined;
 
 export interface IFilter {
 	id?: string;
