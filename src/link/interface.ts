@@ -3,5 +3,5 @@ export interface IQueryParams {
 }
 
 export interface ILinkContext {
-	link<TQuery extends IQueryParams = IQueryParams>(href: string, query?: TQuery): string;
+	link<TQuery extends IQueryParams | void = void>(href: string, query?: TQuery): string;
 }

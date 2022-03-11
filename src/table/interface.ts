@@ -1,4 +1,4 @@
-import {IQueryParams, ISourceContext} from "@leight-core/api";
+import {IFilter, IOrderBy, IQueryParams, ISourceContext} from "@leight-core/api";
 import {ColumnProps} from "antd/lib/table";
 import {FilterValue} from "antd/lib/table/interface";
 import {ReactNode} from "react";
@@ -7,21 +7,17 @@ export interface ITableColumnProps<TItem> extends Omit<ColumnProps<TItem>, "data
 	readonly dataIndex?: keyof TItem;
 }
 
-export interface IITableChildren<TResponse, TQuery extends IQueryParams = IQueryParams, TOrderBy = any, TFilter = any> {
+export interface IITableChildren<TResponse, TFilter extends IFilter | void = void, TOrderBy extends IOrderBy | void = void, TQuery extends IQueryParams | void = void> {
 	column(props: ITableColumnProps<TResponse>): ReactNode;
 
-	readonly sourceContext: ISourceContext<TResponse, TQuery, TOrderBy, TFilter>;
+	readonly sourceContext: ISourceContext<TResponse, TFilter, TOrderBy, TQuery>;
 }
 
-export interface ITableChildrenCallback<TResponse, TQuery extends IQueryParams = IQueryParams, TOrderBy = any, TFilter = any> {
-	(children: IITableChildren<TResponse, TQuery, TOrderBy, TFilter>): ReactNode;
-}
+export type ITableChildrenCallback<TResponse, TFilter extends IFilter | void = void, TOrderBy extends IOrderBy | void = void, TQuery extends IQueryParams | void = void> = (children: IITableChildren<TResponse, TFilter, TOrderBy, TQuery>) => ReactNode
 
-export interface ITableToFilter<TResponse, TFilter> {
+export interface ITableToFilter<TResponse, TFilter extends IFilter | void = void> {
 	readonly filters: Record<keyof TResponse, FilterValue | null>;
-	readonly current?: TFilter | null;
+	readonly current?: TFilter;
 }
 
-export interface ITableToFilterCallback<TResponse, TFilter> {
-	(filters: ITableToFilter<TResponse, TFilter>): TFilter | null;
-}
+export type ITableToFilterCallback<TResponse, TFilter extends IFilter | void = void> = (filters: ITableToFilter<TResponse, TFilter>) => TFilter | undefined;
