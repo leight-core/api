@@ -5,6 +5,8 @@ import {AxiosRequestConfig} from "axios";
 import {UseQueryOptions} from "react-query/types/react/types";
 
 export interface IFilter {
+	id?: string;
+	fulltext?: string;
 }
 
 export interface IOrderBy {
