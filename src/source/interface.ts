@@ -4,12 +4,15 @@ import {UseMutationOptions, UseMutationResult, UseQueryResult} from "react-query
 import {AxiosRequestConfig} from "axios";
 import {UseQueryOptions} from "react-query/types/react/types";
 
+export type ISortOrder = 'asc' | 'desc';
+
 export interface IFilter {
 	id?: string;
 	fulltext?: string;
 }
 
 export interface IOrderBy {
+	[index: string]: ISortOrder;
 }
 
 export type IQueryHook<TRequest extends IQuery<TFilter, TOrderBy> | void, TResponse, TFilter extends IFilter | void = void, TOrderBy extends IOrderBy | void = void, TQuery extends IQueryParams | void = void> = (request?: TRequest, query?: TQuery, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
