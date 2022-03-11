@@ -39,7 +39,7 @@ export interface IQueryResult<TItem> {
 	readonly total: number;
 
 	/** current page size */
-	readonly size: number;
+	readonly size?: number;
 
 	/** total available pages (precomputed based on total number of items and page size) */
 	readonly pages: number;
