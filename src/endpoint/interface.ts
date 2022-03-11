@@ -9,6 +9,7 @@ export interface INextApiRequest<TQuery extends IQueryParams | void, TRequest> e
 export interface IEndpointParams<TRequest, TResponse, TQuery extends IQueryParams | void = void> {
 	readonly req: INextApiRequest<TQuery, TRequest>;
 	readonly res: NextApiResponse<TResponse>;
+	readonly request: TRequest;
 	readonly query: TQuery;
 
 	toBody(): Promise<Buffer>;
