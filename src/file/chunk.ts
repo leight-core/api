@@ -1,18 +1,18 @@
 import {IEndpointParams, IFile, IFileService, IQueryParams} from "@leight-core/api";
 
 export interface IChunkCommit {
-	path: string;
-	name: string,
-	replace: boolean;
+	readonly path: string;
+	readonly name: string,
+	readonly replace: boolean;
 }
 
 export interface IChunkServiceConfig {
-	path: string;
+	readonly path: string;
 }
 
 export interface IChunkServiceDeps {
-	config?: IChunkServiceConfig;
-	fileService: IFileService;
+	readonly config?: IChunkServiceConfig;
+	readonly fileService: IFileService;
 }
 
 export interface IChunkService {

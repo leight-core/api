@@ -6,9 +6,7 @@ export type IEventResult = boolean | any;
 /**
  * A shape of event handler - some arguments and optional boolean return.
  */
-export interface IEventCallback {
-	(...args: any): IEventResult;
-}
+export type IEventCallback = (...args: any) => IEventResult;
 
 /**
  * Internal event structure.

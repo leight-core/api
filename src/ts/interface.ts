@@ -1,15 +1,15 @@
 import type ts from "typescript";
 
 export interface INode {
-	node: ts.Node;
-	sourceFile: ts.SourceFile;
-	syntaxKind: string;
-	source: string;
+	readonly node: ts.Node;
+	readonly sourceFile: ts.SourceFile;
+	readonly syntaxKind: string;
+	readonly source: string;
 }
 
 export type INodePath = {
-	path: string;
-	node: ts.Node;
+	readonly path: string;
+	readonly node: ts.Node;
 };
 
 export type IForeachNodeCallback = (node: INode) => void;

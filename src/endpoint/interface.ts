@@ -2,14 +2,14 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {IFilter, IOrderBy, IQuery, IQueryParams, IQueryResult} from "@leight-core/api";
 
 export interface INextApiRequest<TQuery extends IQueryParams | void, TRequest> extends Omit<NextApiRequest, "query"> {
-	query: TQuery;
-	body: TRequest;
+	readonly query: TQuery;
+	readonly body: TRequest;
 }
 
 export interface IEndpointParams<TRequest, TResponse, TQuery extends IQueryParams | void = void> {
-	req: INextApiRequest<TQuery, TRequest>;
-	res: NextApiResponse<TResponse>;
-	query: TQuery;
+	readonly req: INextApiRequest<TQuery, TRequest>;
+	readonly res: NextApiResponse<TResponse>;
+	readonly query: TQuery;
 
 	toBody(): Promise<Buffer>;
 }

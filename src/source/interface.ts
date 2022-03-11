@@ -1,5 +1,4 @@
 import {IQueryParams} from "@leight-core/api";
-import {TablePaginationConfig} from "antd";
 import {PaginationConfig} from "antd/es/pagination";
 import {UseMutationOptions, UseMutationResult, UseQueryResult} from "react-query";
 import {AxiosRequestConfig} from "axios";
@@ -55,22 +54,22 @@ export interface ISourceContext<TResponse, TFilter extends IFilter | void = void
 	/**
 	 * Current page
 	 */
-	readonly page: number;
+	readonly page?: number;
 
 	/**
 	 * Set a new page (and eventually size).
 	 */
-	setPage(page: number, pageSize?: number): void;
+	setPage(page?: number, pageSize?: number): void;
 
 	/**
 	 * Page size
 	 */
-	readonly size: number;
+	readonly size?: number;
 
 	/**
 	 * Set a new page size
 	 */
-	setSize(size: number): void;
+	setSize(size?: number): void;
 
 	/**
 	 * Current order by.
@@ -96,12 +95,7 @@ export interface ISourceContext<TResponse, TFilter extends IFilter | void = void
 	 */
 	setQuery(query?: TQuery): void;
 
-	/**
-	 * Merge queries with the given one.
-	 */
-	mergeQuery(query?: TQuery): void;
-
-	pagination(): (TablePaginationConfig & PaginationConfig) | false | undefined;
+	pagination(): PaginationConfig | false | undefined;
 
 	hasData(): boolean;
 

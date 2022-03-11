@@ -7,11 +7,9 @@ export type IUploaderEventTypes = "uploading" | "error" | "done";
  * Crazy thing this one: we override response from UploadFile to enforce user defined
  * type - in an UploadFile the response is optional (we don't want this).
  */
-export interface IOnUploaderDone<TResponse> {
-	(file: UploadFile<TResponse> & { response: TResponse }): IEventResult;
-}
+export type IOnUploaderDone<TResponse = void> = (file: UploadFile<TResponse> & { response: TResponse }) => IEventResult;
 
-export interface IUploaderEventHandlers<TResponse = any> extends IEventHandlers {
+export interface IUploaderEventHandlers<TResponse = void> extends IEventHandlers {
 	uploading(file: UploadFile): IEventResult;
 
 	error(file: UploadFile): IEventResult;
@@ -19,5 +17,5 @@ export interface IUploaderEventHandlers<TResponse = any> extends IEventHandlers 
 	done: IOnUploaderDone<TResponse>;
 }
 
-export interface IUploaderEvents<TResponse = any> extends IEvents<IUploaderEventTypes, IUploaderEventHandlers<TResponse>> {
+export interface IUploaderEvents<TResponse = void> extends IEvents<IUploaderEventTypes, IUploaderEventHandlers<TResponse>> {
 }

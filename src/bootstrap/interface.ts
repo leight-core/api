@@ -1,9 +1,9 @@
 import type {Locale} from "antd/lib/locale-provider";
 
 export interface ILocaleConfig {
-	antd: Locale;
+	readonly antd: Locale;
 }
 
 export interface IBootstrapConfig {
-	locale: ILocaleConfig,
+	readonly locale: ILocaleConfig,
 }

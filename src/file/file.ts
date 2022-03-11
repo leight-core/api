@@ -1,41 +1,41 @@
 export interface IFile {
-	id: string;
-	path: string;
-	name: string;
-	mime: string;
-	size: number;
-	location: string;
-	created: string;
-	updated?: string;
-	ttl?: number;
+	readonly id: string;
+	readonly path: string;
+	readonly name: string;
+	readonly mime: string;
+	readonly size: number;
+	readonly location: string;
+	readonly created: string;
+	readonly updated?: string;
+	readonly ttl?: number;
 }
 
 export interface IFileServiceConfig {
-	path: string;
-	defaultMimeType?: string;
+	readonly path: string;
+	readonly defaultMimeType?: string;
 }
 
 export interface IIFileServiceDeps {
-	config?: IFileServiceConfig;
+	readonly config?: IFileServiceConfig;
 }
 
 export interface IFileStoreRequest {
 	/**
 	 * File to store (absolute path); the source file will not be touched.
 	 */
-	file: string;
+	readonly file: string;
 	/**
 	 * Virtual path of the stored file.
 	 */
-	path: string;
+	readonly path: string;
 	/**
 	 * Virtual filename (with optional extension).
 	 */
-	name: string,
+	readonly name: string,
 	/**
 	 * If the file exists, should be replaced? If yes, original metadata should **not** be removed (e.g. database row), just updated.
 	 */
-	replace: boolean;
+	readonly replace: boolean;
 }
 
 export interface IFileService {

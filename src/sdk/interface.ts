@@ -1,30 +1,28 @@
 export interface IImportReflection {
-	imports: string[];
-	from: string;
+	readonly imports: string[];
+	readonly from: string;
 }
 
 export interface IInterfaceReflection {
-	name: string;
-	source: string;
+	readonly name: string;
+	readonly source: string;
 }
 
 export interface IEndpointReflection {
-	name: string;
-	type: string;
-	api: string;
-	generics: string[];
+	readonly name: string;
+	readonly type: string;
+	readonly api: string;
+	readonly generics: string[];
 }
 
 export interface ISdk {
-	file: string;
-	imports: IImportReflection[];
-	interfaces: IInterfaceReflection[];
-	endpoint: IEndpointReflection;
+	readonly file: string;
+	readonly imports: IImportReflection[];
+	readonly interfaces: IInterfaceReflection[];
+	readonly endpoint: IEndpointReflection;
 }
 
-export interface IGenerator {
-	(sdk: ISdk): string;
-}
+export type IGenerator = (sdk: ISdk) => string;
 
 export interface IGenerators {
 	[index: string]: IGenerator;

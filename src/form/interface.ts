@@ -26,9 +26,7 @@ export interface IErrorHandler<TError, TFormValues> {
 	readonly formContext: IFormContext<TFormValues>;
 }
 
-export interface IFormErrorHandler<TError, TFormValues> {
-	(error: IErrorHandler<TError, TFormValues>): void;
-}
+export type IFormErrorHandler<TError, TFormValues> = (error: IErrorHandler<TError, TFormValues>) => void;
 
 export interface IFormErrorMap<TFormValues> {
 	readonly [index: string]: IFormError | IFormErrorHandler<any, TFormValues>;
@@ -90,21 +88,13 @@ export interface IFormContext<TValues = any> {
 	canSubmit(then?: (canSubmit: boolean) => void): CancelablePromise<boolean>;
 }
 
-export interface IToOptionMapper<TItem> {
-	(item: TItem): IBaseSelectOption;
-}
+export type IToOptionMapper<TItem> = (item: TItem) => IBaseSelectOption;
 
-export interface IFormMutationMapper<TFormValues, TRequest> {
-	(values: TFormValues): TRequest;
-}
+export type IFormMutationMapper<TFormValues, TRequest> = (values: TFormValues) => TRequest;
 
-export interface IFormInitialMapper<TFormValues> {
-	(): TFormValues;
-}
+export type IFormInitialMapper<TFormValues> = () => TFormValues;
 
-export interface IFormOnValuesChanged<TFormValues = any> {
-	(success: IFormValuesChanged<TFormValues>): void;
-}
+export type IFormOnValuesChanged<TFormValues = any> = (success: IFormValuesChanged<TFormValues>) => void;
 
 export interface IFormValuesChanged<TFormValues> {
 	readonly values: TFormValues;
@@ -119,18 +109,14 @@ export interface IFormSuccess<TFormValues, TResponse> {
 	readonly formContext: IFormContext<TFormValues>;
 }
 
-export interface IFormOnSuccess<TFormValues, TResponse> {
-	(success: IFormSuccess<TFormValues, TResponse>): void;
-}
+export type IFormOnSuccess<TFormValues, TResponse> = (success: IFormSuccess<TFormValues, TResponse>) => void;
 
 export interface IFormFailure<TFormValues> {
 	readonly error: string;
 	readonly formContext: IFormContext<TFormValues>;
 }
 
-export interface IFormOnFailure<TFormValues> {
-	(failure: IFormFailure<TFormValues>): void;
-}
+export type IFormOnFailure<TFormValues> = (failure: IFormFailure<TFormValues>) => void;
 
 export interface IToError<TError, TFormValues> {
 	readonly error: TError;
@@ -140,8 +126,8 @@ export interface IToError<TError, TFormValues> {
 export type IBaseSelectItem = any;
 
 export interface IBaseSelectOption {
-	value: IBaseSelectItem;
-	label: IBaseSelectItem;
+	readonly value: IBaseSelectItem;
+	readonly label: IBaseSelectItem;
 }
 
 export interface IFilterContext<TFilter = any> {

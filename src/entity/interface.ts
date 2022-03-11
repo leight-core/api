@@ -1,5 +1,5 @@
 export interface IEntityContext<TEntity> {
-	entity: TEntity;
+	readonly entity: TEntity;
 
 	optional(): TEntity | undefined | null;
 
