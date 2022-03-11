@@ -4,22 +4,11 @@ import {UseMutationOptions, UseMutationResult, UseQueryResult} from "react-query
 import {AxiosRequestConfig} from "axios";
 import {UseQueryOptions} from "react-query/types/react/types";
 
-export type ISortOrder = 'asc' | 'desc' | undefined;
-
-export interface IFilter {
-	id?: string;
-	fulltext?: string;
-}
-
-export interface IOrderBy {
-	[index: string]: ISortOrder;
-}
-
-export type IQueryHook<TRequest extends IQuery<TFilter, TOrderBy> | void, TResponse, TFilter extends IFilter | void = void, TOrderBy extends IOrderBy | void = void, TQuery extends IQueryParams | void = void> = (request?: TRequest, query?: TQuery, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
+export type IQueryHook<TRequest extends IQuery<TFilter, TOrderBy> | void, TResponse, TFilter = void, TOrderBy = void, TQuery extends IQueryParams | void = void> = (request?: TRequest, query?: TQuery, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
 export type IMutationHook<TRequest, TResponse, TQuery extends IQueryParams | void = void> = (query?: TQuery, options?: UseMutationOptions<TResponse, any, TRequest>, config?: AxiosRequestConfig<TRequest>) => UseMutationResult<TResponse, any, TRequest>;
 export type IHookCallback<TRequest, TResponse, TQuery extends IQueryParams | void = void> = () => (request?: TRequest, query?: TQuery, config?: AxiosRequestConfig<TRequest>) => Promise<TResponse>;
 
-export interface IQuery<TFilter extends IFilter | void = void, TOrderBy extends IOrderBy | void = void> {
+export interface IQuery<TFilter = void, TOrderBy = void> {
 	/** currently requested page */
 	readonly page?: number;
 
@@ -54,7 +43,7 @@ export interface IQueryResult<TItem> {
 	readonly items: TItem[];
 }
 
-export interface ISourceContext<TResponse, TFilter extends IFilter | void = void, TOrderBy extends IOrderBy | void = void, TQuery extends IQueryParams | void = void> {
+export interface ISourceContext<TResponse, TFilter = void, TOrderBy = void, TQuery extends IQueryParams | void = void> {
 	readonly result: UseQueryResult<IQueryResult<TResponse>, any>;
 	/**
 	 * Current page
