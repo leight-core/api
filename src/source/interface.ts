@@ -43,51 +43,8 @@ export interface IQueryResult<TItem> {
 	readonly items: TItem[];
 }
 
-export interface ISourceContext<TResponse, TFilter = void, TOrderBy = void, TQuery extends IQueryParams | void = void> {
+export interface ISourceContext<TResponse> {
 	readonly result: UseQueryResult<IQueryResult<TResponse>, any>;
-	/**
-	 * Current page
-	 */
-	readonly page?: number;
-
-	/**
-	 * Set a new page (and eventually size).
-	 */
-	setPage(page?: number, pageSize?: number): void;
-
-	/**
-	 * Page size
-	 */
-	readonly size?: number;
-
-	/**
-	 * Set a new page size
-	 */
-	setSize(size?: number): void;
-
-	/**
-	 * Current order by.
-	 */
-	readonly orderBy?: TOrderBy;
-
-	/**
-	 * Set new order by.
-	 */
-	setOrderBy(orderBy?: TOrderBy): void;
-
-	readonly filter?: TFilter;
-
-	setFilter(filter?: TFilter): void;
-
-	/**
-	 * Access to current query used to fetch a page.
-	 */
-	readonly query?: TQuery;
-
-	/**
-	 * Set a new query.
-	 */
-	setQuery(query?: TQuery): void;
 
 	pagination(): PaginationConfig | false | undefined;
 
@@ -108,4 +65,17 @@ export interface IOrderByContext<TOrderBy = any> {
 	readonly orderBy: TOrderBy;
 
 	setOrderBy(orderBy?: TOrderBy): void;
+}
+
+export interface ICursorContext {
+	/**
+	 * Current page.
+	 */
+	readonly page?: number;
+	/**
+	 * Current page size.
+	 */
+	readonly size?: number;
+
+	setPage(page?: number, size?: number): void;
 }

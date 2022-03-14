@@ -19,7 +19,6 @@ export * from "./responsive";
 export * from "./router";
 export * from "./sdk";
 export * from "./source";
-export * from "./table";
 export * from "./translation";
 export * from "./ts";
 export * from "./uploader";
