@@ -97,3 +97,15 @@ export interface ISourceContext<TResponse, TFilter = void, TOrderBy = void, TQue
 
 	data(): IQueryResult<TResponse>;
 }
+
+export interface IFilterContext<TFilter = any> {
+	readonly filter: TFilter;
+
+	setFilter(filter?: TFilter): void;
+}
+
+export interface IOrderByContext<TOrderBy = any> {
+	readonly orderBy: TOrderBy;
+
+	setOrderBy(orderBy?: TOrderBy): void;
+}

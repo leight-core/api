@@ -129,9 +129,3 @@ export interface IBaseSelectOption {
 	readonly value: IBaseSelectItem;
 	readonly label: IBaseSelectItem;
 }
-
-export interface IFilterContext<TFilter = any> {
-	readonly filter: TFilter;
-
-	setFilter(filter?: TFilter): void;
-}
