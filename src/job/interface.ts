@@ -1,4 +1,4 @@
-export interface IJob<TParams = void> {
+export interface IJob<TParams = any> {
 	readonly id: string;
 	readonly status: IJobStatus;
 	readonly total: number;
