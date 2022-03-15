@@ -1,3 +1,3 @@
 import {IQueryParams} from "@leight-core/api";
 
-export type INavigate<TQuery extends IQueryParams | undefined = undefined> = (href: string, query?: TQuery) => void;
+export type INavigate<TQueryParams extends IQueryParams | undefined = undefined> = (href: string, queryParams: TQueryParams) => void;
