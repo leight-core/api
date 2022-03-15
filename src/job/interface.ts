@@ -14,4 +14,4 @@ export interface IJob<TParams = any> {
 	readonly params?: TParams;
 }
 
-export type IJobStatus = 'NEW' | 'RUNNING' | 'SUCCESS' | 'FAILURE';
+export type IJobStatus = 'NEW' | 'RUNNING' | 'SUCCESS' | 'FAILURE' | 'REVIEW' | 'DONE';
