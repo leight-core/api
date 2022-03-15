@@ -4,22 +4,19 @@ import {UseMutationOptions, UseMutationResult, UseQueryResult} from "react-query
 import {AxiosRequestConfig} from "axios";
 import {UseQueryOptions} from "react-query/types/react/types";
 
-export type IQueryHook<TRequest extends IQuery<TFilter, TOrderBy> | void, TResponse, TFilter = void, TOrderBy = void, TQuery extends IQueryParams | void = void> = (request?: TRequest, query?: TQuery, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
-export type IMutationHook<TRequest, TResponse, TQuery extends IQueryParams | void = void> = (query?: TQuery, options?: UseMutationOptions<TResponse, any, TRequest>, config?: AxiosRequestConfig<TRequest>) => UseMutationResult<TResponse, any, TRequest>;
-export type IHookCallback<TRequest, TResponse, TQuery extends IQueryParams | void = void> = () => (request?: TRequest, query?: TQuery, config?: AxiosRequestConfig<TRequest>) => Promise<TResponse>;
+export type IQueryHook<TRequest, TResponse, TQueryParams extends IQueryParams | void = void> = (request?: TRequest, queryParams?: TQueryParams, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
+export type IMutationHook<TRequest, TResponse, TQueryParams extends IQueryParams | void = void> = (queryParams?: TQueryParams, options?: UseMutationOptions<TResponse, any, TRequest>, config?: AxiosRequestConfig<TRequest>) => UseMutationResult<TResponse, any, TRequest>;
+export type IHookCallback<TRequest, TResponse, TQueryParams extends IQueryParams | void = void> = () => (request?: TRequest, queryParams?: TQueryParams, config?: AxiosRequestConfig<TRequest>) => Promise<TResponse>;
 
 export interface IQuery<TFilter = void, TOrderBy = void> {
 	/** currently requested page */
 	readonly page?: number;
-
 	/** limit number of items per page */
 	readonly size?: number;
-
 	/**
 	 * support for exact item filtering (like by an id or name or whatever)
 	 */
 	readonly filter?: TFilter;
-
 	/**
 	 *  support for ordering items
 	 */
@@ -29,16 +26,12 @@ export interface IQuery<TFilter = void, TOrderBy = void> {
 export interface IQueryResult<TItem> {
 	/** number of total available items in the source */
 	readonly total: number;
-
 	/** current page size */
 	readonly size?: number;
-
 	/** total available pages (precomputed based on total number of items and page size) */
 	readonly pages?: number;
-
 	/** number of items on the current page; usually same as page size, could be less */
 	readonly count: number;
-
 	/** items on the page */
 	readonly items: TItem[];
 }
