@@ -25,4 +25,4 @@ export interface IChunkService {
 
 export type IChunkServiceFactory = (deps: IChunkServiceDeps) => IChunkService;
 
-export type IChunkCommitEvent = <TRequest, TResponse, TQuery extends IQueryParams | void = void>(file: IFile, params: IEndpointParams<TRequest, TResponse, TQuery>) => Promise<IFile>;
+export type IChunkCommitEvent = <TRequest, TResponse, TQuery extends IQueryParams | undefined = undefined>(file: IFile, params: IEndpointParams<TRequest, TResponse, TQuery>) => Promise<IFile>;

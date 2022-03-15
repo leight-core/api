@@ -4,11 +4,11 @@ import {UseMutationOptions, UseMutationResult, UseQueryResult} from "react-query
 import {AxiosRequestConfig} from "axios";
 import {UseQueryOptions} from "react-query/types/react/types";
 
-export type IQueryHook<TRequest, TResponse, TQueryParams extends IQueryParams | void = void> = (request?: TRequest, queryParams?: TQueryParams, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
-export type IMutationHook<TRequest, TResponse, TQueryParams extends IQueryParams | void = void> = (queryParams?: TQueryParams, options?: UseMutationOptions<TResponse, any, TRequest>, config?: AxiosRequestConfig<TRequest>) => UseMutationResult<TResponse, any, TRequest>;
-export type IHookCallback<TRequest, TResponse, TQueryParams extends IQueryParams | void = void> = () => (request?: TRequest, queryParams?: TQueryParams, config?: AxiosRequestConfig<TRequest>) => Promise<TResponse>;
+export type IQueryHook<TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (request?: TRequest, queryParams?: TQueryParams, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
+export type IMutationHook<TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (queryParams?: TQueryParams, options?: UseMutationOptions<TResponse, any, TRequest>, config?: AxiosRequestConfig<TRequest>) => UseMutationResult<TResponse, any, TRequest>;
+export type IHookCallback<TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = () => (request?: TRequest, queryParams?: TQueryParams, config?: AxiosRequestConfig<TRequest>) => Promise<TResponse>;
 
-export interface IQuery<TFilter = void, TOrderBy = void> {
+export interface IQuery<TFilter = undefined, TOrderBy = undefined> {
 	/** currently requested page */
 	readonly page?: number;
 	/** limit number of items per page */

@@ -3,11 +3,11 @@ export interface IQueryParams {
 }
 
 export interface ILinkContext {
-	link<TQuery extends IQueryParams | void = void>(href: string, query?: TQuery): string;
+	link<TQuery extends IQueryParams | undefined = undefined>(href: string, query?: TQuery): string;
 }
 
-export interface IQueryParamsContext<TQueryParams extends IQueryParams | void = void> {
-	readonly queryParams?: TQueryParams;
+export interface IQueryParamsContext<TQueryParams extends IQueryParams | undefined = undefined> {
+	readonly queryParams: TQueryParams;
 
-	setQueryParams(queryParams?: TQueryParams): void;
+	setQueryParams(queryParams: TQueryParams): void;
 }
