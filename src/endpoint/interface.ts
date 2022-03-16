@@ -85,6 +85,6 @@ export type IQueryEndpointCallback<TName extends string, TRequest extends IQuery
  * Defaults to DELETE.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IDeleteEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, void, TResponse, TQueryParams>;
+export type IDeleteEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, undefined, TResponse, TQueryParams>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IDeleteEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, void>, res: NextApiResponse<TResponse>) => void;
+export type IDeleteEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, undefined>, res: NextApiResponse<TResponse>) => void;
