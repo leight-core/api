@@ -27,17 +27,17 @@ export type IEndpointCallback<TName extends string, TRequest, TResponse, TQueryP
  * When fetching an individual item, done by GET.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IFetchEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, void, TResponse, TQueryParams>
+export type IFetchEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, undefined, TResponse, TQueryParams>
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IFetchEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, void>, res: NextApiResponse<TResponse>) => void;
+export type IFetchEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, undefined>, res: NextApiResponse<TResponse>) => void;
 
 /**
  * When fetching a list of items (arrayed by default), done by GET.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IListEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, void, TResponse, TQueryParams>
+export type IListEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, undefined, TResponse, TQueryParams>
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IListEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, void>, res: NextApiResponse<TResponse>) => void;
+export type IListEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, undefined>, res: NextApiResponse<TResponse>) => void;
 
 /**
  * Mutation endpoint is a general endpoint used to do some server-side effect (some updated data or so).
