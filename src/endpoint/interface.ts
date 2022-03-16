@@ -14,7 +14,7 @@ export interface IEndpointParams<TRequest, TResponse, TQueryParams extends IQuer
 
 	toBody(): Promise<Buffer>;
 
-	end(chunk: any): void;
+	end(chunk?: any): void;
 }
 
 /**
