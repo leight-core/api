@@ -72,3 +72,17 @@ export interface ICursorContext {
 
 	setPage(page?: number, size?: number): void;
 }
+
+export interface ISource<TEntity, TFilter, TOrderBy> {
+	count(): Promise<number>;
+
+	findMany(arg: { where?: TFilter, orderBy?: TOrderBy }): Promise<TEntity[]>;
+}
+
+export type ISourceMapper<TEntity, TResult> = (entities: Promise<TEntity[]>) => Promise<TResult[]>;
+
+export interface IToQuery<TEntity, TResult, TQuery extends IQuery<TFilter, TOrderBy>, TFilter, TOrderBy> {
+	query: TQuery;
+	mapper: ISourceMapper<TEntity, TResult>;
+	source: ISource<TEntity, TFilter, TOrderBy>;
+}
