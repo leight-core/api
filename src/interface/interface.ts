@@ -10,3 +10,5 @@ export interface IRecordItem {
 export interface IndexOf<T> {
 	[index: string]: T;
 }
+
+export type Unboxed<T> = T extends (infer U)[] ? U : T;
