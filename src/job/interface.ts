@@ -1,5 +1,6 @@
 export interface IJob<TParams = any> {
 	readonly id: string;
+	readonly name: string;
 	readonly status: IJobStatus;
 	readonly total: number;
 	readonly progress: number;
