@@ -74,9 +74,9 @@ export interface ICursorContext {
 }
 
 export interface ISource<TEntity, TFilter, TOrderBy> {
-	count(): Promise<number>;
+	count(arg?: { where?: TFilter }): Promise<number>;
 
-	findMany(arg: { where?: TFilter, orderBy?: TOrderBy }): Promise<TEntity[]>;
+	findMany(arg?: { where?: TFilter, orderBy?: TOrderBy }): Promise<TEntity[]>;
 }
 
 export type ISourceMapper<TEntity, TResult> = (entities: Promise<TEntity[]>) => Promise<TResult[]>;
