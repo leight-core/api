@@ -84,8 +84,8 @@ export type ISourceMapper<TEntity, TResult> = (entities: Promise<TEntity[]>) => 
 export type IQueryFilter<T> = T extends IQuery<infer TFilter> ? TFilter : T;
 export type IQueryOrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy : T;
 
-export type IMapperEntity<T> = T extends (entities: Promise<infer TEntity>[]) => any ? TEntity : T;
-export type IMapperResult<T> = T extends (entities: Promise<any>[]) => infer TResult ? TResult : T;
+export type IMapperEntity<T> = T extends (entities: Promise<(infer TEntity)[]>) => any ? TEntity : T;
+export type IMapperResult<T> = T extends (entities: Promise<any>[]) => Promise<(infer TResult)[]> ? TResult : T;
 
 export interface IToQuery<TMapper extends ISourceMapper<any, any>, TQuery extends IQuery<any, any>> {
 	query: TQuery;
