@@ -91,5 +91,6 @@ export interface IToQuery<TMapper extends ISourceMapper<any, any>, TQuery extend
 	query: TQuery;
 	mapper: ISourceMapper<IMapperEntity<TMapper>, IMapperResult<TMapper>>;
 	source: ISource<IMapperEntity<TMapper>, TQuery>;
-	filter?: (filter?: IQueryFilter<TQuery>) => IQueryFilter<TQuery> | undefined,
+
+	toFilter?(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined,
 }
