@@ -73,12 +73,6 @@ export interface ICursorContext {
 	setPage(page?: number, size?: number): void;
 }
 
-export interface ISource<TEntity, TFilter, TOrderBy> {
-	count(arg?: { where?: TFilter }): Promise<number>;
-
-	findMany(arg?: { where?: TFilter, orderBy?: TOrderBy }): Promise<TEntity[]>;
-}
-
 export type ISourceMapper<TEntity, TResult> = (entities: Promise<TEntity[]>) => Promise<TResult[]>;
 
 export type IQueryFilter<T> = T extends IQuery<infer TFilter, any> ? TFilter : T;
@@ -87,8 +81,15 @@ export type IQueryOrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy 
 export type IMapperEntity<T> = T extends ISourceMapper<infer TEntity, any> ? TEntity : T;
 export type IMapperResult<T> = T extends ISourceMapper<any, infer TResult> ? TResult : T;
 
+export interface ISource<TEntity, TQuery extends IQuery<any, any>> {
+	count(arg?: { where?: IQueryFilter<TQuery> }): Promise<number>;
+
+	findMany(arg?: { where?: IQueryFilter<TQuery>, orderBy?: IQueryOrderBy<TQuery> }): Promise<TEntity[]>;
+}
+
 export interface IToQuery<TMapper extends ISourceMapper<any, any>, TQuery extends IQuery<any, any>> {
 	query: TQuery;
 	mapper: ISourceMapper<IMapperEntity<TMapper>, IMapperResult<TMapper>>;
-	source: ISource<IMapperEntity<TMapper>, IQueryFilter<TQuery>, IQueryOrderBy<TQuery>>;
+	source: ISource<IMapperEntity<TMapper>, TQuery>;
+	filter?: (filter?: IQueryFilter<TQuery>) => IQueryFilter<TQuery> | undefined,
 }
