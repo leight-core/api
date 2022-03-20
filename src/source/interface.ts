@@ -75,7 +75,7 @@ export interface ICursorContext {
 
 export type ISourceMapper<TEntity, TResult> = (entities: Promise<TEntity[]>) => Promise<TResult[]>;
 
-export type IQueryFilter<T> = T extends IQuery<infer TFilter, any> ? TFilter : T;
+export type IQueryFilter<T> = T extends IQuery<infer TFilter, any> ? TFilter & { fulltext?: string } : T;
 export type IQueryOrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy : T;
 
 export type IMapperEntity<T> = T extends ISourceMapper<infer TEntity, any> ? TEntity : T;
