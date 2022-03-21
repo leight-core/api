@@ -16,7 +16,7 @@ export interface IEndpointParams<TRequest, TResponse, TQueryParams extends IQuer
 
 	end(chunk?: any): void;
 
-	toUserId(): string;
+	toUserId(): Promise<string>;
 }
 
 /**
