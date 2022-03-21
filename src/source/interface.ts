@@ -85,6 +85,8 @@ export interface ISource<TEntity, TQuery extends IQuery<any, any>> {
 	count(arg?: { where?: IQueryFilter<TQuery> }): Promise<number>;
 
 	findMany(arg?: { where?: IQueryFilter<TQuery>, orderBy?: IQueryOrderBy<TQuery> }): Promise<TEntity[]>;
+
+	findUnique(arg: { where: { id: string }, rejectOnNotFound: boolean }): Promise<TEntity | null>;
 }
 
 export interface IToQuery<TMapper extends ISourceMapper<any, any>, TQuery extends IQuery<any, any>> {
