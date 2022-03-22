@@ -1,4 +1,4 @@
-import {IImportHandlers, IPrismaClientTransaction, IQuery, ISource} from "@leight-core/api";
+import {IImportHandlers, IPrismaClientTransaction, IQuery} from "@leight-core/api";
 
 export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>> {
 	create(create: TCreate): Promise<TEntity>;
@@ -14,4 +14,4 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 	importers(): IImportHandlers;
 }
 
-export type IRepositoryServiceFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>> = (source: ISource<TEntity, TQuery>, prisma?: IPrismaClientTransaction) => IRepositoryService<TCreate, TEntity, TResponse, TQuery>;
+export type IRepositoryServiceFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>> = (prisma?: IPrismaClientTransaction) => IRepositoryService<TCreate, TEntity, TResponse, TQuery>;
