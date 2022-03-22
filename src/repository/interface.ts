@@ -11,6 +11,8 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 
 	map(entity: TEntity): Promise<TResponse>;
 
+	list(entities: Promise<TEntity[]>): Promise<TResponse[]>;
+
 	importers(): IImportHandlers;
 }
 
