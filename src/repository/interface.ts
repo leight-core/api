@@ -1,9 +1,9 @@
-import {IImportHandlers, IPrismaClientTransaction, IQuery} from "@leight-core/api";
+import {IImportHandlers, IPrismaClientTransaction, IQuery, IQueryResult} from "@leight-core/api";
 
 export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>> {
 	create(create: TCreate): Promise<TEntity>;
 
-	query(query: TQuery): any;
+	query(query: TQuery): Promise<IQueryResult<TResponse>>;
 
 	fetch(id: string): Promise<TEntity>;
 
