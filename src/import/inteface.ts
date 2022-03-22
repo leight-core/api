@@ -35,7 +35,7 @@ export interface IImportEvents {
 
 	onSuccess?(success: number, total: number, processed: number): Promise<void>;
 
-	onSkip?(success: number, total: number, processed: number): Promise<void>;
+	onSkip?(skip: number, total: number, processed: number): Promise<void>;
 
-	onFailure?(error: Error, success: number, total: number, processed: number): Promise<void>;
+	onFailure?(error: Error, failure: number, total: number, processed: number): Promise<void>;
 }
