@@ -84,7 +84,7 @@ export type IMapperResult<T> = T extends ISourceMapper<any, infer TResult> ? TRe
 export interface ISource<TEntity, TQuery extends IQuery<any, any>> {
 	count(arg?: { where?: IQueryFilter<TQuery> }): Promise<number>;
 
-	findMany(arg?: { where?: IQueryFilter<TQuery>, orderBy?: IQueryOrderBy<TQuery>, skip: number | undefined, take: number | undefined }): Promise<TEntity[]>;
+	findMany(arg?: { where?: IQueryFilter<TQuery>, orderBy?: IQueryOrderBy<TQuery>, skip?: number | undefined, take?: number | undefined }): Promise<TEntity[]>;
 
 	findUnique(arg: { where: { id: string }, rejectOnNotFound: boolean }): Promise<TEntity | null>;
 }
