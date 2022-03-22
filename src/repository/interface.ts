@@ -1,4 +1,4 @@
-import {IImportHandlers, IPrismaClientTransaction, IQuery, IQueryFilter} from "@leight-core/api";
+import {IImportHandlers, IPrismaClientTransaction, IQuery} from "@leight-core/api";
 
 export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>> {
 	create(create: TCreate): Promise<TEntity>;
@@ -8,8 +8,6 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 	fetch(id: string): Promise<TEntity>;
 
 	toMap(id: string): Promise<TResponse>;
-
-	toMapList(filter: IQueryFilter<TQuery>): Promise<TResponse[]>;
 
 	map(entity: TEntity): Promise<TResponse>;
 
