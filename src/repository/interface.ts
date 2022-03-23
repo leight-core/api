@@ -9,6 +9,8 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 
 	query(query: TQuery): Promise<IQueryResult<TResponse>>;
 
+	handleQuery({request}: { request: TQuery }): Promise<IQueryResult<TResponse>>;
+
 	fetch(id: string): Promise<TEntity>;
 
 	toMap(id: string): Promise<TResponse>;
