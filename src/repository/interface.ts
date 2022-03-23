@@ -2,10 +2,6 @@ import {IImportHandlers, IPrismaClientTransaction, IQuery, IQueryResult} from "@
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
-export interface IPageRepositoryService<TProps, TQueryParams extends ParsedUrlQuery> {
-	fetch(key: keyof TProps, query: keyof TQueryParams): GetServerSideProps<TProps, TQueryParams>;
-}
-
 export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>> {
 	create(create: TCreate): Promise<TEntity>;
 
@@ -21,7 +17,7 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 
 	importers(): IImportHandlers;
 
-	pageService?: IPageRepositoryService<any, any>;
+	pageFetch?<TProps, TQueryParams extends ParsedUrlQuery>(key: keyof TProps, query: keyof TQueryParams): GetServerSideProps<TProps, TQueryParams>;
 }
 
 export type IRepositoryServiceFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>> = (prisma?: IPrismaClientTransaction) => IRepositoryService<TCreate, TEntity, TResponse, TQuery>;
