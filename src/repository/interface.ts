@@ -5,7 +5,7 @@ import {ParsedUrlQuery} from "querystring";
 export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> {
 	create(create: TCreate): Promise<TEntity>;
 
-	toCreate(create: TCreate): Promise<TResponse>;
+	handleCreate({request}: { request: TCreate }): Promise<TResponse>;
 
 	query(query: TQuery): Promise<IQueryResult<TResponse>>;
 
