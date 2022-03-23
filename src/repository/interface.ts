@@ -21,7 +21,7 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 
 	importers(): IImportHandlers;
 
-	pageService: IPageRepositoryService<any, any>;
+	pageService?: IPageRepositoryService<any, any>;
 }
 
 export type IRepositoryServiceFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>> = (prisma?: IPrismaClientTransaction) => IRepositoryService<TCreate, TEntity, TResponse, TQuery>;
