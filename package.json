@@ -1,5 +1,5 @@
 {
-	"version": "0.5.114",
+	"version": "0.5.115",
 	"name": "@leight-core/api",
 	"description": "Package with all interfaces used in the whole @leight-core.",
 	"license": "MIT",
@@ -26,7 +26,7 @@
 		"@prisma/client": "^3.10.0",
 		"react": "^17.0.2",
 		"next": "^12.1.0",
-		"antd": "^4.19.2",
+		"antd": "^4.19.3",
 		"i18next": "^21.6.14",
 		"cancelable-promise": "^4.3.0",
 		"react-query": "^3.34.16",
