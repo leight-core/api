@@ -96,3 +96,8 @@ export type IEntityEndpointCallback<TName extends string, TRequest extends IQuer
 export type IDeleteEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, undefined, TResponse, TQueryParams>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IDeleteEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, undefined>, res: NextApiResponse<TResponse>) => void;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type IRequestEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type IRequestEndpointCallback<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
