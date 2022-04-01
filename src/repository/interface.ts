@@ -2,10 +2,8 @@ import {IImportHandlers, IPrismaClientTransaction, IQuery, IQueryResult} from "@
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
-export type IRepositoryCreateCallback<TCreate, TEntity> = (create: TCreate, onUniqueError?: (create: TCreate) => Promise<TEntity>) => Promise<TEntity>;
-
 export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> {
-	create: IRepositoryCreateCallback<TCreate, TEntity>;
+	create(create: TCreate): Promise<TEntity>;
 
 	handleCreate({request}: { request: TCreate }): Promise<TResponse>;
 
