@@ -26,6 +26,7 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 
 export type IRepositoryServiceFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> = (prisma?: IPrismaClientTransaction) => IRepositoryService<TCreate, TEntity, TResponse, TQuery, TPageFetchProps, TPageFetchQueryParams>;
 
+export type IRepositoryCreate<T> = T extends IRepositoryService<infer TCreate, any, any, any, any, any> ? TCreate : T;
 export type IRepositoryEntity<T> = T extends IRepositoryService<any, infer TEntity, any, any, any, any> ? TEntity : T;
 export type IRepositoryResponse<T> = T extends IRepositoryService<any, any, infer TResponse, any, any, any> ? TResponse : T;
 export type IRepositoryQuery<T> = T extends IRepositoryService<any, any, any, infer TQuery, any, any> ? TQuery : T;
