@@ -37,6 +37,8 @@ export interface IQueryResult<TItem> {
 }
 
 export interface ISourceContext<TResponse> {
+	readonly name: string;
+
 	readonly result: UseQueryResult<IQueryResult<TResponse>, any>;
 
 	pagination(): PaginationConfig | false | undefined;
@@ -49,18 +51,24 @@ export interface ISourceContext<TResponse> {
 }
 
 export interface IFilterContext<TFilter = any> {
+	readonly name: string;
+
 	readonly filter: TFilter;
 
 	setFilter(filter?: TFilter): void;
 }
 
 export interface IOrderByContext<TOrderBy = any> {
+	readonly name: string;
+
 	readonly orderBy: TOrderBy;
 
 	setOrderBy(orderBy?: TOrderBy): void;
 }
 
 export interface ICursorContext {
+	readonly name: string;
+
 	/**
 	 * Current page.
 	 */
