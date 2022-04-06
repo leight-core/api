@@ -2,6 +2,7 @@ import {INavigate} from "@leight-core/api";
 import {FormInstance} from "antd";
 import CancelablePromise from "cancelable-promise";
 import {NamePath} from "rc-field-form/lib/interface";
+import {DependencyList} from "react";
 
 export interface IFormItemContext {
 	readonly field: NamePath;
@@ -86,6 +87,8 @@ export interface IFormContext<TValues = any> {
 	 * Resolve with true or false.
 	 */
 	canSubmit(then?: (canSubmit: boolean) => void): CancelablePromise<boolean>;
+
+	useCanSubmit(then?: (canSubmit: boolean) => void, deps?: DependencyList): void;
 }
 
 export type IToOptionMapper<TItem> = (item: TItem) => IBaseSelectOption;
