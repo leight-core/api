@@ -1,5 +1,5 @@
-import {NextApiRequest, NextApiResponse} from "next";
 import {IQuery, IQueryParams, IQueryResult} from "@leight-core/api";
+import {NextApiRequest, NextApiResponse} from "next";
 
 export interface INextApiRequest<TQuery extends IQueryParams | undefined = undefined, TRequest = undefined> extends Omit<NextApiRequest, "query"> {
 	readonly query: TQuery;
@@ -16,7 +16,9 @@ export interface IEndpointParams<TRequest, TResponse, TQueryParams extends IQuer
 
 	end(chunk?: any): void;
 
-	toUserId(): Promise<string>;
+	toUserId(): string;
+
+	toMaybeUserId(): string | undefined;
 }
 
 /**
