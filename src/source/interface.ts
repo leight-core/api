@@ -71,6 +71,11 @@ export interface IFilterContext<TFilter = any> {
 	 * Apply the given filter, thus merging with the one already set, but replacing first-level properties (thus there is no deep-merge).
 	 */
 	applyFilter(filter?: TFilter): void;
+
+	/**
+	 * Deep merge with the current filter.
+	 */
+	mergeFilter(filter?: TFilter): void;
 }
 
 export interface IOrderByContext<TOrderBy = any> {
