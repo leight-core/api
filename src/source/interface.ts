@@ -52,11 +52,35 @@ export interface ISourceContext<TResponse> {
 }
 
 export interface IFilterContext<TFilter = any> {
+	/**
+	 * Name of this filter context.
+	 */
 	readonly name: string;
 
+	/**
+	 * Currently set filtering.
+	 */
 	readonly filter: TFilter;
 
+	/**
+	 * Access to map of toggled filters.
+	 */
+	readonly toggleFilterStatus: { [index in string]: boolean };
+
+	/**
+	 * Set the given filter as current (thus replacing one already set).
+	 */
 	setFilter(filter?: TFilter): void;
+
+	/**
+	 * Apply the given filter, thus merging with the one already set, but replacing first-level properties (thus there is no deep-merge).
+	 */
+	applyFilter(filter?: TFilter): void;
+
+	/**
+	 * Toggle filter by the given name; useful for simple filters. Filter is appended.
+	 */
+	toggleFilter(filter: TFilter | undefined, name: string, toggle?: boolean): boolean;
 }
 
 export interface IOrderByContext<TOrderBy = any> {
