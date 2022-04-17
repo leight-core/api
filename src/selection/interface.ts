@@ -12,4 +12,6 @@ export interface ISelectionContext<TSelection> {
 	asSelection(): { [index in string]: TSelection; };
 
 	toSelection(): TSelection[];
+
+	isEmpty(): boolean;
 }
