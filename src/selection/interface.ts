@@ -13,5 +13,7 @@ export interface ISelectionContext<TSelection> {
 
 	toSelection(): TSelection[];
 
+	toSingle(): TSelection;
+
 	isEmpty(): boolean;
 }
