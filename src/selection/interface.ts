@@ -4,7 +4,7 @@ export type ISelectionBoolType = "true/false" | "true/false/undefined" | "true/u
 export const SelectionTrueFalse = {"true": false, "false": true, "undefined": true};
 export const SelectionTrueUndefined = {"true": undefined, "undefined": true};
 export const SelectionTrueFalseUndefined = {"undefined": true, "true": false, "false": undefined};
-export const SelectionBoolTypeMap: { [index in ISelectionBoolType]: (typeof SelectionTrueFalse | typeof SelectionTrueUndefined | typeof SelectionTrueFalseUndefined) } = {
+export const SelectionBoolTypeMap: { [index in ISelectionBoolType]: { [index in string]: boolean | undefined } } = {
 	"true/false": SelectionTrueFalse,
 	"true/false/undefined": SelectionTrueFalseUndefined,
 	"true/undefined": SelectionTrueUndefined,
