@@ -76,6 +76,8 @@ export interface IFilterContext<TFilter = any> {
 	 * Deep merge with the current filter.
 	 */
 	mergeFilter(filter?: TFilter): void;
+
+	isEmpty(): boolean;
 }
 
 export interface IOrderByContext<TOrderBy = any> {
