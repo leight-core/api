@@ -98,11 +98,17 @@ export type IFormMutationMapper<TFormValues, TRequest> = (values: TFormValues) =
 export type IFormInitialMapper<TFormValues> = () => TFormValues;
 
 export type IFormOnValuesChanged<TFormValues = any> = (success: IFormValuesChanged<TFormValues>) => void;
+export type IFormOnChanged<TFormValues = any> = (change: IFormChanged<TFormValues>) => void;
 
 export interface IFormValuesChanged<TFormValues> {
 	readonly values: TFormValues;
 	readonly formContext: IFormContext<TFormValues>;
 	readonly changed: Partial<TFormValues>;
+}
+
+export interface IFormChanged<TFormValues> {
+	readonly values: TFormValues;
+	readonly formContext: IFormContext<TFormValues>;
 }
 
 export interface IFormSuccess<TFormValues, TResponse> {
