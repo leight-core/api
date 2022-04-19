@@ -1,6 +1,6 @@
 export type ISelectionType = "none" | "single" | "multi";
 
-export interface IOnSelection<TSelection> {
+export interface ISelection<TSelection> {
 	single: TSelection | undefined;
 	selected: string[];
 	items: { [index in string]: TSelection };
@@ -17,6 +17,11 @@ export interface ISelectionContext<TSelection> {
 	 * Handle selection with the provided item; id is taken from that item.
 	 */
 	item(item: TSelection & { id: string }): void;
+
+	/**
+	 * Return object with all selection stuff.
+	 */
+	selection(): ISelection<TSelection>;
 
 	/**
 	 * Tells if an item with the given id has been selected.
@@ -58,5 +63,5 @@ export interface ISelectionContext<TSelection> {
 	/**
 	 * Add selection event handler.
 	 */
-	onSelection(callback: (event: IOnSelection<TSelection>) => void): void;
+	onSelection(callback: (event: ISelection<TSelection>) => void): void;
 }
