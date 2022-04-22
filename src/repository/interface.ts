@@ -1,4 +1,4 @@
-import {IImportHandlers, IPrismaClientTransaction, IQuery, IQueryResult} from "@leight-core/api";
+import {IImportHandlers, IPrismaClientTransaction, IQuery, IQueryFilter, IQueryResult} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
@@ -22,6 +22,8 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 	importers(): IImportHandlers;
 
 	pageFetch(key: keyof TPageFetchProps, query: keyof TPageFetchQueryParams): GetServerSideProps<TPageFetchProps, TPageFetchQueryParams>;
+
+	toFilter(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined;
 }
 
 export type IRepositoryServiceFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> = (prisma?: IPrismaClientTransaction) => IRepositoryService<TCreate, TEntity, TResponse, TQuery, TPageFetchProps, TPageFetchQueryParams>;
