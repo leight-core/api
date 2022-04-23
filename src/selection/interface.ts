@@ -64,4 +64,9 @@ export interface ISelectionContext<TSelection> {
 	 * Add selection event handler.
 	 */
 	onSelection(callback: (event: ISelection<TSelection>) => void): void;
+
+	/**
+	 * Clear all selection.
+	 */
+	clear(): void;
 }
