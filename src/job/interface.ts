@@ -11,8 +11,9 @@ export interface IJob<TParams = any> {
 	readonly skip?: number | null;
 	readonly skipRatio?: number | null;
 	readonly created: Date;
+	readonly finished?: Date | null;
 	readonly userId?: string | null;
 	readonly params?: TParams;
 }
 
-export type IJobStatus = 'NEW' | 'RUNNING' | 'SUCCESS' | 'FAILURE' | 'REVIEW' | 'DONE';
+export type IJobStatus = "NEW" | "RUNNING" | "SUCCESS" | "FAILURE" | "REVIEW" | "DONE";

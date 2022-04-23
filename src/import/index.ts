@@ -1,1 +1,1 @@
-export * from './inteface';
+export * from "./inteface";
