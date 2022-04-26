@@ -11,6 +11,7 @@ export interface IJob<TParams = any> {
 	readonly skip?: number | null;
 	readonly skipRatio?: number | null;
 	readonly created: Date;
+	readonly started?: Date | null;
 	readonly finished?: Date | null;
 	readonly userId?: string | null;
 	readonly params?: TParams;
