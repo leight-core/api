@@ -1,5 +1,5 @@
 export interface IUserService {
-	getUserId(): Promise<string>;
+	getUserId(): string;
 
-	getOptionalUserId(): Promise<string | undefined>;
+	getOptionalUserId(): string | undefined;
 }
