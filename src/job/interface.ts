@@ -43,7 +43,7 @@ export interface IJobProcessor<TParams = any> {
 
 	register(agenda: Agenda): void;
 
-	schedule(params: TParams, userId?: string): Promise<any>;
+	schedule(params: TParams, userId?: string): Promise<IJob<TParams>>;
 }
 
 export type IJobStatus = "NEW" | "RUNNING" | "SUCCESS" | "FAILURE" | "REVIEW" | "DONE";
