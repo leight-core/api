@@ -29,13 +29,3 @@ export interface IImportHandler<TItem> {
 export interface IImportHandlers {
 	[index: string]: () => IImportHandler<any>;
 }
-
-export interface IImportEvents {
-	onTotal?(total: number): Promise<void>;
-
-	onSuccess?(success: number, total: number, processed: number): Promise<void>;
-
-	onSkip?(skip: number, total: number, processed: number): Promise<void>;
-
-	onFailure?(error: Error, failure: number, total: number, processed: number): Promise<void>;
-}
