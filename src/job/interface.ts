@@ -19,6 +19,8 @@ export interface IJob<TParams = any> {
 	readonly params?: TParams;
 }
 
+export type IJobParams<T> = T extends IJob<infer TParams> ? TParams : T;
+
 export interface IJobProgress {
 	readonly jobId: string;
 	readonly success: number;
