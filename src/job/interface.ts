@@ -34,4 +34,12 @@ export interface IJobProgress {
 	onSkip(): Promise<any>;
 }
 
+export interface IJobProcessor<TParams = any> {
+	name(): string;
+
+	register(): void;
+
+	schedule(params: TParams, userId?: string): void;
+}
+
 export type IJobStatus = "NEW" | "RUNNING" | "SUCCESS" | "FAILURE" | "REVIEW" | "DONE";
