@@ -45,6 +45,11 @@ export interface ISelectionContext<TSelection> {
 	toSelection(): string[];
 
 	/**
+	 * Return an array of selected items.
+	 */
+	toItems(): TSelection[];
+
+	/**
 	 * Return just a single selected id. If there is no selection, error is thrown.
 	 */
 	toSingle(): string;
