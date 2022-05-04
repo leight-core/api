@@ -17,4 +17,21 @@ export interface IJob<TParams = any> {
 	readonly params?: TParams;
 }
 
+export interface IJobProgress {
+	readonly jobId: string;
+	readonly success: number;
+	readonly failure: number;
+	readonly skip: number;
+
+	total(total: number): Promise<any>;
+
+	status(status: IJobStatus): Promise<any>;
+
+	onSuccess(): Promise<any>;
+
+	onFailure(): Promise<any>;
+
+	onSkip(): Promise<any>;
+}
+
 export type IJobStatus = "NEW" | "RUNNING" | "SUCCESS" | "FAILURE" | "REVIEW" | "DONE";

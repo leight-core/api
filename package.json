@@ -1,5 +1,5 @@
 {
-	"version": "0.5.151",
+	"version": "0.5.152",
 	"name": "@leight-core/api",
 	"description": "Package with all interfaces used in the whole @leight-core.",
 	"license": "MIT",
@@ -24,8 +24,8 @@
 	},
 	"peerDependencies": {
 		"@prisma/client": "^3.13.0",
-		"react": "^17.0.2 || ^18.1.0",
-		"react-dom": "^17.0.2 || ^18.1.0",
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0",
 		"next": "^12.1.5",
 		"antd": "^4.20.2",
 		"i18next": "^21.6.16",
