@@ -8,6 +8,10 @@ export interface ISelection<TSelection> {
 }
 
 export interface ISelectionContext<TSelection> {
+	enable(enable?: boolean): void;
+
+	isEnabled(): boolean;
+
 	/**
 	 * Handle selection with the provided id.
 	 */
