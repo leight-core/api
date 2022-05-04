@@ -1,3 +1,5 @@
+import {Agenda} from "agenda";
+
 export interface IJob<TParams = any> {
 	readonly id: string;
 	readonly name: string;
@@ -37,7 +39,7 @@ export interface IJobProgress {
 export interface IJobProcessor<TParams = any> {
 	name(): string;
 
-	register(): void;
+	register(agenda: Agenda): void;
 
 	schedule(params: TParams, userId?: string): void;
 }
