@@ -1,6 +1,7 @@
 export * from "./block";
 export * from "./bootstrap";
 export * from "./browser";
+export * from "./cache";
 export * from "./date";
 export * from "./drawer";
 export * from "./endpoint";
