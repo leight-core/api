@@ -23,19 +23,27 @@ export type IJobParams<T> = T extends IJob<infer TParams> ? TParams : T;
 
 export interface IJobProgress {
 	readonly jobId: string;
-	readonly success: number;
-	readonly failure: number;
-	readonly skip: number;
+	readonly result?: IJobStatus;
 
-	total(total: number): Promise<any>;
+	success(): number;
 
-	status(status: IJobStatus): Promise<any>;
+	failure(): number;
+
+	skip(): number;
+
+	setTotal(total: number): Promise<any>;
+
+	setStatus(status: IJobStatus): Promise<any>;
 
 	onSuccess(): Promise<any>;
 
 	onFailure(): Promise<any>;
 
 	onSkip(): Promise<any>;
+
+	setResult(result: IJobStatus): void;
+
+	isReview(): boolean;
 }
 
 export interface IJobProcessor<TParams = any> {
