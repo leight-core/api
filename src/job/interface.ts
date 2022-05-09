@@ -23,7 +23,8 @@ export type IJobParams<T> = T extends IJob<infer TParams> ? TParams : T;
 
 export interface IJobProgress {
 	readonly jobId: string;
-	readonly result?: IJobStatus;
+
+	result(): IJobStatus | undefined;
 
 	success(): number;
 
