@@ -16,7 +16,7 @@ export interface IJob<TParams = any> {
 	readonly started?: Date | null;
 	readonly finished?: Date | null;
 	readonly userId?: string | null;
-	readonly params?: TParams;
+	readonly params: TParams;
 }
 
 export type IJobParams<T> = T extends IJob<infer TParams> ? TParams : T;
