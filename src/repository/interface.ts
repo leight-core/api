@@ -34,3 +34,5 @@ export type IRepositoryResponse<T> = T extends IRepositoryService<any, any, infe
 export type IRepositoryQuery<T> = T extends IRepositoryService<any, any, any, infer TQuery, any, any> ? TQuery : T;
 export type IRepositoryFetchProps<T> = T extends IRepositoryService<any, any, any, any, infer TFetchProps, any> ? TFetchProps : T;
 export type IRepositoryFetchQuery<T> = T extends IRepositoryService<any, any, any, any, any, infer TFetchQuery> ? TFetchQuery : T;
+
+export type IMapOf = <T, R, U>(source: Promise<T[]>, map: (item: T) => R, mapper: (item: R) => Promise<U>) => Promise<U[]>;
