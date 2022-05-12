@@ -133,3 +133,7 @@ export interface IToQuery<TMapper extends ISourceMapper<any, any>, TQuery extend
 
 	toFilter?(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined,
 }
+
+export interface IWhereFulltext {
+	fulltext?: string | null;
+}
