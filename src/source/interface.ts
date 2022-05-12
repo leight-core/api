@@ -135,5 +135,5 @@ export interface IToQuery<TMapper extends ISourceMapper<any, any>, TQuery extend
 }
 
 export interface IWhereFulltext {
-	fulltext?: string | null;
+	fulltext?: string;
 }
