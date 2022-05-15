@@ -1,4 +1,4 @@
-import {Agenda} from "agenda";
+import {Logger} from "winston";
 
 export interface IJob<TParams = any> {
 	readonly id: string;
@@ -47,14 +47,21 @@ export interface IJobProgress {
 	isReview(): boolean;
 }
 
+export interface IJobHandlerRequest<TParams> {
+	name: string;
+	job: IJob<TParams>;
+	jobProgress: IJobProgress;
+	logger: Logger;
+
+	progress<TResult>(callback: () => Promise<TResult>, sleep?: number): Promise<TResult | void>;
+}
+
 export interface IJobProcessor<TParams = any> {
-	name(): string;
-
-	register(agenda: Agenda): void;
-
 	schedule(params: TParams, userId?: string | null): Promise<IJob<TParams>>;
 
 	scheduleAt(schedule: string | Date, params: TParams, userId?: string | null): Promise<IJob<TParams>>;
+
+	handle(handler: IJobHandlerRequest<TParams>): Promise<any>;
 }
 
 export type IJobStatus = "NEW" | "RUNNING" | "SUCCESS" | "FAILURE" | "REVIEW" | "DONE";
