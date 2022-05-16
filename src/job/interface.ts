@@ -60,11 +60,11 @@ export interface IJobHandlerRequest<TParams> {
 }
 
 export interface IJobProcessor<TParams = any> {
-	handleAsync(params: IEndpointParams<TParams, IJob<TParams>>): Promise<IJob<TParams>>;
+	request(params: IEndpointParams<TParams, IJob<TParams>>): Promise<IJob<TParams>>;
 
-	async(params: TParams): Promise<any>;
+	async(params: TParams, userId?: string | null): Promise<IJob<TParams>>;
 
-	handle(handler: IJobHandlerRequest<TParams>): Promise<any>;
+	handler(request: IJobHandlerRequest<TParams>): Promise<any>;
 }
 
 export type IJobStatus = "NEW" | "RUNNING" | "SUCCESS" | "FAILURE" | "REVIEW" | "DONE";
