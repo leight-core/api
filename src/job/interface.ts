@@ -1,5 +1,8 @@
+import {IEndpointParams} from "@leight-core/api";
+import AsyncLock from "async-lock";
 import {Logger} from "winston";
-import {IEndpointParams} from "../endpoint";
+
+export type ILockOptions = ConstructorParameters<typeof AsyncLock>[0];
 
 export interface IJob<TParams = any> {
 	readonly id: string;
@@ -60,9 +63,11 @@ export interface IJobHandlerRequest<TParams> {
 }
 
 export interface IJobProcessor<TParams = any> {
-	request(params: IEndpointParams<TParams, IJob<TParams>>): Promise<IJob<TParams>>;
+	lock(): AsyncLock;
 
-	async(params: TParams, userId?: string | null): Promise<IJob<TParams>>;
+	request(params: IEndpointParams<TParams, IJob<TParams>>, lock?: ILockOptions): Promise<IJob<TParams>>;
+
+	async(params: TParams, userId?: string | null, lock?: ILockOptions): Promise<IJob<TParams>>;
 
 	handler(request: IJobHandlerRequest<TParams>): Promise<any>;
 }
