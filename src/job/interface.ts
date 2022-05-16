@@ -51,6 +51,8 @@ export interface IJobProgress {
 export interface IJobHandlerRequest<TParams> {
 	name: string;
 	job: IJob<TParams>;
+	params: TParams;
+	userId?: string | null;
 	jobProgress: IJobProgress;
 	logger: Logger;
 
