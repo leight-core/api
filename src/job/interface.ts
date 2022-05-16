@@ -63,8 +63,6 @@ export interface IJobHandlerRequest<TParams> {
 }
 
 export interface IJobProcessor<TParams = any> {
-	lock(): AsyncLock;
-
 	request(params: IEndpointParams<TParams, IJob<TParams>>, lock?: ILockOptions): Promise<IJob<TParams>>;
 
 	async(params: TParams, userId?: string | null, lock?: ILockOptions): Promise<IJob<TParams>>;
