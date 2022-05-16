@@ -1,4 +1,5 @@
 import {Logger} from "winston";
+import {IEndpointParams} from "../endpoint";
 
 export interface IJob<TParams = any> {
 	readonly id: string;
@@ -57,9 +58,9 @@ export interface IJobHandlerRequest<TParams> {
 }
 
 export interface IJobProcessor<TParams = any> {
-	schedule(params: TParams, userId?: string | null): Promise<IJob<TParams>>;
+	handleAsync(params: IEndpointParams<TParams, IJob<TParams>>): Promise<IJob<TParams>>;
 
-	scheduleAt(schedule: string | Date, params: TParams, userId?: string | null): Promise<IJob<TParams>>;
+	async(params: TParams): Promise<any>;
 
 	handle(handler: IJobHandlerRequest<TParams>): Promise<any>;
 }
