@@ -90,15 +90,27 @@ export type IEntityEndpoint<TName extends string, TRequest extends IQuery<any, a
 export type IEntityEndpointCallback<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
+ * Generic delete request; provide an array of object ids being removed (even just one - yaaay, it's an array!).
+ *
+ * Delete is done by POST, not DELETE method (sad, semantically wrong, but DELETE does not carry body).
+ */
+export interface IDeleteRequest {
+	ids: string[];
+}
+
+/**
  * Endpoint used to remove something.
  *
- * Defaults to DELETE.
+ * Defaults to POST.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IDeleteEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, undefined, TResponse, TQueryParams>;
+export type IDeleteEndpoint<TName extends string, TRequest extends IDeleteRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, TRequest, TResponse, TQueryParams>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IDeleteEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, undefined>, res: NextApiResponse<TResponse>) => void;
+export type IDeleteEndpointCallback<TName extends string, TRequest extends IDeleteRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
 
+/**
+ * Generic request/response.
+ */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IRequestEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
