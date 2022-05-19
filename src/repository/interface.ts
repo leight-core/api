@@ -9,7 +9,7 @@ export interface IRepository<TCreate, TEntity, TResponse, TQuery extends IQuery<
 
 	query(query: TQuery): Promise<IQueryResult<TResponse>>;
 
-	handleQuery(params: IEndpointParams<TCreate, TResponse>): Promise<IQueryResult<TResponse>>;
+	handleQuery(params: IEndpointParams<TQuery, IQueryResult<TResponse>>): Promise<IQueryResult<TResponse>>;
 
 	fetch(id: string): Promise<TEntity>;
 
