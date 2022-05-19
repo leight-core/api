@@ -1,15 +1,15 @@
-import {IImportHandlers, IPrismaClientTransaction, IQuery, IQueryFilter, IQueryResult} from "@leight-core/api";
+import {IEndpointParams, IImportHandlers, IPrismaClientTransaction, IQuery, IQueryFilter, IQueryResult} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
-export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> {
+export interface IRepository<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> {
 	create(create: TCreate): Promise<TEntity>;
 
-	handleCreate({request}: { request: TCreate }): Promise<TResponse>;
+	handleCreate(params: IEndpointParams<TCreate, TResponse>): Promise<TResponse>;
 
 	query(query: TQuery): Promise<IQueryResult<TResponse>>;
 
-	handleQuery({request}: { request: TQuery }): Promise<IQueryResult<TResponse>>;
+	handleQuery(params: IEndpointParams<TCreate, TResponse>): Promise<IQueryResult<TResponse>>;
 
 	fetch(id: string): Promise<TEntity>;
 
@@ -26,11 +26,11 @@ export interface IRepositoryService<TCreate, TEntity, TResponse, TQuery extends 
 	toFilter(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined;
 }
 
-export type IRepositoryServiceFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> = (prisma?: IPrismaClientTransaction) => IRepositoryService<TCreate, TEntity, TResponse, TQuery, TPageFetchProps, TPageFetchQueryParams>;
+export type IRepositoryFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> = (prisma?: IPrismaClientTransaction) => IRepository<TCreate, TEntity, TResponse, TQuery, TPageFetchProps, TPageFetchQueryParams>;
 
-export type IRepositoryCreate<T> = T extends IRepositoryService<infer TCreate, any, any, any, any, any> ? TCreate : T;
-export type IRepositoryEntity<T> = T extends IRepositoryService<any, infer TEntity, any, any, any, any> ? TEntity : T;
-export type IRepositoryResponse<T> = T extends IRepositoryService<any, any, infer TResponse, any, any, any> ? TResponse : T;
-export type IRepositoryQuery<T> = T extends IRepositoryService<any, any, any, infer TQuery, any, any> ? TQuery : T;
-export type IRepositoryFetchProps<T> = T extends IRepositoryService<any, any, any, any, infer TFetchProps, any> ? TFetchProps : T;
-export type IRepositoryFetchQuery<T> = T extends IRepositoryService<any, any, any, any, any, infer TFetchQuery> ? TFetchQuery : T;
+export type IRepositoryCreate<T> = T extends IRepository<infer TCreate, any, any, any, any, any> ? TCreate : T;
+export type IRepositoryEntity<T> = T extends IRepository<any, infer TEntity, any, any, any, any> ? TEntity : T;
+export type IRepositoryResponse<T> = T extends IRepository<any, any, infer TResponse, any, any, any> ? TResponse : T;
+export type IRepositoryQuery<T> = T extends IRepository<any, any, any, infer TQuery, any, any> ? TQuery : T;
+export type IRepositoryFetchProps<T> = T extends IRepository<any, any, any, any, infer TFetchProps, any> ? TFetchProps : T;
+export type IRepositoryFetchQuery<T> = T extends IRepository<any, any, any, any, any, infer TFetchQuery> ? TFetchQuery : T;
