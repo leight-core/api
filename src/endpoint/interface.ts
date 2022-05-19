@@ -1,4 +1,4 @@
-import {IQuery, IQueryParams, IQueryResult} from "@leight-core/api";
+import {IQuery, IQueryParams} from "@leight-core/api";
 import {NextApiRequest, NextApiResponse} from "next";
 
 export interface INextApiRequest<TQuery extends IQueryParams | undefined = undefined, TRequest = undefined> extends Omit<NextApiRequest, "query"> {
@@ -81,9 +81,9 @@ export type IPatchEndpointCallback<TName extends string, TRequest, TResponse, TQ
  * Defaults to POST.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IQueryEndpoint<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, IQueryResult<TResponse>, TQueryParams>;
+export type IQueryEndpoint<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse[], TQueryParams>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IQueryEndpointCallback<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<IQueryResult<TResponse>>) => void;
+export type IQueryEndpointCallback<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse[]>) => void;
 
 export type IEntityEndpoint<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

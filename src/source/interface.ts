@@ -24,23 +24,10 @@ export interface IQuery<TFilter = undefined, TOrderBy = undefined> {
 	readonly orderBy?: TOrderBy;
 }
 
-export interface IQueryResult<TItem> {
-	/** number of total available items in the source */
-	readonly total: number;
-	/** current page size */
-	readonly size?: number;
-	/** total available pages (precomputed based on total number of items and page size) */
-	readonly pages?: number;
-	/** number of items on the current page; usually same as page size, could be less */
-	readonly count: number;
-	/** items on the page */
-	readonly items: TItem[];
-}
-
 export interface ISourceContext<TResponse> {
 	readonly name: string;
 
-	readonly result: UseQueryResult<IQueryResult<TResponse>, any>;
+	readonly result: UseQueryResult<TResponse[], any>;
 
 	pagination(): PaginationConfig | false | undefined;
 
@@ -48,7 +35,7 @@ export interface ISourceContext<TResponse> {
 
 	map(mapper: (item: TResponse) => any): any;
 
-	data(): IQueryResult<TResponse>;
+	data(): TResponse[];
 }
 
 export interface IFilterContext<TFilter = any> {

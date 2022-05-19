@@ -1,4 +1,4 @@
-import {IEndpointParams, IImportHandlers, IPrismaClientTransaction, IQuery, IQueryFilter, IQueryResult} from "@leight-core/api";
+import {IEndpointParams, IImportHandlers, IQuery, IQueryFilter} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
@@ -7,9 +7,9 @@ export interface IRepository<TCreate, TEntity, TResponse, TQuery extends IQuery<
 
 	handleCreate(params: IEndpointParams<TCreate, TResponse>): Promise<TResponse>;
 
-	query(query: TQuery): Promise<IQueryResult<TResponse>>;
+	query(query: TQuery): Promise<TResponse[]>;
 
-	handleQuery(params: IEndpointParams<TQuery, IQueryResult<TResponse>>): Promise<IQueryResult<TResponse>>;
+	handleQuery(params: IEndpointParams<TQuery, TResponse[]>): Promise<TResponse[]>;
 
 	fetch(id: string): Promise<TEntity>;
 
@@ -25,8 +25,6 @@ export interface IRepository<TCreate, TEntity, TResponse, TQuery extends IQuery<
 
 	toFilter(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined;
 }
-
-export type IRepositoryFactory<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> = (prisma?: IPrismaClientTransaction) => IRepository<TCreate, TEntity, TResponse, TQuery, TPageFetchProps, TPageFetchQueryParams>;
 
 export type IRepositoryCreate<T> = T extends IRepository<infer TCreate, any, any, any, any, any> ? TCreate : T;
 export type IRepositoryEntity<T> = T extends IRepository<any, infer TEntity, any, any, any, any> ? TEntity : T;
