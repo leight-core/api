@@ -107,6 +107,10 @@ export type IMapperResult<T> = T extends ISourceMapper<any, infer TResult> ? TRe
 export type ISourceQuery<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity[]>;
 export type ISourceFetch<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity | null>;
 export type ISourceFind<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity>;
+/**
+ * Search an entity by an id.
+ */
+export type ISourceEntity<TEntity> = (id: string) => Promise<TEntity>;
 export type ISourceCount<TQuery extends IQuery<any, any>> = (query: TQuery) => Promise<number>;
 
 export interface IWhereFulltext {
