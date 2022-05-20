@@ -104,21 +104,10 @@ export type IQueryOrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy 
 export type IMapperEntity<T> = T extends ISourceMapper<infer TEntity, any> ? TEntity : T;
 export type IMapperResult<T> = T extends ISourceMapper<any, infer TResult> ? TResult : T;
 
-export interface IToQuery<TMapper extends ISourceMapper<any, any>, TQuery extends IQuery<any, any>> {
-	readonly request: TQuery;
-	readonly mapper: ISourceMapper<IMapperEntity<TMapper>, IMapperResult<TMapper>>;
-
-	query(query: TQuery): Promise<IMapperEntity<TMapper>[]>;
-
-	fetch(query: TQuery): Promise<IMapperEntity<TMapper> | null>;
-
-	find(query: TQuery): Promise<IMapperEntity<TMapper>>;
-
-	count(query: TQuery): Promise<number>;
-
-
-	toFilter?(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined,
-}
+export type ISourceQuery<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity[]>;
+export type ISourceFetch<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity | null>;
+export type ISourceFind<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity>;
+export type ISourceCount<TQuery extends IQuery<any, any>> = (query: TQuery) => Promise<number>;
 
 export interface IWhereFulltext {
 	fulltext?: string;
