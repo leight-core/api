@@ -84,7 +84,6 @@ export interface IOrderByContext<TOrderBy = any> {
 
 export interface ICursorContext {
 	readonly name: string;
-
 	/**
 	 * Current page.
 	 */
