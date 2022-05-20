@@ -9,6 +9,9 @@ export type IMutationHook<TRequest, TResponse, TQueryParams extends IQueryParams
 export type IPromiseCallback<TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (request?: TRequest, queryParams?: TQueryParams, config?: AxiosRequestConfig<TRequest>) => Promise<TResponse>;
 export type IHookCallback<TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = () => IPromiseCallback<TRequest, TResponse, TQueryParams>;
 
+export type IQueryFilter<T> = T extends IQuery<infer TFilter, any> ? TFilter : T;
+export type IQueryOrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy : T;
+
 export interface IQuery<TFilter = undefined, TOrderBy = undefined> {
 	/** currently requested page */
 	readonly page?: number;
@@ -33,9 +36,9 @@ export interface ISourceContext<TResponse> {
 
 	hasData(): boolean;
 
-	map(mapper: (item: TResponse) => any): any;
-
 	data(): TResponse[];
+
+	map(mapper: (item: TResponse) => any): any;
 }
 
 export interface IFilterContext<TFilter = any> {
@@ -96,14 +99,15 @@ export interface ICursorContext {
 	setPage(page?: number, size?: number): void;
 }
 
+export interface IWithFulltext {
+	fulltext?: string;
+}
+
 export type ISourceMapper<TEntity, TResult> = (entities: Promise<TEntity[]>) => Promise<TResult[]>;
 
-export type IQueryFilter<T> = T extends IQuery<infer TFilter, any> ? TFilter : T;
-export type IQueryOrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy : T;
-
 export type IMapperEntity<T> = T extends ISourceMapper<infer TEntity, any> ? TEntity : T;
-export type IMapperResult<T> = T extends ISourceMapper<any, infer TResult> ? TResult : T;
 
+export type IMapperResult<T> = T extends ISourceMapper<any, infer TResult> ? TResult : T;
 export type ISourceQuery<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity[]>;
 export type ISourceFetch<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity | null>;
 export type ISourceFind<TQuery extends IQuery<any, any>, TEntity> = (query: TQuery) => Promise<TEntity>;
@@ -111,8 +115,5 @@ export type ISourceFind<TQuery extends IQuery<any, any>, TEntity> = (query: TQue
  * Search an entity by an id.
  */
 export type ISourceEntity<TEntity> = (id: string) => Promise<TEntity>;
-export type ISourceCount<TQuery extends IQuery<any, any>> = (query: TQuery) => Promise<number>;
 
-export interface IWhereFulltext {
-	fulltext?: string;
-}
+export type ISourceCount<TQuery extends IQuery<any, any>> = (query: TQuery) => Promise<number>;

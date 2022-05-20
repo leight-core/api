@@ -1,4 +1,4 @@
-import {IEndpointParams, IImportHandlers, IQuery, IQueryFilter} from "@leight-core/api";
+import {IEndpointParams, IImportHandlers, IQuery} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
@@ -21,9 +21,7 @@ export interface IRepository<TCreate, TEntity, TResponse, TQuery extends IQuery<
 
 	importers(): IImportHandlers;
 
-	pageFetch(key: keyof TPageFetchProps, query: keyof TPageFetchQueryParams): GetServerSideProps<TPageFetchProps, TPageFetchQueryParams>;
-
-	toFilter(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined;
+	toPage(key: keyof TPageFetchProps, query: keyof TPageFetchQueryParams): GetServerSideProps<TPageFetchProps, TPageFetchQueryParams>;
 }
 
 export type IRepositoryCreate<T> = T extends IRepository<infer TCreate, any, any, any, any, any> ? TCreate : T;
