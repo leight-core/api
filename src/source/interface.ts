@@ -98,24 +98,24 @@ export interface ICursorContext {
 
 export type ISourceMapper<TEntity, TResult> = (entities: Promise<TEntity[]>) => Promise<TResult[]>;
 
-export type IQueryFilter<T> = T extends IQuery<infer TFilter, any> ? TFilter & { fulltext?: string } : T;
+export type IQueryFilter<T> = T extends IQuery<infer TFilter, any> ? TFilter : T;
 export type IQueryOrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy : T;
 
 export type IMapperEntity<T> = T extends ISourceMapper<infer TEntity, any> ? TEntity : T;
 export type IMapperResult<T> = T extends ISourceMapper<any, infer TResult> ? TResult : T;
 
-export interface ISource<TEntity, TQuery extends IQuery<any, any>> {
-	count(arg?: { where?: IQueryFilter<TQuery> }): Promise<number>;
-
-	findMany(arg?: { where?: IQueryFilter<TQuery>, orderBy?: IQueryOrderBy<TQuery>, skip?: number | undefined, take?: number | undefined }): Promise<TEntity[]>;
-
-	findUnique(arg: { where: { id: string }, rejectOnNotFound: boolean }): Promise<TEntity | null>;
-}
-
 export interface IToQuery<TMapper extends ISourceMapper<any, any>, TQuery extends IQuery<any, any>> {
-	query: TQuery;
-	mapper: ISourceMapper<IMapperEntity<TMapper>, IMapperResult<TMapper>>;
-	source: ISource<IMapperEntity<TMapper>, TQuery>;
+	readonly request: TQuery;
+	readonly mapper: ISourceMapper<IMapperEntity<TMapper>, IMapperResult<TMapper>>;
+
+	query(query: TQuery): Promise<IMapperEntity<TMapper>[]>;
+
+	fetch(query: TQuery): Promise<IMapperEntity<TMapper> | null>;
+
+	find(query: TQuery): Promise<IMapperEntity<TMapper>>;
+
+	count(query: TQuery): Promise<number>;
+
 
 	toFilter?(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined,
 }
