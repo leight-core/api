@@ -13,6 +13,7 @@ export * from "./interface";
 export * from "./job";
 export * from "./layout";
 export * from "./link";
+export * from "./mapper";
 export * from "./menu";
 export * from "./page";
 export * from "./prisma";

@@ -1,27 +1,28 @@
-import {IEndpointParams, IImportHandlers, IQuery} from "@leight-core/api";
+import {IEndpointParams, IQuery, IWithImporters, IWithSource} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
-export interface IRepository<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TPageFetchProps, TPageFetchQueryParams extends ParsedUrlQuery> {
-	create(create: TCreate): Promise<TEntity>;
-
-	handleCreate(params: IEndpointParams<TCreate, TResponse>): Promise<TResponse>;
-
-	query(query: TQuery): Promise<TResponse[]>;
-
-	handleQuery(params: IEndpointParams<TQuery, TResponse[]>): Promise<TResponse[]>;
-
-	fetch(id: string): Promise<TEntity>;
-
+export interface IRepository<TCreate, TEntity, TResponse, TQuery extends IQuery<any, any>, TToPage, TToPageQueryParams extends ParsedUrlQuery>
+	extends IWithImporters<TCreate>,
+		IWithSource<TCreate, TEntity, TQuery>,
+		IWithRepositoryEndpoint<TCreate, TResponse, TQuery> {
 	toMap(id: string): Promise<TResponse>;
 
-	map(entity: TEntity): Promise<TResponse>;
+	toPage(key: keyof TToPage, query: keyof TToPageQueryParams): GetServerSideProps<TToPage, TToPageQueryParams>;
+}
 
-	list(entities: Promise<TEntity[]>): Promise<TResponse[]>;
+export interface IRepositoryEndpoint<TCreate, TResponse, TQuery extends IQuery<any, any>> {
+	create(params: IEndpointParams<TCreate, TResponse>): Promise<TResponse>;
 
-	importers(): IImportHandlers;
+	query(params: IEndpointParams<TQuery, TResponse[]>): Promise<TResponse[]>;
 
-	toPage(key: keyof TPageFetchProps, query: keyof TPageFetchQueryParams): GetServerSideProps<TPageFetchProps, TPageFetchQueryParams>;
+	delete(params: IEndpointParams<TQuery, TResponse[]>): Promise<TResponse[]>;
+
+	count(params: IEndpointParams<TQuery, TResponse[]>): Promise<TResponse[]>;
+}
+
+export interface IWithRepositoryEndpoint<TCreate, TResponse, TQuery extends IQuery<any, any>> {
+	handler: IRepositoryEndpoint<TCreate, TResponse, TQuery>;
 }
 
 export type IRepositoryCreate<T> = T extends IRepository<infer TCreate, any, any, any, any, any> ? TCreate : T;

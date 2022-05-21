@@ -26,6 +26,10 @@ export interface IImportHandler<TItem> {
 	handler(item: TItem): Promise<any>;
 }
 
-export interface IImportHandlers {
-	[index: string]: () => IImportHandler<any>;
+export interface IImportHandlers<TItem> {
+	[index: string]: () => IImportHandler<TItem>;
+}
+
+export interface IWithImporters<TItem> {
+	importers: IImportHandlers<TItem>;
 }
