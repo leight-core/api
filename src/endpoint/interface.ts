@@ -1,4 +1,4 @@
-import {IQuery, IQueryParams, IUser} from "@leight-core/api";
+import {IQuery, IQueryParams, ISource, ISourceItem, ISourceQuery, IUser} from "@leight-core/api";
 import {NextApiRequest, NextApiResponse} from "next";
 
 export interface INextApiRequest<TQuery extends IQueryParams | undefined = undefined, TRequest = undefined> extends Omit<NextApiRequest, "query"> {
@@ -45,7 +45,7 @@ export type IMutationEndpoint<TName extends string, TRequest, TResponse, TQueryP
  *
  * Defaults by POST.
  */
-export type ICreateEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, TRequest, TResponse, TQueryParams>;
+export type ICreateEndpoint<TName extends string, TSource extends ISource<any, any, any, any>> = IMutationEndpoint<TName, ISourceQuery<TSource>, ISourceItem<TSource>>;
 
 /**
  * Endpoint used to partially update data
@@ -58,7 +58,7 @@ export type ICreateEndpoint<TName extends string, TRequest, TResponse, TQueryPar
  *
  * Defaults to POST.
  */
-export type IQueryEndpoint<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse[], TQueryParams>;
+export type IQueryEndpoint<TName extends string, TSource extends ISource<any, any, any, any>> = IEndpoint<TName, ISourceQuery<TSource>, ISourceItem<TSource>[]>;
 export type IEntityEndpoint<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
 
 /**
