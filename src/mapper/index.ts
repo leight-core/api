@@ -1,2 +1,2 @@
-export * from "./IMapper";
+export * from "./IPromiseMapper";
 export * from "./IPromiseMapper";

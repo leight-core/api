@@ -1,7 +1,11 @@
-import {IMapper} from "@leight-core/api";
+export interface IPromiseMapper<TSource, TTarget> {
+	/**
+	 * Map all the given source to targets.
+	 */
+	list(source: Promise<TSource[]>): Promise<TTarget[]>;
 
-export interface IPromiseMapper<TSource, TTarget> extends IMapper<Promise<TSource>, Promise<TTarget>> {
+	/**
+	 * Actual mapper.
+	 */
+	map(source: TSource): Promise<TTarget>;
 }
-
-export type IPromiseMapperSource<T> = T extends IPromiseMapper<Awaited<infer TSource>, any> ? TSource : T;
-export type IPromiseMapperTarget<T> = T extends IPromiseMapper<any, Awaited<infer TTarget>> ? TTarget : T;
