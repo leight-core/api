@@ -1,7 +1,7 @@
 import {IQuery, ISource, ISourceEntity, ISourceItem, ISourceQuery} from "@leight-core/api";
 
 export interface IRepository<TCreate, TSource extends ISource<any, any, IQuery<any, any>>> {
-	source: TSource;
+	readonly source: TSource;
 
 	/**
 	 * Creates a new entity by the given request.
@@ -12,6 +12,11 @@ export interface IRepository<TCreate, TSource extends ISource<any, any, IQuery<a
 	 * Delete given entities by the list of given ids.
 	 */
 	delete(ids: string[]): Promise<ISourceEntity<TSource>[]>;
+
+	/**
+	 * Shortcut to internal source.
+	 */
+	withUserId(id: string): IRepository<TCreate, TSource>;
 }
 
 export type IRepositoryCreate<T> = T extends IRepository<infer U, any> ? U : T;
