@@ -18,6 +18,7 @@ export * from "./menu";
 export * from "./next.js";
 export * from "./page";
 export * from "./prisma";
+export * from "./repository";
 export * from "./responsive";
 export * from "./router";
 export * from "./sdk";

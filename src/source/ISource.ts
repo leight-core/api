@@ -1,20 +1,10 @@
 import {IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
 
-export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any>> {
-	readonly prisma: IPrismaTransaction;
+export interface ISource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	readonly name: string;
+	readonly prisma: IPrismaTransaction;
 	readonly mapper: IPromiseMapper<TEntity, TItem>;
 	readonly user: IUser;
-
-	/**
-	 * Creates a new entity by the given request.
-	 */
-	create(create: TCreate): Promise<TEntity>;
-
-	/**
-	 * Delete given entities by the list of given ids.
-	 */
-	delete(ids: string[]): Promise<TEntity>;
 
 	/**
 	 * Run a query and return promise with the result.
@@ -45,31 +35,30 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
 	 */
-	withUser(user: IUser): ISource<TCreate, TEntity, TItem, TQuery>;
+	withUser(user: IUser): ISource<TEntity, TItem, TQuery>;
 
-	withUserId(id?: string | null): ISource<TCreate, TEntity, TItem, TQuery>;
+	withUserId(id?: string | null): ISource<TEntity, TItem, TQuery>;
 
 	/**
 	 * Set custom mapper for this source.
 	 */
-	withMapper<TTarget>(mapper: IPromiseMapper<TEntity, TTarget>): ISource<TCreate, TEntity, TTarget, TQuery>;
+	withMapper<TTarget>(mapper: IPromiseMapper<TEntity, TTarget>): ISource<TEntity, TTarget, TQuery>;
 
 	/**
 	 * Sets prisma context; useful when there is a transaction.
 	 */
-	withPrisma(prisma: IPrismaTransaction): ISource<TCreate, TEntity, TItem, TQuery>;
+	withPrisma(prisma: IPrismaTransaction): ISource<TEntity, TItem, TQuery>;
 
 	/**
 	 * Sets default mapper of this source (if any).
 	 */
-	withDefaultMapper(): ISource<TCreate, TEntity, TItem, TQuery>;
+	withDefaultMapper(): ISource<TEntity, TItem, TQuery>;
 }
 
-export interface IWithSource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any>> {
-	source: ISource<TCreate, TEntity, TItem, TQuery>;
+export interface IWithSource<TEntity, TItem, TQuery extends IQuery<any, any>> {
+	source: ISource<TEntity, TItem, TQuery>;
 }
 
-export type ISourceCreate<T> = T extends ISource<infer TCreate, any, any, any> ? TCreate : T;
-export type ISourceEntity<T> = T extends ISource<any, infer TEntity, any, any> ? TEntity : T;
-export type ISourceItem<T> = T extends ISource<any, any, infer TItem, any> ? TItem : T;
-export type ISourceQuery<T> = T extends ISource<any, any, any, infer TQuery> ? TQuery : T;
+export type ISourceEntity<T> = T extends ISource<infer TEntity, any, any> ? TEntity : T;
+export type ISourceItem<T> = T extends ISource<any, infer TItem, any> ? TItem : T;
+export type ISourceQuery<T> = T extends ISource<any, any, infer TQuery> ? TQuery : T;
