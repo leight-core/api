@@ -55,6 +55,11 @@ export interface ISource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	 * Sets default mapper of this source (if any).
 	 */
 	withDefaultMapper(): ISource<TEntity, TItem, TQuery>;
+
+	/**
+	 * Monkey patch of various pieces of the original source; should be used to change minor functions.
+	 */
+	extend<TItem, T extends Partial<ISource<TEntity, TItem, TQuery>>>(extend: T): ISource<TEntity, TItem, TQuery> & T;
 }
 
 export interface IWithSource<TEntity, TItem, TQuery extends IQuery<any, any>> {
