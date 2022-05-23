@@ -47,7 +47,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	 */
 	withUser(user: IUser): ISource<TCreate, TEntity, TItem, TQuery>;
 
-	withUserId(id: string): ISource<TCreate, TEntity, TItem, TQuery>;
+	withUserId(id?: string | null): ISource<TCreate, TEntity, TItem, TQuery>;
 
 	/**
 	 * Set custom mapper for this source.
