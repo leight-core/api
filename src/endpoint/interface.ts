@@ -44,23 +44,6 @@ export type IMutationEndpoint<TName extends string, TRequest, TResponse, TQueryP
 export type IEntityEndpoint<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
 
 /**
- * Generic delete request; provide an array of object ids being removed (even just one - yaaay, it's an array!).
- *
- * Delete is done by POST, not DELETE method (sad, semantically wrong, but DELETE does not carry body).
- */
-export interface IDeleteRequest {
-	ids: string[];
-}
-
-/**
- * Endpoint used to remove something.
- *
- * Defaults to POST.
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IDeleteEndpoint<TName extends string, TRequest extends IDeleteRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, TRequest, TResponse, TQueryParams>;
-
-/**
  * Generic request/response.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
