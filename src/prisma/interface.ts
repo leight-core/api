@@ -1,3 +1,3 @@
 import {PrismaClient} from "@prisma/client";
 
-export type IPrismaClientTransaction = Omit<PrismaClient, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use">;
+export type IPrismaTransaction = Omit<PrismaClient, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use">;

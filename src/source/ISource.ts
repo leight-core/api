@@ -1,6 +1,7 @@
-import {IPromiseMapper, IQuery, IUser} from "@leight-core/api";
+import {IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
 
 export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any>> {
+	readonly prisma: IPrismaTransaction;
 	readonly name: string;
 	readonly mapper: IPromiseMapper<TEntity, TItem>;
 	readonly user: IUser;
@@ -49,6 +50,11 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	 * Set custom mapper for this source.
 	 */
 	withMapper<TTarget>(mapper: IPromiseMapper<TEntity, TTarget>): ISource<TCreate, TEntity, TTarget, TQuery>;
+
+	/**
+	 * Sets prisma context; useful when there is a transaction.
+	 */
+	withPrisma(prisma: IPrismaTransaction): ISource<TCreate, TEntity, TItem, TQuery>;
 
 	/**
 	 * Sets default mapper of this source (if any).
