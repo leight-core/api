@@ -16,7 +16,7 @@ export interface IRepository<TCreate, TSource extends ISource<any, any, IQuery<a
 	/**
 	 * Shortcut to internal source.
 	 */
-	withUserId(id: string): IRepository<TCreate, TSource>;
+	withUserId(id?: string | null): IRepository<TCreate, TSource>;
 }
 
 export type IRepositoryCreate<T> = T extends IRepository<infer U, any> ? U : T;
