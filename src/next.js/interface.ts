@@ -1,4 +1,7 @@
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
-export type IToPage<TToPage, TToPageQueryParams extends ParsedUrlQuery> = (key: keyof TToPage, query: keyof TToPageQueryParams) => GetServerSideProps<TToPage, TToPageQueryParams>;
+/**
+ * Shortcut to pre-fetch entity on next.js server side props.
+ */
+export type IWithFetch<TWithFetch, TWithFetchParams extends ParsedUrlQuery> = (key: keyof TWithFetch, query: keyof TWithFetchParams) => GetServerSideProps<TWithFetch, TWithFetchParams>;
