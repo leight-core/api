@@ -1,6 +1,7 @@
 import {IPromiseMapper, IQuery, IUser} from "@leight-core/api";
 
 export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any>> {
+	readonly name: string;
 	readonly mapper: IPromiseMapper<TEntity, TItem>;
 	readonly user: IUser;
 
