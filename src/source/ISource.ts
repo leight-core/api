@@ -59,6 +59,6 @@ export interface IWithSource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	source: ISource<TEntity, TItem, TQuery>;
 }
 
-export type ISourceEntity<T> = T extends ISource<infer TEntity, any, any> ? TEntity : T;
-export type ISourceItem<T> = T extends ISource<any, infer TItem, any> ? TItem : T;
-export type ISourceQuery<T> = T extends ISource<any, any, infer TQuery> ? TQuery : T;
+export type ISourceEntity<T> = T extends ISource<infer U, any, any> ? U : T;
+export type ISourceItem<T> = T extends ISource<any, infer U, any> ? U : T;
+export type ISourceQuery<T> = T extends ISource<any, any, infer U> ? U : T;
