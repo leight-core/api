@@ -1,5 +1,5 @@
-export interface IUserService {
-	getUserId(): string;
+export interface IUser {
+	required(): string;
 
-	getOptionalUserId(): string | undefined;
+	optional(): string | undefined;
 }

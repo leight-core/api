@@ -1,4 +1,4 @@
-import {IQuery, IQueryParams} from "@leight-core/api";
+import {IQuery, IQueryParams, IUser} from "@leight-core/api";
 import {NextApiRequest, NextApiResponse} from "next";
 
 export interface INextApiRequest<TQuery extends IQueryParams | undefined = undefined, TRequest = undefined> extends Omit<NextApiRequest, "query"> {
@@ -11,14 +11,11 @@ export interface IEndpointParams<TRequest, TResponse, TQueryParams extends IQuer
 	readonly res: NextApiResponse<TResponse>;
 	readonly request: TRequest;
 	readonly query: TQueryParams;
+	readonly user: IUser;
 
 	toBody(): Promise<Buffer>;
 
 	end(chunk?: any): void;
-
-	toUserId(): string;
-
-	toMaybeUserId(): string | undefined;
 }
 
 /**
@@ -32,62 +29,37 @@ export type IEndpointCallback<TName extends string, TRequest, TResponse, TQueryP
 /**
  * When fetching an individual item, done by GET.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IFetchEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, undefined, TResponse, TQueryParams>
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IFetchEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, undefined>, res: NextApiResponse<TResponse>) => void;
-
+export type IFetchEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, undefined, TResponse, TQueryParams>;
 /**
  * When fetching a list of items (arrayed by default), done by GET.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IListEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, undefined, TResponse, TQueryParams>
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IListEndpointCallback<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, undefined>, res: NextApiResponse<TResponse>) => void;
-
+export type IListEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, undefined, TResponse, TQueryParams>;
 /**
  * Mutation endpoint is a general endpoint used to do some server-side effect (some updated data or so).
  *
  * Defaults to POST.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IMutationEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IMutationEndpointCallback<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
-
 /**
  * Good old creation endpoint.
  *
  * Defaults by POST.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ICreateEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, TRequest, TResponse, TQueryParams>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type ICreateEndpointCallback<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
  * Endpoint used to partially update data
  *
  * Defaults to PATCH.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IPatchEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IPatchEndpointCallback<TName extends string, TRequest, TResponse, TQuery extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQuery, TRequest>, res: NextApiResponse<TResponse>) => void;
-
+// export type IPatchEndpoint<TName extends string, TRequest, TResponse, TQuery extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, TRequest, TResponse, TQuery>;
 /**
  * Endpoint used to query data on a server.
  *
  * Defaults to POST.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IQueryEndpoint<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse[], TQueryParams>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IQueryEndpointCallback<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse[]>) => void;
-
 export type IEntityEndpoint<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IEntityEndpointCallback<TName extends string, TRequest extends IQuery<any, any> | undefined, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
  * Generic delete request; provide an array of object ids being removed (even just one - yaaay, it's an array!).
@@ -105,13 +77,9 @@ export interface IDeleteRequest {
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IDeleteEndpoint<TName extends string, TRequest extends IDeleteRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IMutationEndpoint<TName, TRequest, TResponse, TQueryParams>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IDeleteEndpointCallback<TName extends string, TRequest extends IDeleteRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
 
 /**
  * Generic request/response.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IRequestEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IRequestEndpointCallback<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
