@@ -40,3 +40,7 @@ export interface ISource<TCreate, TEntity, TQuery extends IQuery<any, any>> {
 export interface IWithSource<TCreate, TEntity, TQuery extends IQuery<any, any>> {
 	source: ISource<TCreate, TEntity, TQuery>;
 }
+
+export type ISourceCreate<T> = T extends ISource<infer TCreate, any, any> ? TCreate : T;
+export type ISourceEntity<T> = T extends ISource<any, infer TEntity, any> ? TEntity : T;
+export type ISourceQuery<T> = T extends ISource<any, any, infer TQuery> ? TQuery : T;
