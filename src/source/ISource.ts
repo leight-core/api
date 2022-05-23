@@ -32,7 +32,7 @@ export interface ISource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	 */
 	count(query: TQuery): Promise<number>;
 
-	filter(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery>;
+	filter(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined;
 
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
