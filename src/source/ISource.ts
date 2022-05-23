@@ -9,37 +9,38 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	/**
 	 * Creates a new entity by the given request.
 	 */
-	create(create: TCreate): Promise<TEntity>;
+	create(this: ISource<TCreate, TEntity, TItem, TQuery>, create: TCreate): Promise<TEntity>;
 
 	/**
 	 * Delete given entities by the list of given ids.
 	 */
-	delete(ids: string[]): Promise<TEntity>;
+	delete(this: ISource<TCreate, TEntity, TItem, TQuery>, ids: string[]): Promise<TEntity>;
 
 	/**
 	 * Run a query and return promise with the result.
 	 */
-	query(query: TQuery): Promise<TEntity[]>;
+	query(this: ISource<TCreate, TEntity, TItem, TQuery>, query: TQuery): Promise<TEntity[]>;
 
 	/**
 	 * Fetch a single optional entity.
 	 */
-	fetch(query: TQuery): Promise<TEntity | null>;
+	fetch(this: ISource<TCreate, TEntity, TItem, TQuery>, query: TQuery): Promise<TEntity | null>;
 
 	/**
 	 * Find required entity; if not found, an error should be thrown.
 	 */
-	find(query: TQuery): Promise<TEntity>;
+	find(this: ISource<TCreate, TEntity, TItem, TQuery>, query: TQuery): Promise<TEntity>;
 
 	/**
 	 * Get an entity (required) by the given id.
 	 */
-	get(id: string): Promise<TEntity>;
+
+	get(this: ISource<TCreate, TEntity, TItem, TQuery>, id: string): Promise<TEntity>;
 
 	/**
 	 * Return count of items by the given query.
 	 */
-	count(query: TQuery): Promise<number>;
+	count(this: ISource<TCreate, TEntity, TItem, TQuery>, query: TQuery): Promise<number>;
 
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
