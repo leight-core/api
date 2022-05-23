@@ -1,4 +1,4 @@
-import {IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
+import {IPrismaTransaction, IPromiseMapper, IQuery, IQueryFilter, IUser} from "@leight-core/api";
 
 export interface ISource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	readonly name: string;
@@ -31,6 +31,8 @@ export interface ISource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	 * Return count of items by the given query.
 	 */
 	count(query: TQuery): Promise<number>;
+
+	filter(filter: IQueryFilter<TQuery>): IQueryFilter<TQuery>;
 
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
