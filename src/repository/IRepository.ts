@@ -12,4 +12,7 @@ export interface IRepository<TCreate, TEntity, TItem, TQuery extends IQuery<any,
 	delete(ids: string[]): Promise<TEntity>;
 }
 
-export type IRepositoryCreate<T> = T extends IRepository<infer TCreate, any, any, any> ? TCreate : T;
+export type IRepositoryCreate<T> = T extends IRepository<infer U, any, any, any> ? U : T;
+export type IRepositoryEntity<T> = T extends IRepository<any, infer U, any, any> ? U : T;
+export type IRepositoryItem<T> = T extends IRepository<any, any, infer U, any> ? U : T;
+export type IRepositoryQuery<T> = T extends IRepository<any, any, any, infer U> ? U : T;
