@@ -64,7 +64,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	 */
 	withDefaultMapper(): ISource<TCreate, TEntity, TItem, TQuery>;
 
-	map(source: TEntity | null): Promise<TItem | null>;
+	map(source?: TEntity | null): Promise<TItem | null | undefined>;
 }
 
 export type ISourceCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
