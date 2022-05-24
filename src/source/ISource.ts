@@ -1,4 +1,4 @@
-import {IPrismaTransaction, IPromiseMapper, IQuery, IQueryFilter, IUser} from "@leight-core/api";
+import {IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
 
 export interface ISource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	readonly name: string;
@@ -32,8 +32,6 @@ export interface ISource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	 */
 	count(query: TQuery): Promise<number>;
 
-	filter(filter?: IQueryFilter<TQuery>): IQueryFilter<TQuery> | undefined;
-
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
 	 */
@@ -55,11 +53,6 @@ export interface ISource<TEntity, TItem, TQuery extends IQuery<any, any>> {
 	 * Sets default mapper of this source (if any).
 	 */
 	withDefaultMapper(): ISource<TEntity, TItem, TQuery>;
-
-	/**
-	 * Monkey patch of various pieces of the original source; should be used to change minor functions.
-	 */
-	extend<TItem, T extends Partial<ISource<TEntity, TItem, TQuery>>>(extend: T): ISource<TEntity, TItem, TQuery> & T;
 }
 
 export interface IWithSource<TEntity, TItem, TQuery extends IQuery<any, any>> {
