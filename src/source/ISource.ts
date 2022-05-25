@@ -1,6 +1,7 @@
-import {IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
+import {IPrismaTransaction, IPromiseMapper, IQuery, IUser, IWithFetch} from "@leight-core/api";
+import {ParsedUrlQuery} from "querystring";
 
-export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any>> {
+export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any>, TWithFetch, TWithFetchParams extends ParsedUrlQuery> {
 	readonly name: string;
 	readonly prisma: IPrismaTransaction;
 	readonly mapper: IPromiseMapper<TEntity, TItem>;
@@ -65,9 +66,16 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	withDefaultMapper(): this;
 
 	map(source?: TEntity | null): Promise<TItem | null | undefined>;
+
+	/**
+	 * Utility to handle entity fetching for next.js server static props.
+	 */
+	withFetch(): IWithFetch<TWithFetch, TWithFetchParams>;
 }
 
-export type ISourceCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
-export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
-export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
-export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
+export type ISourceCreate<T> = T extends ISource<infer U, any, any, any, any, any> ? U : T;
+export type ISourceEntity<T> = T extends ISource<any, infer U, any, any, any, any> ? U : T;
+export type ISourceItem<T> = T extends ISource<any, any, infer U, any, any, any> ? U : T;
+export type ISourceQuery<T> = T extends ISource<any, any, any, infer U, any, any> ? U : T;
+export type ISourceFetch<T> = T extends ISource<any, any, any, any, infer U, any> ? U : T;
+export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
