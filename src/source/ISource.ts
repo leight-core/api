@@ -1,4 +1,5 @@
-import {IPrismaTransaction, IPromiseMapper, IQuery, IUser, IWithFetch} from "@leight-core/api";
+import {IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
+import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
 export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any>, TWithFetch, TWithFetchParams extends ParsedUrlQuery> {
@@ -70,7 +71,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	/**
 	 * Utility to handle entity fetching for next.js server static props.
 	 */
-	withFetch(): IWithFetch<TWithFetch, TWithFetchParams>;
+	withFetch(key: keyof TWithFetch, query: keyof TWithFetchParams): GetServerSideProps<TWithFetch, TWithFetchParams>;
 }
 
 export type ISourceCreate<T> = T extends ISource<infer U, any, any, any, any, any> ? U : T;
