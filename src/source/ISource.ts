@@ -47,22 +47,22 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	 */
 	withUser(user: IUser): this;
 
-	withUserId(id?: string | null): ISource<TCreate, TEntity, TItem, TQuery>;
+	withUserId(id?: string | null): this;
 
 	/**
 	 * Set custom mapper for this source.
 	 */
-	withMapper<TTarget>(mapper: IPromiseMapper<TEntity, TTarget>): ISource<TCreate, TEntity, TTarget, TQuery>;
+	withMapper<TTarget>(mapper: IPromiseMapper<TEntity, TTarget>): this;
 
 	/**
 	 * Sets prisma context; useful when there is a transaction.
 	 */
-	withPrisma(prisma: IPrismaTransaction): ISource<TCreate, TEntity, TItem, TQuery>;
+	withPrisma(prisma: IPrismaTransaction): this;
 
 	/**
 	 * Sets default mapper of this source (if any).
 	 */
-	withDefaultMapper(): ISource<TCreate, TEntity, TItem, TQuery>;
+	withDefaultMapper(): this;
 
 	map(source?: TEntity | null): Promise<TItem | null | undefined>;
 }
