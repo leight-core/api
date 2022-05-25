@@ -45,7 +45,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
 	 */
-	withUser(user: IUser): ISource<TCreate, TEntity, TItem, TQuery>;
+	withUser(user: IUser): this;
 
 	withUserId(id?: string | null): ISource<TCreate, TEntity, TItem, TQuery>;
 
