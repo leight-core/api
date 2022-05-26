@@ -1,4 +1,4 @@
-import {IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
+import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
@@ -43,6 +43,8 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery<any, any
 	 * Return count of items by the given query.
 	 */
 	count(query: TQuery): Promise<number>;
+
+	importers(): IImportHandlers;
 
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
