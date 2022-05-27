@@ -1,4 +1,4 @@
-export interface IQuery<TFilter = undefined, TOrderBy = undefined> {
+export interface IQuery<TFilter = any, TOrderBy = any> {
 	/** currently requested page */
 	readonly page?: number;
 	/** limit number of items per page */
@@ -13,5 +13,5 @@ export interface IQuery<TFilter = undefined, TOrderBy = undefined> {
 	readonly orderBy?: TOrderBy;
 }
 
-export type IQueryFilter<T> = T extends IQuery<infer TFilter, any> ? TFilter : T;
+export type IQueryFilter<T> = T extends IQuery<infer TFilter> ? TFilter : T;
 export type IQueryOrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy : T;
