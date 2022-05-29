@@ -84,6 +84,11 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery, TWithFe
 	 * Generates hash string for the given query; it's useful for generating cache key for example.
 	 */
 	hashOf(query: TQuery, type?: string): string;
+
+	/**
+	 * Clear cache, if any.
+	 */
+	clearCache(): Promise<any>;
 }
 
 export type ISourceCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
