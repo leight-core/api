@@ -79,6 +79,11 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery, TWithFe
 	 * Get some things from the given source (prisma, user, ...).
 	 */
 	ofSource(source: ISource<any, any, any, IQuery>): this;
+
+	/**
+	 * Generates hash string for the given query; it's useful for generating cache key for example.
+	 */
+	hashOf(query: TQuery, type?: string): string;
 }
 
 export type ISourceCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
