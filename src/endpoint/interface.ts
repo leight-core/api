@@ -29,7 +29,7 @@ export type IEndpointCallback<TName extends string, TRequest, TResponse, TQueryP
 /**
  * When fetching an individual item, done by GET.
  */
-export type IFetchEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, undefined, TResponse, TQueryParams>;
+export type IGetEndpoint<TName extends string, TResponse, TQueryParams extends IQueryParams | undefined = undefined> = IEndpoint<TName, undefined, TResponse, TQueryParams>;
 /**
  * When fetching a list of items (arrayed by default), done by GET.
  */
