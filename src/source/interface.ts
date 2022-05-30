@@ -12,6 +12,6 @@ export interface IWithFulltext {
 	fulltext?: string;
 }
 
-export interface IWithIdentity {
+export interface IWithIdentity extends IQueryParams {
 	id: string;
 }
