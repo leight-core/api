@@ -1,8 +1,8 @@
-import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IUser} from "@leight-core/api";
+import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IUser, IWithIdentity} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
-export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery, TWithFetch = any, TWithFetchParams extends ParsedUrlQuery = any> {
+export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery, TWithFetch = any, TWithFetchParams extends ParsedUrlQuery = any> {
 	readonly name: string;
 	readonly prisma: IPrismaTransaction;
 	readonly mapper: IPromiseMapper<TEntity, TItem>;
@@ -12,6 +12,11 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery, TWithFe
 	 * Creates a new entity by the given request.
 	 */
 	create(create: TCreate): Promise<TEntity>;
+
+	/**
+	 * Patches the given entity.
+	 */
+	patch(patch: Partial<TCreate> & IWithIdentity): Promise<TEntity>;
 
 	/**
 	 * Delete given entities by the list of given ids.
@@ -92,6 +97,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery, TWithFe
 }
 
 export type ISourceCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
+export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? Partial<U & IWithIdentity> : T;
 export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
 export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
 export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;

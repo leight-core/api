@@ -11,3 +11,7 @@ export type IHookCallback<TRequest, TResponse, TQueryParams extends IQueryParams
 export interface IWithFulltext {
 	fulltext?: string;
 }
+
+export interface IWithIdentity {
+	id: string;
+}
