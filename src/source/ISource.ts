@@ -97,7 +97,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 }
 
 export type ISourceCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
-export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? Partial<U> & IWithIdentity : T;
+export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? NullableOptional<U> & IWithIdentity : T;
 export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
 export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
 export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
