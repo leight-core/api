@@ -8,4 +8,6 @@ export type PickOptional<T> = Pick<T, OptionalKeys<T>>;
 
 export type Nullable<T> = { [P in keyof T]: T[P] | null };
 
-export type NullableOptional<T> = PickRequired<T> & Nullable<PickOptional<T>>;
+export type NullableWithOptional<T> = PickRequired<T> & Nullable<PickOptional<T>>;
+
+export type NullableOptional<T> = Partial<NullableWithOptional<T>>;
