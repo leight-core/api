@@ -24,12 +24,12 @@ export interface IFilterContext<TFilter = any> {
 	/**
 	 * Apply the given filter, thus merging with the one already set, but replacing first-level properties (thus there is no deep-merge).
 	 */
-	applyFilter(filter?: TFilter): void;
+	applyFilter(filter?: TFilter, source?: any): void;
 
 	/**
 	 * Deep merge with the current filter.
 	 */
-	mergeFilter(filter?: TFilter): void;
+	mergeFilter(filter?: TFilter, source?: any): void;
 
 	isEmpty(): boolean;
 }
