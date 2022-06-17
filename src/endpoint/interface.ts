@@ -48,3 +48,12 @@ export type IEntityEndpoint<TName extends string, TRequest extends IQuery | unde
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IRequestEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams = any> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
+
+export class ClientError extends Error {
+	readonly code: number;
+
+	constructor(message: string, code = 400) {
+		super(message);
+		this.code = code;
+	}
+}
