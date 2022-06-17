@@ -1,8 +1,6 @@
 import {INavigate} from "@leight-core/api";
 import {FormInstance} from "antd";
-import CancelablePromise from "cancelable-promise";
 import {NamePath} from "rc-field-form/lib/interface";
-import {DependencyList} from "react";
 
 export interface IFormItemContext {
 	readonly field: NamePath;
@@ -63,6 +61,8 @@ export interface IFormContext<TValues = any> {
 	 */
 	setValues(values: TValues): void;
 
+	setValue(value: { name: NamePath, value: any }[]): void;
+
 	/**
 	 * Reset form to the initial state.
 	 */
@@ -77,18 +77,6 @@ export interface IFormContext<TValues = any> {
 	 * Throw away all error messages of all fields.
 	 */
 	resetErrors(): void;
-
-	/**
-	 * Force form refresh (just revalidate and reset fields to get current sync with visible fields).
-	 */
-	refresh(): void;
-
-	/**
-	 * Resolve with true or false.
-	 */
-	canSubmit(then?: (canSubmit: boolean) => void): CancelablePromise<boolean>;
-
-	useCanSubmit(then?: (canSubmit: boolean) => void, deps?: DependencyList): void;
 }
 
 export type IToOptionMapper<TItem> = (item: TItem) => IBaseSelectOption;
