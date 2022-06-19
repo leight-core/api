@@ -1,3 +1,5 @@
+import {IUser} from "@leight-core/api";
+
 export interface IImportTabs {
 	tab: string;
 	services: string[];
@@ -19,6 +21,8 @@ export interface IImportEndEvent {
 }
 
 export interface IImportHandler<TItem> {
+	withUser(user: IUser): void;
+
 	begin?(event: IImportBeginEvent): Promise<void>;
 
 	end?(event: IImportEndEvent): Promise<void>;
