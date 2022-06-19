@@ -56,8 +56,6 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	 */
 	withUser(user: IUser): this;
 
-	withUserId(id?: string | null): this;
-
 	/**
 	 * Set custom mapper for this source.
 	 */
@@ -83,7 +81,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	/**
 	 * Get some things from the given source (prisma, user, ...).
 	 */
-	ofSource(source: ISource<any, any, any, IQuery>): this;
+	ofSource(source: ISource<any, any, any>): this;
 
 	/**
 	 * Generates hash string for the given query; it's useful for generating cache key for example.
