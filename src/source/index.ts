@@ -4,6 +4,7 @@ export * from "./interface";
 export * from "./IOrderByContext";
 export * from "./IQuery";
 export * from "./ISource";
+export * from "./ISourceAcl";
 export * from "./ISourceContext";
 export * from "./ISourceRequest";
 export * from "./ISourceResponse";
