@@ -21,5 +21,5 @@ export interface IUser {
 	/**
 	 * Passes if user has all specified tokens.
 	 */
-	checkTokens(tokens: string[]): boolean;
+	checkTokens(tokens: string[]): void;
 }
