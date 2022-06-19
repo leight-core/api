@@ -1,4 +1,6 @@
 export interface IUser {
+	readonly tokens: string[];
+
 	required(): string;
 
 	optional(): string | undefined;
