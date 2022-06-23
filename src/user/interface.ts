@@ -28,6 +28,10 @@ export interface IUser {
 	checkTokens(tokens?: string[]): void;
 }
 
+export interface IWithUser {
+	user: IUser;
+}
+
 export class UndefinedUserError extends ClientError {
 	constructor(message: string) {
 		super(message, 403);
