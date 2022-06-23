@@ -1,7 +1,7 @@
 import {ClientError} from "@leight-core/api";
 
 export interface IUser {
-	readonly userId: string;
+	readonly userId?: string | null;
 	readonly tokens: string[];
 
 	required(): string;
