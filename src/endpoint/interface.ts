@@ -22,7 +22,15 @@ export interface IEndpointParams<TRequest, TResponse, TQueryParams extends IQuer
  * Generic endpoint; SDK generates as POST by default.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type IEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams = any> = (params: IEndpointParams<TRequest, TResponse, TQueryParams>) => Promise<TResponse | void>;
+export interface IEndpoint<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams = any> {
+	handler(params: IEndpointParams<TRequest, TResponse, TQueryParams>): Promise<TResponse | void>;
+
+	/**
+	 * Optional ACLs an endpoint would require on an user.
+	 */
+	acl?: string[];
+}
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IEndpointCallback<TName extends string, TRequest, TResponse, TQueryParams extends IQueryParams = any> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
 
