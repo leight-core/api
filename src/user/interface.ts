@@ -1,6 +1,7 @@
 import {ClientError} from "@leight-core/api";
 
 export interface IUser {
+	readonly userId: string;
 	readonly tokens: string[];
 
 	required(): string;
@@ -26,6 +27,11 @@ export interface IUser {
 	 * Passes if user has all specified tokens.
 	 */
 	checkTokens(tokens?: string[]): void;
+}
+
+export interface IUserRequest {
+	userId?: string | null;
+	tokens?: string[];
 }
 
 export interface IWithUser {
