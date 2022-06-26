@@ -71,7 +71,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	 */
 	withDefaultMapper(): this;
 
-	map(source?: TEntity | null): Promise<TItem | null | undefined>;
+	map(source?: TEntity | null): Promise<TItem | null>;
 
 	/**
 	 * Utility to handle entity fetching for next.js server static props.
