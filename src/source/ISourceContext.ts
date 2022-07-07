@@ -5,6 +5,10 @@ export interface ISourceContext<TResponse> {
 	readonly name: string;
 
 	readonly result: UseQueryResult<TResponse[], any>;
+	/**
+	 * If source is not configured to run with count enabled, this will be undefined.
+	 */
+	readonly count: UseQueryResult<number, any> | undefined;
 
 	pagination(): PaginationConfig | false | undefined;
 
