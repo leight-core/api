@@ -13,7 +13,7 @@ export interface ISourceContext<TResponse> {
 
 	map(mapper: (item: TResponse) => any): any;
 
-	more(append?: boolean): Promise<any>;
+	more(append?: boolean): Promise<TResponse[]>;
 
 	hasMore(): boolean;
 }
