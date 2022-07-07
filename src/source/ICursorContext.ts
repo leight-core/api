@@ -8,6 +8,8 @@ export interface ICursorContext {
 	 * Current page size.
 	 */
 	readonly size: number;
+	readonly append?: boolean;
+	readonly prepend?: boolean;
 
 	setPage(page: number, size?: number): void;
 
