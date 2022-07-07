@@ -10,4 +10,8 @@ export interface ICursorContext {
 	readonly size: number;
 
 	setPage(page: number, size?: number): void;
+
+	next(): void;
+
+	prev(): void;
 }
