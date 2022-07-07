@@ -11,7 +11,7 @@ export interface ICursorContext {
 
 	setPage(page: number, size?: number): void;
 
-	next(): void;
+	next(append?: boolean): void;
 
-	prev(): void;
+	prev(prepend?: boolean): void;
 }
