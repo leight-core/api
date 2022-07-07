@@ -11,6 +11,8 @@ export interface ISourceContext<TResponse> {
 
 	data(): TResponse[];
 
+	reset(): void;
+
 	map(mapper: (item: TResponse) => any): any;
 
 	more(append?: boolean): Promise<void>;
