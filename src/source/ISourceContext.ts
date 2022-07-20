@@ -1,4 +1,4 @@
-import {UseQueryResult} from "react-query";
+import {UseQueryResult} from "@tanstack/react-query";
 
 export interface ISourceContext<TResponse> {
 	readonly name: string;
