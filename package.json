@@ -1,5 +1,5 @@
 {
-	"version": "0.6.103",
+	"version": "0.6.104",
 	"name": "@leight-core/api",
 	"description": "Package with all interfaces used in the whole @leight-core.",
 	"license": "MIT",
@@ -28,7 +28,7 @@
 		"axios": "^0.27.2",
 		"cancelable-promise": "^4.3.0",
 		"i18next": "^21.8.14",
-		"next": "^12.2.5",
+		"next": "^12.2.2",
 		"p-queue": "^7.2.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
