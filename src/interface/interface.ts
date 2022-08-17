@@ -11,3 +11,7 @@ export type Nullable<T> = { [P in keyof T]: T[P] | null };
 export type NullableWithOptional<T> = PickRequired<T> & Nullable<PickOptional<T>>;
 
 export type NullableOptional<T> = Partial<NullableWithOptional<T>>;
+
+export interface IndexOf<T> {
+	[index: string]: T;
+}
