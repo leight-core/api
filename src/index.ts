@@ -24,6 +24,7 @@ export * from "./sdk";
 export * from "./selection";
 export * from "./session";
 export * from "./source";
+export * from "./table";
 export * from "./translation";
 export * from "./ts";
 export * from "./uploader";
