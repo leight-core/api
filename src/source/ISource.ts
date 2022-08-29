@@ -2,7 +2,7 @@ import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IUser, IWit
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
-export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery, TWithFetch = any, TWithFetchParams extends ParsedUrlQuery = any> {
+export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery, TWithFetch extends Record<string, any> = any, TWithFetchParams extends ParsedUrlQuery = any> {
 	readonly name: string;
 	readonly prisma: IPrismaTransaction;
 	readonly mapper: IPromiseMapper<TEntity, TItem>;

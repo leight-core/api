@@ -40,7 +40,7 @@ export interface ISourceAcl {
 	/**
 	 * Required tokens for delete.
 	 */
-	delete?: string[];
+	remove?: string[];
 	/**
 	 * Required tokens for using mapper.
 	 */
