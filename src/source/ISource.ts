@@ -21,7 +21,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	/**
 	 * Delete given entities by the list of given ids.
 	 */
-	delete(ids: string[]): Promise<TEntity[]>;
+	remove(ids: string[]): Promise<TEntity[]>;
 
 	/**
 	 * Run a query and return promise with the result.

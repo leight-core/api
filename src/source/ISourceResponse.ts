@@ -6,5 +6,5 @@ export interface ISourceResponse<TSource extends ISource<any, any, any>> {
 	count: Awaited<ReturnType<TSource["count"]>>;
 	create: Awaited<ReturnType<TSource["create"]>>;
 	patch?: Awaited<ReturnType<TSource["patch"]>>;
-	delete: Awaited<ReturnType<TSource["delete"]>>;
+	remove: Awaited<ReturnType<TSource["remove"]>>;
 }
