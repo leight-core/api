@@ -6,5 +6,5 @@ export interface ISourceRequest<TSource extends ISource<any, any, any>> {
 	count?: ISourceQuery<TSource>;
 	create?: ISourceCreate<TSource>;
 	patch?: ISourcePatch<TSource>;
-	delete?: string[];
+	remove?: string[];
 }
