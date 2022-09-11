@@ -57,6 +57,11 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	withFilter(query: TQuery): IQueryFilter<TQuery> | undefined;
 
 	/**
+	 * Support for data inclusion in the result (originally for Prisma).
+	 */
+	withInclude<TInclude>(): TInclude | undefined;
+
+	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
 	 */
 	withUser(user: IUser): this;
