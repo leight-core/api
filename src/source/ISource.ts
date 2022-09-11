@@ -59,7 +59,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	/**
 	 * Support for data inclusion in the result (originally for Prisma).
 	 */
-	withInclude<TInclude>(): TInclude;
+	withInclude<TInclude = any>(): TInclude;
 
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
