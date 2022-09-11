@@ -1,4 +1,4 @@
-import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IUser, IWithIdentity, NullableOptional} from "@leight-core/api";
+import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IQueryFilter, IUser, IWithIdentity, NullableOptional} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
@@ -50,6 +50,11 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	count(query: TQuery): Promise<number>;
 
 	importers(): IImportHandlers;
+
+	/**
+	 * General method for converting input filter from a query into an output (for example, applying fulltext).
+	 */
+	withFilter(query: TQuery): IQueryFilter<TQuery> | undefined;
 
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
