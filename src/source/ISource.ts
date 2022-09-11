@@ -1,4 +1,4 @@
-import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IQueryFilter, IUser, IWithIdentity, NullableOptional} from "@leight-core/api";
+import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IQueryFilter, IUser, IWithIdentity, NullableOptional, UndefinableOptional} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
@@ -16,7 +16,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	/**
 	 * Patches the given entity.
 	 */
-	patch(patch: NullableOptional<TCreate> & IWithIdentity): Promise<TEntity>;
+	patch(patch: UndefinableOptional<TCreate> & IWithIdentity): Promise<TEntity>;
 
 	/**
 	 * Delete given entities by the list of given ids.
