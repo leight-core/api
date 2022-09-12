@@ -67,6 +67,8 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 
 	map(source: TEntity): Promise<TItem>;
 
+	list(source: Promise<TEntity[]>): Promise<TItem[]>;
+
 	/**
 	 * Utility to handle entity fetching for next.js server static props.
 	 */
