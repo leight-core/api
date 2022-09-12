@@ -1,12 +1,11 @@
-import {IImportHandlers, IPrismaTransaction, IPromiseMapper, IQuery, IQueryFilter, IUser, IWithIdentity, NullableOptional, UndefinableOptional} from "@leight-core/api";
+import {IImportHandlers, IPrismaTransaction, IQuery, IQueryFilter, IUser, IWithIdentity, UndefinableOptional} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
 export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery, TWithFetch extends Record<string, any> = any, TWithFetchParams extends ParsedUrlQuery = any> {
 	readonly name: string;
-	readonly prisma: IPrismaTransaction;
-	readonly mapper: IPromiseMapper<TEntity, TItem>;
-	readonly user: IUser;
+	prisma: IPrismaTransaction;
+	user: IUser;
 
 	/**
 	 * Creates a new entity by the given request.
@@ -62,21 +61,11 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	withUser(user: IUser): this;
 
 	/**
-	 * Set custom mapper for this source.
-	 */
-	withMapper<TTarget>(mapper: IPromiseMapper<TEntity, TTarget>): this;
-
-	/**
 	 * Sets prisma context; useful when there is a transaction.
 	 */
 	withPrisma(prisma: IPrismaTransaction): this;
 
-	/**
-	 * Sets default mapper of this source (if any).
-	 */
-	withDefaultMapper(): this;
-
-	map(source?: TEntity | null): Promise<TItem | null>;
+	map(source: TEntity): Promise<TItem>;
 
 	/**
 	 * Utility to handle entity fetching for next.js server static props.
@@ -100,7 +89,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 }
 
 export type ISourceCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
-export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? NullableOptional<U> & IWithIdentity : T;
+export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? UndefinableOptional<U> & IWithIdentity : T;
 export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
 export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
 export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
