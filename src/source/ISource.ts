@@ -67,6 +67,8 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 
 	map(source: TEntity): Promise<TItem>;
 
+	mapNull(source?: TEntity | null): Promise<TItem | undefined>;
+
 	list(source: Promise<TEntity[]>): Promise<TItem[]>;
 
 	/**
