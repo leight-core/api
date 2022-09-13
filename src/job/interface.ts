@@ -8,12 +8,12 @@ export interface IJob<TParams = any> {
 	readonly status: IJobStatus;
 	readonly total: number;
 	readonly progress: number;
-	readonly success?: number | null;
-	readonly successRatio?: number | null;
-	readonly failure?: number | null;
-	readonly failureRatio?: number | null;
-	readonly skip?: number | null;
-	readonly skipRatio?: number | null;
+	readonly success: number;
+	readonly successRatio: number;
+	readonly failure: number;
+	readonly failureRatio: number;
+	readonly skip: number;
+	readonly skipRatio: number;
 	readonly created: Date;
 	readonly started?: Date | null;
 	readonly finished?: Date | null;
