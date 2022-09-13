@@ -18,3 +18,5 @@ export type UndefinableOptional<T> = Partial<UndefinableWithOptional<T>>;
 export interface IndexOf<T> {
 	[index: string]: T;
 }
+
+export type IfVoid<TType, TExtends = void> = TExtends extends void ? TType : TType & TExtends;
