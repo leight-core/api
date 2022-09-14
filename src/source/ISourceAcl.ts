@@ -34,6 +34,11 @@ export interface ISourceAcl {
 	 */
 	create?: string[];
 	/**
+	 * Required tokens for import.
+	 * This should not further check for "create" and "update" tokens.
+	 */
+	import?: string[];
+	/**
 	 * Required tokens for patch.
 	 */
 	patch?: string[];
