@@ -23,8 +23,10 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 
 	/**
 	 * Resolve ID based on request (for example duplication detection).
+	 *
+	 * This should return an ID or throw an exception.
 	 */
-	createToId(create: TCreate): Promise<{ id: string } | undefined>;
+	createToId(create: TCreate): Promise<{ id: string }>;
 
 	/**
 	 * Patches the given entity.
