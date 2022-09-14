@@ -13,6 +13,20 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	create(create: TCreate): Promise<TEntity>;
 
 	/**
+	 * Create or update item.
+	 *
+	 * It also needs resolveId method to work properly.
+	 *
+	 * Internally, it should use create() with patch() in unique handler.
+	 */
+	import(create: TCreate): Promise<TEntity>;
+
+	/**
+	 * Resolve ID based on request (for example duplication detection).
+	 */
+	createToId(create: TCreate): string | undefined;
+
+	/**
 	 * Patches the given entity.
 	 */
 	patch(patch: UndefinableOptional<TCreate> & IWithIdentity): Promise<TEntity>;
