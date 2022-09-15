@@ -2,16 +2,16 @@ export interface IDrawerContext {
 	/**
 	 * Is the drawer visible?
 	 */
-	readonly visible: boolean;
+	readonly open: boolean;
 
 	/**
-	 * Set drawer's visibility.
+	 * Set drawer's status.
 	 *
-	 * @param visible
+	 * @param open
 	 */
-	setVisible(visible: boolean): void;
+	setOpen(open: boolean): void;
 
-	hide(): void;
+	close(): void;
 }
 
 export declare const PlacementTypes: ["top", "right", "bottom", "left"];
