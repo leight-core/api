@@ -20,3 +20,5 @@ export interface IndexOf<T> {
 }
 
 export type IfVoid<TType, TExtends = void> = TExtends extends void ? TType : TType & TExtends;
+
+export type Unboxed<T> = T extends (infer U)[] ? U : T;
