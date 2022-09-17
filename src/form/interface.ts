@@ -120,8 +120,9 @@ export interface IFormSuccess<TFormValues, TResponse> {
 	/**
 	 * Translates given string using form's translation base if provided.
 	 * @param text
+	 * @param data
 	 */
-	t(text: string): string;
+	t(text: string, data?: Record<string, any>): string;
 }
 
 export type IFormOnSuccess<TFormValues, TResponse> = (success: IFormSuccess<TFormValues, TResponse>) => void;
