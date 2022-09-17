@@ -100,10 +100,28 @@ export interface IFormChanged<TFormValues> {
 }
 
 export interface IFormSuccess<TFormValues, TResponse> {
+	/**
+	 * Handy shortcut for navigation.
+	 */
 	readonly navigate: INavigate;
+	/**
+	 * Original values sent to the form.
+	 */
 	readonly values: TFormValues;
+	/**
+	 * Response values got after processing form.
+	 */
 	readonly response: TResponse;
+	/**
+	 * Access to the whole form context.
+	 */
 	readonly formContext: IFormContext<TFormValues>;
+
+	/**
+	 * Translates given string using form's translation base if provided.
+	 * @param text
+	 */
+	t(text: string): string;
 }
 
 export type IFormOnSuccess<TFormValues, TResponse> = (success: IFormSuccess<TFormValues, TResponse>) => void;
