@@ -62,3 +62,24 @@ export interface IMobileFormContext<TValues = any> {
 	 */
 	values(): any;
 }
+
+export interface IMobileFormValuesChanged<TFormValues> {
+	readonly values: TFormValues;
+	readonly formContext: IMobileFormContext<TFormValues>;
+	readonly changed: Partial<TFormValues>;
+}
+
+export interface IMobileFormChanged<TFormValues> {
+	readonly values: TFormValues;
+	readonly formContext: IMobileFormContext<TFormValues>;
+}
+
+export interface IMobileFormFailure<TFormValues> {
+	readonly error: string;
+	readonly formContext: IMobileFormContext<TFormValues>;
+}
+
+export interface IToMobileFormError<TError, TFormValues> {
+	readonly error: TError;
+	readonly formContext: IMobileFormContext<TFormValues>;
+}

@@ -123,7 +123,7 @@ export interface IFormFailure<TFormValues> {
 	readonly formContext: IFormContext<TFormValues>;
 }
 
-export interface IToError<TError, TFormValues> {
+export interface IToFormError<TError, TFormValues> {
 	readonly error: TError;
 	readonly formContext: IFormContext<TFormValues>;
 }
