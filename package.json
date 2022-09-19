@@ -1,5 +1,5 @@
 {
-	"version": "0.6.135",
+	"version": "0.6.136",
 	"name": "@leight-core/api",
 	"description": "Package with all interfaces used in the whole @leight-core.",
 	"license": "MIT",

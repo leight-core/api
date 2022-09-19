@@ -18,9 +18,23 @@ export interface ISelectionContext<TSelection> {
 	select(id: string, selection: TSelection): void;
 
 	/**
+	 * Remove an id..
+	 *
+	 * @param id
+	 */
+	deSelect(id: string): void;
+
+	/**
 	 * Handle selection with the provided item; id is taken from that item.
 	 */
 	item(item: TSelection & { id: string }): void;
+
+	/**
+	 * Remove selected item from selection.
+	 *
+	 * @param item
+	 */
+	deItem(item: TSelection & { id: string }): void;
 
 	/**
 	 * Return object with all selection stuff.
