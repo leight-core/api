@@ -26,10 +26,7 @@ export interface IErrorHandler<TError, TFormValues> {
 }
 
 export type IFormErrorHandler<TError, TFormValues> = (error: IErrorHandler<TError, TFormValues>) => void;
-
-export interface IFormErrorMap<TFormValues> {
-	readonly [index: string]: IFormError | IFormErrorHandler<any, TFormValues>;
-}
+export type IFormErrorMap<TFormValues> = Record<string, IFormError | IFormErrorHandler<any, TFormValues>>;
 
 export interface IFormErrors {
 	readonly message?: string;

@@ -1,6 +1,7 @@
 import {Form} from "antd-mobile";
 import {NamePath} from "rc-field-form/lib/interface";
 import {INavigate} from "../router";
+import {IFormError} from "./form";
 
 class MobileFormWrapper<T> {
 	wrapped() {
@@ -83,3 +84,11 @@ export interface IToMobileFormError<TError, TFormValues> {
 	readonly error: TError;
 	readonly formContext: IMobileFormContext<TFormValues>;
 }
+
+export interface IMobileErrorHandler<TError, TFormValues> {
+	readonly error: TError;
+	readonly formContext: IMobileFormContext<TFormValues>;
+}
+
+export type IMobileFormErrorHandler<TError, TFormValues> = (error: IMobileErrorHandler<TError, TFormValues>) => void;
+export type IMobileFormErrorMap<TFormValues> = Record<string, IFormError | IMobileFormErrorHandler<any, TFormValues>>
