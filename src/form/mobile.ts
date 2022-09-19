@@ -3,7 +3,8 @@ import {NamePath} from "rc-field-form/lib/interface";
 
 class MobileFormWrapper<T> {
 	wrapped() {
-		return Form.useForm<T>();
+		const [form] = Form.useForm<T>();
+		return form;
 	}
 }
 
