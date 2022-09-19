@@ -1,14 +1,6 @@
+import {IFormError, IFormErrors, INavigate, Unboxed} from "@leight-core/api";
 import {Form} from "antd-mobile";
 import {NamePath} from "rc-field-form/lib/interface";
-import {INavigate} from "../router";
-import {IFormError, IFormErrors} from "./form";
-
-class MobileFormWrapper<T> {
-	wrapped() {
-		const [form] = Form.useForm<T>();
-		return form;
-	}
-}
 
 export interface IMobileFormSuccess<TFormValues, TResponse> {
 	/**
@@ -36,13 +28,12 @@ export interface IMobileFormSuccess<TFormValues, TResponse> {
 	t(text: string, data?: Record<string, any>): string;
 }
 
-
 export interface IMobileFormContext<TValues = any> {
 	readonly translation?: string;
 	/**
 	 * Antd form instance.
 	 */
-	readonly form: ReturnType<MobileFormWrapper<TValues>["wrapped"]>;
+	readonly form: Unboxed<ReturnType<typeof Form["useForm"]>>;
 
 	/**
 	 * Set form values
