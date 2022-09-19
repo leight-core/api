@@ -1,6 +1,16 @@
-import {IFormError, IFormErrors, INavigate, Unboxed} from "@leight-core/api";
+import {IFormError, IFormErrors, INamePath, INavigate, Unboxed} from "@leight-core/api";
 import {Form} from "antd-mobile";
-import {NamePath} from "rc-field-form/lib/interface";
+
+export interface IMobileFormItemContext {
+	readonly field: INamePath;
+	readonly label: string;
+
+	setValue(value: any): void;
+
+	getValue(): any;
+
+	setErrors(errors: string[]): void;
+}
 
 export interface IMobileFormSuccess<TFormValues, TResponse> {
 	/**
@@ -42,7 +52,7 @@ export interface IMobileFormContext<TValues = any> {
 	 */
 	setValues(values: TValues): void;
 
-	setValue(value: { name: NamePath, value: any }[]): void;
+	setValue(value: { name: INamePath, value: any }[]): void;
 
 	/**
 	 * Set field errors.

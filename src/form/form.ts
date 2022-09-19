@@ -2,8 +2,10 @@ import {INavigate} from "@leight-core/api";
 import {FormInstance} from "antd";
 import {NamePath} from "rc-field-form/lib/interface";
 
+export type INamePath = NamePath;
+
 export interface IFormItemContext {
-	readonly field: NamePath;
+	readonly field: INamePath;
 	readonly label: string;
 
 	setValue(value: any): void;
@@ -13,10 +15,10 @@ export interface IFormItemContext {
 	setErrors(errors: string[]): void;
 }
 
-export type IFormFields = [NamePath, any];
+export type IFormFields = [INamePath, any];
 
 export interface IFormError {
-	readonly id: NamePath;
+	readonly id: INamePath;
 	readonly error: string;
 }
 
@@ -58,7 +60,7 @@ export interface IFormContext<TValues = any> {
 	 */
 	setValues(values: TValues): void;
 
-	setValue(value: { name: NamePath, value: any }[]): void;
+	setValue(value: { name: INamePath, value: any }[]): void;
 
 	/**
 	 * Reset form to the initial state.
