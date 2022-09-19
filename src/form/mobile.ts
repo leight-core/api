@@ -1,7 +1,7 @@
 import {Form} from "antd-mobile";
 import {NamePath} from "rc-field-form/lib/interface";
 import {INavigate} from "../router";
-import {IFormError} from "./form";
+import {IFormError, IFormErrors} from "./form";
 
 class MobileFormWrapper<T> {
 	wrapped() {
@@ -52,6 +52,13 @@ export interface IMobileFormContext<TValues = any> {
 	setValues(values: TValues): void;
 
 	setValue(value: { name: NamePath, value: any }[]): void;
+
+	/**
+	 * Set field errors.
+	 *
+	 * @param errors
+	 */
+	setErrors(errors: IFormErrors): void;
 
 	/**
 	 * Reset form to the initial state.
