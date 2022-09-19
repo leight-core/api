@@ -81,13 +81,6 @@ export interface IFormContext<TValues = any> {
 
 export type IToOptionMapper<TItem> = (item: TItem) => IBaseSelectOption;
 
-export type IFormMutationMapper<TFormValues, TRequest> = (values: TFormValues) => TRequest;
-
-export type IFormInitialMapper<TFormValues> = () => TFormValues;
-
-export type IFormOnValuesChanged<TFormValues = any> = (success: IFormValuesChanged<TFormValues>) => void;
-export type IFormOnChanged<TFormValues = any> = (change: IFormChanged<TFormValues>) => void;
-
 export interface IFormValuesChanged<TFormValues> {
 	readonly values: TFormValues;
 	readonly formContext: IFormContext<TFormValues>;
@@ -125,14 +118,10 @@ export interface IFormSuccess<TFormValues, TResponse> {
 	t(text: string, data?: Record<string, any>): string;
 }
 
-export type IFormOnSuccess<TFormValues, TResponse> = (success: IFormSuccess<TFormValues, TResponse>) => void;
-
 export interface IFormFailure<TFormValues> {
 	readonly error: string;
 	readonly formContext: IFormContext<TFormValues>;
 }
-
-export type IFormOnFailure<TFormValues> = (failure: IFormFailure<TFormValues>) => void;
 
 export interface IToError<TError, TFormValues> {
 	readonly error: TError;
