@@ -33,9 +33,4 @@ export interface IMobileFormContext<TValues = any> {
 	 * Return current form values.
 	 */
 	values(): any;
-
-	/**
-	 * Throw away all error messages of all fields.
-	 */
-	resetErrors(): void;
 }

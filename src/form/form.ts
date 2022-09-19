@@ -41,7 +41,7 @@ export interface IFormContext<TValues = any> {
 	/**
 	 * Antd form instance.
 	 */
-	readonly form: FormInstance;
+	readonly form: FormInstance<TValues>;
 	/**
 	 * Current form errors.
 	 */
