@@ -2,7 +2,6 @@ export * from "./block";
 export * from "./bootstrap";
 export * from "./browser";
 export * from "./date";
-export * from "./drawer";
 export * from "./endpoint";
 export * from "./entity";
 export * from "./event";
