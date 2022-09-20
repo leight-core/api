@@ -29,6 +29,8 @@ export interface ISelectionContext<TSelection> {
 	 */
 	item(item: TSelection & { id: string }): void;
 
+	items(items: (TSelection & { id: string })[]): void;
+
 	/**
 	 * Remove selected item from selection.
 	 *
