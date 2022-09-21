@@ -1,4 +1,4 @@
-export type ISelectionType = "none" | "single" | "multi";
+export type ISelectionType = "single" | "multi";
 
 export interface ISelection<TSelection> {
 	/**
