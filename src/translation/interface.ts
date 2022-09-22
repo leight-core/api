@@ -10,6 +10,7 @@ export interface ITranslation {
 	readonly id: string;
 	readonly key: string;
 	readonly value: string;
+	readonly language: string;
 }
 
 export interface ITranslations {
