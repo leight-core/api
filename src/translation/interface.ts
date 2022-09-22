@@ -7,6 +7,7 @@ export interface II18NextContext {
 }
 
 export interface ITranslation {
+	readonly id: string;
 	readonly key: string;
 	readonly value: string;
 }
