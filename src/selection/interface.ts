@@ -12,7 +12,7 @@ export interface ISelection<TSelection> {
 	/**
 	 * Selected items indexed by an ID.
 	 */
-	items: { [index in string]: TSelection };
+	items: Record<string, TSelection>;
 	/**
 	 * Just an array of selected items.
 	 */
@@ -24,10 +24,6 @@ export interface ISelection<TSelection> {
 }
 
 export interface ISelectionContext<TSelection> {
-	enable(enable?: boolean): void;
-
-	isEnabled(): boolean;
-
 	/**
 	 * Handle selection with the provided id.
 	 */
