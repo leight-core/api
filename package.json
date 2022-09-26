@@ -1,5 +1,5 @@
 {
-	"version": "0.6.157",
+	"version": "0.6.158",
 	"name": "@leight-core/api",
 	"description": "Package with all interfaces used in the whole @leight-core.",
 	"license": "MIT",
@@ -33,7 +33,7 @@
 		"react-dom": "^18.2.0",
 		"@tanstack/react-query": "^4.6.0",
 		"winston": "^3.8.2",
-		"next-auth": "^4.12.0"
+		"next-auth": "^4.10.0"
 	},
 	"devDependencies": {
 		"antd": "^4.23.2",
