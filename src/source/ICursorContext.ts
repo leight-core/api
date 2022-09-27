@@ -5,6 +5,10 @@ export interface ICursorContext {
 	 */
 	readonly page: number;
 	/**
+	 * Number of available pages.
+	 */
+	readonly pages: number;
+	/**
 	 * Current page size.
 	 */
 	readonly size: number;
@@ -12,6 +16,8 @@ export interface ICursorContext {
 	readonly prepend?: boolean;
 
 	setPage(page: number, size?: number): void;
+
+	setPages(pages: number): void;
 
 	next(append?: boolean): void;
 
