@@ -92,4 +92,10 @@ export interface ISelectionContext<TSelection> {
 	 * Clear all selection.
 	 */
 	clear(): void;
+
+	/**
+	 * When selection changes are made, this will revert selection to original
+	 * selection state (so with apply or default selection).
+	 */
+	reset(): void;
 }
