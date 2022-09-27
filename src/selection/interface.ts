@@ -37,6 +37,13 @@ export interface ISelectionContext<TSelection> {
 	items(items: (TSelection & { id: string })[], select?: boolean): void;
 
 	/**
+	 * Update default selected items when selection is reset.
+	 * @param items
+	 * @param select
+	 */
+	defaults(items: (TSelection & { id: string })[], select?: boolean): void;
+
+	/**
 	 * Return object with all selection stuff.
 	 */
 	selection(): ISelection<TSelection>;
