@@ -7,7 +7,7 @@ export interface ICursorContext {
 	/**
 	 * Number of available pages.
 	 */
-	readonly pages: number;
+	readonly pages?: number;
 	/**
 	 * Current page size.
 	 */
@@ -17,7 +17,7 @@ export interface ICursorContext {
 
 	setPage(page: number, size?: number): void;
 
-	setPages(pages: number): void;
+	setPages(pages?: number): void;
 
 	next(append?: boolean): void;
 
