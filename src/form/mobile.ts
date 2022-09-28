@@ -70,6 +70,13 @@ export interface IMobileFormContext<TValues = any> {
 	 * Return current form values.
 	 */
 	values(): any;
+
+	/**
+	 * Just a flag for form to show/hide submit button. Useful for example in tabbed forms where submit may not be visible all the times).
+	 *
+	 * @param show
+	 */
+	showSubmit(show: boolean): void;
 }
 
 export interface IMobileFormValuesChanged<TFormValues> {
