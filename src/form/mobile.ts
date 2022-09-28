@@ -40,6 +40,8 @@ export interface IMobileFormSuccess<TFormValues, TResponse> {
 
 export interface IMobileFormContext<TValues = any> {
 	readonly translation?: string;
+	readonly isSubmitVisible: boolean;
+
 	/**
 	 * Antd form instance.
 	 */
