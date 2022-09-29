@@ -49,5 +49,5 @@ export interface ICursorContext {
 	 *
 	 * @param append
 	 */
-	more(append?: boolean): boolean;
+	more(append?: boolean): void;
 }
