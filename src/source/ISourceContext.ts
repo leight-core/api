@@ -5,8 +5,6 @@ export interface ISourceContext<TResponse> {
 
 	readonly result: UseQueryResult<TResponse[], any>;
 
-	readonly count?: UseQueryResult<number, any>;
-
 	hasData(): boolean;
 
 	data(): TResponse[];
