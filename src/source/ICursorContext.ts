@@ -18,6 +18,10 @@ export interface ICursorContext {
 	readonly size: number;
 	readonly append?: boolean;
 	readonly prepend?: boolean;
+	/**
+	 * Mark the context as ready (all paging data available).
+	 */
+	readonly isReady: boolean;
 
 	setPage(page: number, size?: number): void;
 
@@ -50,4 +54,6 @@ export interface ICursorContext {
 	 * @param append
 	 */
 	more(append?: boolean): void;
+
+	setReady(ready: boolean): void;
 }
