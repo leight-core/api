@@ -42,12 +42,12 @@ export interface IFileService {
 	/**
 	 * Detect mime of the given file.
 	 */
-	mimeOf(file: string): string;
+	mimeOf(file?: string): string;
 
 	/**
 	 * Return file size of the given file.
 	 */
-	sizeOf(file: string): number;
+	sizeOf(file?: string): number;
 
 	/**
 	 * Generates (absolute) file path based on the file id.
