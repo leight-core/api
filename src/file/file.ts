@@ -23,7 +23,7 @@ export interface IFileStoreRequest {
 	/**
 	 * File to store (absolute path); the source file will not be touched.
 	 */
-	readonly file: string;
+	readonly file?: string;
 	/**
 	 * Virtual path of the stored file.
 	 */
