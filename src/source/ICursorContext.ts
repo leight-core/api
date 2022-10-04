@@ -13,6 +13,10 @@ export interface ICursorContext {
 	 */
 	readonly total?: number;
 	/**
+	 * Number of items with current filter.
+	 */
+	readonly count?: number;
+	/**
 	 * Current page size.
 	 */
 	readonly size: number;
