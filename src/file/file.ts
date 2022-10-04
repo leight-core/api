@@ -1,10 +1,13 @@
-export interface IFile {
-	readonly id: string;
-	readonly path: string;
-	readonly name: string;
+export interface IFileInfo {
 	readonly mime: string;
 	readonly size: number;
+	readonly path: string;
+	readonly name: string;
 	readonly location: string;
+}
+
+export interface IFile extends IFileInfo {
+	readonly id: string;
 	readonly created: string;
 	readonly updated?: string;
 	readonly ttl?: number;
@@ -48,6 +51,8 @@ export interface IFileService {
 	 * Return file size of the given file.
 	 */
 	sizeOf(file?: string): number;
+
+	infoOf(file: string): IFileInfo;
 
 	/**
 	 * Generates (absolute) file path based on the file id.
