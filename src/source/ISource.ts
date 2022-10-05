@@ -15,7 +15,7 @@ export interface ISource<//
 	TEntity,
 	TItem,
 	TQuery extends IQuery = IQuery,
-	TBackup = any,
+	TBackup extends Record<string, any> = any,
 	TWithFetch extends Record<string, any> = any,
 	TWithFetchParams extends ParsedUrlQuery = any,
 	> {
