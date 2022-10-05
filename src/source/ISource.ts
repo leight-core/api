@@ -15,9 +15,9 @@ export interface ISource<//
 	TEntity,
 	TItem,
 	TQuery extends IQuery = IQuery,
-	TBackup extends Record<string, any> = any,
 	TWithFetch extends Record<string, any> = any,
 	TWithFetchParams extends ParsedUrlQuery = any,
+	TBackup extends Record<string, any> = any,
 	> {
 	readonly name: string;
 	prisma: IPrismaTransaction;
@@ -146,6 +146,6 @@ export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? Undefi
 export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
 export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
 export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
-export type ISourceBackup<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
-export type ISourceFetch<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
-export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;
+export type ISourceFetch<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
+export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
+export type ISourceBackup<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;
