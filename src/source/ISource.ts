@@ -73,7 +73,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	 *
 	 * @param entity
 	 */
-	toRestore(entity: TEntity): IRestoreItem<TEntity, TItem> | undefined;
+	toRestore(entity: TEntity): Promise<IRestoreItem<TEntity, TItem> | undefined>;
 
 	/**
 	 * Restore given item; a result is an TItem, but could be a bit different from the source one (for
