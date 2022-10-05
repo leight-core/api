@@ -1,7 +1,7 @@
 import {
 	IQuery,
 	ISource
-} from "../source";
+} from "@leight-core/api";
 
 export interface IFileInfo {
 	readonly mime: string;
@@ -71,7 +71,7 @@ export interface IFileService {
 }
 
 export interface IFileSource<//
-	TFileEntity,
+	TFileEntity extends Record<string, any>,
 	TFileQuery extends IQuery,
 	> extends ISource<IFileCreate, TFileEntity, IFile, TFileQuery> {
 	store(store: IFileStoreRequest): Promise<TFileEntity>;

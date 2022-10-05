@@ -11,13 +11,13 @@ import {GetServerSideProps} from "next";
 import {ParsedUrlQuery}     from "querystring";
 
 export interface ISource<//
-	TCreate,
-	TEntity,
-	TItem,
+	TCreate extends Record<string, any>,
+	TEntity extends Record<string, any>,
+	TItem extends Record<string, any>,
 	TQuery extends IQuery = IQuery,
 	TWithFetch extends Record<string, any> = any,
 	TWithFetchParams extends ParsedUrlQuery = any,
-	TBackup extends Record<string, any> = any,
+	TBackup extends Record<string, any> = TEntity,
 	> {
 	readonly name: string;
 	prisma: IPrismaTransaction;
