@@ -20,7 +20,6 @@ export * from "./next.js";
 export * from "./page";
 export * from "./prisma";
 export * from "./responsive";
-export * from "./restore";
 export * from "./router";
 export * from "./sdk";
 export * from "./selection";

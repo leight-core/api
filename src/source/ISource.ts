@@ -1,4 +1,4 @@
-import {IImportHandlers, IPrismaTransaction, IQuery, IQueryFilter, IRestoreItem, IUser, IWithIdentity, UndefinableOptional} from "@leight-core/api";
+import {IImportHandlers, IPrismaTransaction, IQuery, IQueryFilter, IUser, IWithIdentity, UndefinableOptional} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
@@ -20,6 +20,14 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	 * Internally, it should use create() with patch() in unique handler.
 	 */
 	import(create: TCreate): Promise<TEntity>;
+
+	/**
+	 * Magical (optional) method to create "Create DTO" object from an existing entity.
+	 * With this it's possible to create backups of the source (basically an application itself).
+	 *
+	 * @param entity
+	 */
+	toImport(entity: TEntity): Promise<TCreate | undefined>;
 
 	/**
 	 * Resolve ID based on request (for example duplication detection).
@@ -65,27 +73,6 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	count(query: TQuery): Promise<number>;
 
 	importers(): IImportHandlers;
-
-	/**
-	 * Export entity into restore DTO used later on for restoring data.
-	 *
-	 * This is an optional method, thus not all sources shall implement this).
-	 *
-	 * @param entity
-	 */
-	toRestore(entity: TEntity): Promise<IRestoreItem<TEntity, TItem> | undefined>;
-
-	/**
-	 * Restore given item; a result is an TItem, but could be a bit different from the source one (for
-	 * example, different generated ID or so).
-	 *
-	 * When nothing is provided, nothing happens.
-	 *
-	 * Optional method for Source (thus not all sources shall implement restoring).
-	 *
-	 * @param restore
-	 */
-	restore(restore?: IRestoreItem<TEntity, TItem>): TItem;
 
 	/**
 	 * General method for converting input filter from a query into an output (for example, applying fulltext).
