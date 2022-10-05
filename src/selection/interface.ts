@@ -24,6 +24,8 @@ export interface ISelection<TSelection> {
 }
 
 export interface ISelectionContext<TSelection> {
+	readonly type: ISelectionType;
+
 	/**
 	 * Handle selection with the provided id.
 	 */
