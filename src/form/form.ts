@@ -1,6 +1,6 @@
-import {INavigate} from "@leight-core/api";
+import {INavigate}    from "@leight-core/api";
 import {FormInstance} from "antd";
-import {NamePath} from "rc-field-form/lib/interface";
+import {NamePath}     from "rc-field-form/lib/interface";
 
 export type INamePath = NamePath;
 

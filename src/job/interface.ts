@@ -1,6 +1,6 @@
 import {IEndpointParams} from "@leight-core/api";
 import {QueueAddOptions} from "p-queue/dist/options";
-import {Logger} from "winston";
+import {Logger}          from "winston";
 
 export interface IJob<TParams = any> {
 	readonly id: string;
@@ -68,4 +68,10 @@ export interface IJobProcessor<TParams = any> {
 	handler(request: IJobHandlerRequest<TParams>): Promise<any>;
 }
 
-export type IJobStatus = "NEW" | "RUNNING" | "SUCCESS" | "FAILURE" | "REVIEW" | "DONE";
+export type IJobStatus =
+	"NEW"
+	| "RUNNING"
+	| "SUCCESS"
+	| "FAILURE"
+	| "REVIEW"
+	| "DONE";

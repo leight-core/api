@@ -50,7 +50,7 @@ export class AclError extends ClientError {
 
 	constructor(message: string, tokens: string[], requested?: string[]) {
 		super(message, 403);
-		this.tokens = tokens;
+		this.tokens    = tokens;
 		this.requested = requested;
 	}
 }

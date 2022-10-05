@@ -1,5 +1,8 @@
 import {ParsedUrlQuery} from "querystring";
-import {FC, ReactNode} from "react";
+import {
+	FC,
+	ReactNode
+}                       from "react";
 
 export interface IPageWithLayout<P> extends FC<P> {
 	layout(page: ReactNode): ReactNode;

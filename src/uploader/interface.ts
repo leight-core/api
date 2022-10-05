@@ -1,7 +1,14 @@
-import {IEventHandlers, IEventResult, IEvents} from "@leight-core/api";
+import {
+	IEventHandlers,
+	IEventResult,
+	IEvents
+}                   from "@leight-core/api";
 import {UploadFile} from "antd/lib/upload/interface";
 
-export type IUploaderEventTypes = "uploading" | "error" | "done";
+export type IUploaderEventTypes =
+	"uploading"
+	| "error"
+	| "done";
 
 /**
  * Crazy thing this one: we override response from UploadFile to enforce user defined

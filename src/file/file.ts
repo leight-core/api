@@ -1,4 +1,7 @@
-import {IQuery, ISource} from "../source";
+import {
+	IQuery,
+	ISource
+} from "../source";
 
 export interface IFileInfo {
 	readonly mime: string;
@@ -67,7 +70,10 @@ export interface IFileService {
 	store(store: IFileStoreRequest): IFile;
 }
 
-export interface IFileSource<TFileEntity, TFileQuery extends IQuery> extends ISource<IFileCreate, TFileEntity, IFile, TFileQuery> {
+export interface IFileSource<//
+	TFileEntity,
+	TFileQuery extends IQuery,
+	> extends ISource<IFileCreate, TFileEntity, IFile, TFileQuery> {
 	store(store: IFileStoreRequest): Promise<TFileEntity>;
 
 	refresh(fileId: string): Promise<TFileEntity>;

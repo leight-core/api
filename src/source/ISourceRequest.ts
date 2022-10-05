@@ -1,4 +1,9 @@
-import {ISource, ISourceCreate, ISourcePatch, ISourceQuery} from "@leight-core/api";
+import {
+	ISource,
+	ISourceCreate,
+	ISourcePatch,
+	ISourceQuery
+} from "@leight-core/api";
 
 export interface ISourceRequest<TSource extends ISource<any, any, any>> {
 	get?: string;

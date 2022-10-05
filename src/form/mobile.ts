@@ -1,4 +1,10 @@
-import {IFormError, IFormErrors, INamePath, INavigate, Unboxed} from "@leight-core/api";
+import {
+	IFormError,
+	IFormErrors,
+	INamePath,
+	INavigate,
+	Unboxed
+}             from "@leight-core/api";
 import {Form} from "antd-mobile";
 
 export interface IMobileFormItemContext {

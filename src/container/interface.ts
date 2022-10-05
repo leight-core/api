@@ -1,4 +1,7 @@
-import {IFileSource, ISource} from "@leight-core/api";
+import {
+	IFileSource,
+	ISource
+} from "@leight-core/api";
 
 /**
  * Callback used to obtain a service from a Container.

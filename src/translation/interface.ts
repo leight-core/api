@@ -1,6 +1,6 @@
 import {IQueryHook} from "@leight-core/api";
-import {i18n} from "i18next";
-import {ReactNode} from "react";
+import {i18n}       from "i18next";
+import {ReactNode}  from "react";
 
 export interface II18NextContext {
 	readonly i18next: i18n;

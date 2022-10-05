@@ -1,7 +1,9 @@
 /**
  * Encapsulated event callback result to deduplicate all that stuff with the cost of lengthy type name.
  */
-export type IEventResult = boolean | any;
+export type IEventResult =
+	boolean
+	| any;
 
 /**
  * A shape of event handler - some arguments and optional boolean return.
@@ -16,7 +18,9 @@ export interface IEvent {
 	readonly callback: IEventCallback;
 }
 
-export type IBaseEventTypes = "dismiss" | string;
+export type IBaseEventTypes =
+	"dismiss"
+	| string;
 
 export type IEventIndex<TEventTypes extends IBaseEventTypes> = { [index in TEventTypes]: IEvent[] }
 

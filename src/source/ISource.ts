@@ -1,8 +1,24 @@
-import {IImportHandlers, IPrismaTransaction, IQuery, IQueryFilter, IUser, IWithIdentity, UndefinableOptional} from "@leight-core/api";
+import {
+	IImportHandlers,
+	IPrismaTransaction,
+	IQuery,
+	IQueryFilter,
+	IUser,
+	IWithIdentity,
+	UndefinableOptional
+}                           from "@leight-core/api";
 import {GetServerSideProps} from "next";
-import {ParsedUrlQuery} from "querystring";
+import {ParsedUrlQuery}     from "querystring";
 
-export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery, TWithFetch extends Record<string, any> = any, TWithFetchParams extends ParsedUrlQuery = any> {
+export interface ISource<//
+	TCreate,
+	TEntity,
+	TItem,
+	TQuery extends IQuery = IQuery,
+	TBackup = never,
+	TWithFetch extends Record<string, any> = any,
+	TWithFetchParams extends ParsedUrlQuery = any,
+	> {
 	readonly name: string;
 	prisma: IPrismaTransaction;
 	user: IUser;
@@ -22,14 +38,6 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	import(create: TCreate): Promise<TEntity>;
 
 	/**
-	 * Magical (optional) method to create "Create DTO" object from an existing entity.
-	 * With this it's possible to create backups of the source (basically an application itself).
-	 *
-	 * @param entity
-	 */
-	toImport(entity: TEntity): Promise<TCreate | undefined>;
-
-	/**
 	 * Resolve ID based on request (for example duplication detection).
 	 *
 	 * This should return an ID or throw an exception.
@@ -40,6 +48,21 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	 * Patches the given entity.
 	 */
 	patch(patch: UndefinableOptional<TCreate> & IWithIdentity): Promise<TEntity>;
+
+	/**
+	 * This method adds support for making a backup of an entity (thus preparing it for
+	 * restore counterpart).
+	 *
+	 * @param entity
+	 */
+	backup(entity: TEntity): Promise<TBackup | undefined>;
+
+	/**
+	 * Restore the given backed-up entity; if nothing provided, nothing happens.
+	 *
+	 * @param backup
+	 */
+	restore(backup?: TBackup): Promise<TEntity>;
 
 	/**
 	 * Delete given entities by the list of given ids.
@@ -123,5 +146,6 @@ export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? Undefi
 export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
 export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
 export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
-export type ISourceFetch<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
-export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
+export type ISourceBackup<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
+export type ISourceFetch<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
+export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;

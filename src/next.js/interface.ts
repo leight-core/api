@@ -1,5 +1,5 @@
 import {GetServerSideProps} from "next";
-import {ParsedUrlQuery} from "querystring";
+import {ParsedUrlQuery}     from "querystring";
 
 /**
  * Shortcut to pre-fetch entity on next.js server side props.

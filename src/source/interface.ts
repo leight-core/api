@@ -1,5 +1,10 @@
-import {IQueryParams} from "@leight-core/api";
-import {UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult} from "@tanstack/react-query";
+import {IQueryParams}       from "@leight-core/api";
+import {
+	UseMutationOptions,
+	UseMutationResult,
+	UseQueryOptions,
+	UseQueryResult
+}                           from "@tanstack/react-query";
 import {AxiosRequestConfig} from "axios";
 
 export type IQueryHook<TRequest, TResponse, TQueryParams extends IQueryParams = any> = (request?: TRequest, queryParams?: TQueryParams, options?: UseQueryOptions<any, any, TResponse, any>, config?: AxiosRequestConfig<TRequest>) => UseQueryResult<TResponse>;
