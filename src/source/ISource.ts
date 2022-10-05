@@ -1,4 +1,4 @@
-import {IImportHandlers, IPrismaTransaction, IQuery, IQueryFilter, IUser, IWithIdentity, UndefinableOptional} from "@leight-core/api";
+import {IImportHandlers, IPrismaTransaction, IQuery, IQueryFilter, IRestoreItem, IUser, IWithIdentity, UndefinableOptional} from "@leight-core/api";
 import {GetServerSideProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
@@ -65,6 +65,27 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	count(query: TQuery): Promise<number>;
 
 	importers(): IImportHandlers;
+
+	/**
+	 * Export entity into restore DTO used later on for restoring data.
+	 *
+	 * This is an optional method, thus not all sources shall implement this).
+	 *
+	 * @param entity
+	 */
+	toRestore(entity: TEntity): IRestoreItem<TEntity, TItem> | undefined;
+
+	/**
+	 * Restore given item; a result is an TItem, but could be a bit different from the source one (for
+	 * example, different generated ID or so).
+	 *
+	 * When nothing is provided, nothing happens.
+	 *
+	 * Optional method for Source (thus not all sources shall implement restoring).
+	 *
+	 * @param restore
+	 */
+	restore(restore?: IRestoreItem<TEntity, TItem>): TItem;
 
 	/**
 	 * General method for converting input filter from a query into an output (for example, applying fulltext).
