@@ -1,3 +1,5 @@
+import {IQuery, ISource} from "../source";
+
 export interface IFileInfo {
 	readonly mime: string;
 	readonly size: number;
@@ -11,6 +13,9 @@ export interface IFile extends IFileInfo {
 	readonly created: string;
 	readonly updated?: string;
 	readonly ttl?: number;
+}
+
+export interface IFileCreate extends IFile {
 }
 
 export interface IFileServiceConfig {
@@ -60,6 +65,12 @@ export interface IFileService {
 	toLocation(fileId: string): string;
 
 	store(store: IFileStoreRequest): IFile;
+}
+
+export interface IFileSource<TFileEntity, TFileQuery extends IQuery> extends ISource<IFileCreate, TFileEntity, IFile, TFileQuery> {
+	store(store: IFileStoreRequest): Promise<TFileEntity>;
+
+	refresh(fileId: string): Promise<TFileEntity>;
 }
 
 export type IFileServiceFactory = (deps: IIFileServiceDeps) => IFileService;
