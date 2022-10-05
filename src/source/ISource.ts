@@ -62,7 +62,7 @@ export interface ISource<//
 	 *
 	 * @param backup
 	 */
-	restore(backup?: TBackup): Promise<TEntity>;
+	restore(backup?: TBackup): Promise<TEntity | undefined>;
 
 	/**
 	 * Delete given entities by the list of given ids.
