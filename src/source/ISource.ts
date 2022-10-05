@@ -94,8 +94,10 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 
 	/**
 	 * Get some things from the given source (prisma, user, ...).
+	 *
+	 * If nothing provided, nothing happens, it's just for convenience to prevent unnecessary conditions on the caller's side.
 	 */
-	ofSource(source: ISource<any, any, any>): this;
+	ofSource(source?: ISource<any, any, any>): this;
 
 	/**
 	 * Generates hash string for the given query; it's useful for generating cache key for example.
