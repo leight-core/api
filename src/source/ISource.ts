@@ -1,7 +1,8 @@
-import {IImportHandlers, IPageEntity, IPageFetch, IPageParams, IPrismaTransaction, IQuery, IQueryFilter, IUser, IWithIdentity, UndefinableOptional} from "@leight-core/api";
+import {IImportHandlers, IPrismaTransaction, IQuery, IQueryFilter, IUser, IWithIdentity, UndefinableOptional} from "@leight-core/api";
 import {GetServerSideProps} from "next";
+import {ParsedUrlQuery} from "querystring";
 
-export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery, TPageEntity extends IPageEntity = IPageEntity> {
+export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery, TWithFetch extends Record<string, any> = any, TWithFetchParams extends ParsedUrlQuery = any> {
 	readonly name: string;
 	prisma: IPrismaTransaction;
 	user: IUser;
@@ -97,7 +98,7 @@ export interface ISource<TCreate, TEntity, TItem, TQuery extends IQuery = IQuery
 	/**
 	 * Utility to handle entity fetching for next.js server static props.
 	 */
-	withFetch(key: keyof IPageFetch<TPageEntity>, query: keyof IPageParams<TPageEntity>): GetServerSideProps<IPageFetch<TPageEntity>, IPageParams<TPageEntity>>;
+	withFetch(key: keyof TWithFetch, query: keyof TWithFetchParams): GetServerSideProps<TWithFetch, TWithFetchParams>;
 
 	/**
 	 * Get some things from the given source (prisma, user, ...).
@@ -122,6 +123,5 @@ export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? Undefi
 export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
 export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
 export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
-export type ISourcePageEntity<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
-export type ISourceFetch<T> = T extends ISource<any, any, any, any, infer U> ? IPageFetch<U> : T;
-export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, infer U> ? IPageParams<U> : T;
+export type ISourceFetch<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
+export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
