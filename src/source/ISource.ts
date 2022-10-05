@@ -122,5 +122,6 @@ export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? Undefi
 export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
 export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
 export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
+export type ISourcePageEntity<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
 export type ISourceFetch<T> = T extends ISource<any, any, any, any, infer U> ? IPageFetch<U> : T;
 export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, infer U> ? IPageParams<U> : T;
