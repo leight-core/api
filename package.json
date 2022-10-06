@@ -1,5 +1,5 @@
 {
-	"version": "0.6.192",
+	"version": "0.6.193",
 	"name": "@leight-core/api",
 	"description": "Package with all interfaces used in the whole @leight-core.",
 	"license": "MIT",
@@ -43,8 +43,8 @@
 		"@types/react": "^18.0.21",
 		"@typescript-eslint/eslint-plugin": "^5.38.0",
 		"@typescript-eslint/parser": "^5.38.0",
-		"eslint": "8.22.0",
+		"eslint": "^8.24.0",
 		"eslint-plugin-unicorn": "^43.0.2",
-		"typescript": "^4.8.3"
+		"typescript": "^4.8.4"
 	}
 }
