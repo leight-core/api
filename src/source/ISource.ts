@@ -2,9 +2,9 @@ import {
 	IImportHandlers,
 	IPrismaTransaction,
 	IQuery,
-	IQueryFilter,
 	IUser,
 	IWithIdentity,
+	QueryInfer,
 	UndefinableOptional
 }                           from "@leight-core/api";
 import {GetServerSideProps} from "next";
@@ -100,7 +100,7 @@ export interface ISource<//
 	/**
 	 * General method for converting input filter from a query into an output (for example, applying fulltext).
 	 */
-	withFilter(query: TQuery): IQueryFilter<TQuery> | undefined;
+	withFilter(query: TQuery): QueryInfer.Filter<TQuery> | undefined;
 
 	/**
 	 * Set the given user as a context; user requirement is based on the source's internals.
@@ -141,22 +141,13 @@ export interface ISource<//
 	clearCache(): Promise<any>;
 }
 
-export namespace ISource {
-	export type TCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
-	export type TPatch<T> = T extends ISource<infer U, any, any, any> ? UndefinableOptional<U> & IWithIdentity : T;
-	export type TEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
-	export type TItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
-	export type TQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
-	export type TFetch<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
-	export type TFetchParams<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
-	export type TBackup<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;
+export namespace SourceInfer {
+	export type Create<T> = T extends ISource<infer U, any, any, any> ? U : T;
+	export type Patch<T> = T extends ISource<infer U, any, any, any> ? UndefinableOptional<U> & IWithIdentity : T;
+	export type Entity<T> = T extends ISource<any, infer U, any, any> ? U : T;
+	export type Item<T> = T extends ISource<any, any, infer U, any> ? U : T;
+	export type Query<T> = T extends ISource<any, any, any, infer U> ? U : T;
+	export type Fetch<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
+	export type FetchParams<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
+	export type Backup<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;
 }
-
-export type ISourceCreate<T> = T extends ISource<infer U, any, any, any> ? U : T;
-export type ISourcePatch<T> = T extends ISource<infer U, any, any, any> ? UndefinableOptional<U> & IWithIdentity : T;
-export type ISourceEntity<T> = T extends ISource<any, infer U, any, any> ? U : T;
-export type ISourceItem<T> = T extends ISource<any, any, infer U, any> ? U : T;
-export type ISourceQuery<T> = T extends ISource<any, any, any, infer U> ? U : T;
-export type ISourceFetch<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
-export type ISourceFetchParams<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
-export type ISourceBackup<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;
