@@ -38,3 +38,8 @@ export interface IQuerySource<//
 	 */
 	withFilter(query: TQuery): QueryInfer.Filter<TQuery> | undefined;
 }
+
+export namespace QuerySourceInfer {
+	export type Entity<T> = T extends IQuerySource<infer U, any> ? U : T;
+	export type Query<T> = T extends IQuerySource<any, infer U> ? U : T;
+}

@@ -8,3 +8,8 @@ export interface IResolveSource<TSource extends Record<string, string>, TResult 
 	 */
 	resolveId(source: TSource): Promise<TResult>;
 }
+
+export namespace ResolveSource {
+	export type Source<T> = T extends IResolveSource<infer U, any> ? U : T;
+	export type Result<T> = T extends IResolveSource<any, infer U> ? U : T;
+}

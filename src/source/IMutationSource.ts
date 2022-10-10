@@ -22,3 +22,8 @@ export interface IMutationSource<//
 	 */
 	remove(ids: string[]): Promise<TEntity[]>;
 }
+
+export namespace MutationSourceInfer {
+	export type Create<T> = T extends IMutationSource<infer U, any> ? U : T;
+	export type Entity<T> = T extends IMutationSource<any, infer U> ? U : T;
+}
