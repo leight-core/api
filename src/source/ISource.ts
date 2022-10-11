@@ -3,7 +3,6 @@ import {
 	IContainer,
 	IImportSource,
 	IMutationSource,
-	IPageFetch,
 	IPromiseMapper,
 	IQuery,
 	IQuerySource,
@@ -11,7 +10,6 @@ import {
 	IRestoreSource,
 	IWithContainer,
 	IWithIdentity,
-	IWithPageFetch,
 	UndefinableOptional
 } from "@leight-core/api";
 
@@ -22,7 +20,6 @@ export interface ISource<//
 	TQuery extends IQuery = IQuery,
 	TCreate extends Record<string, any> = any,
 	TBackup extends Record<string, any> = TEntity,
-	TPageFetch extends IPageFetch = any,
 	> extends //
 	IWithContainer<TContainer>,
 	IMutationSource<TCreate, TEntity>,
@@ -31,7 +28,6 @@ export interface ISource<//
 	IQuerySource<TEntity, TQuery>,
 	IBackupSource<TEntity, TBackup>,
 	IRestoreSource<TEntity, TBackup>,
-	IWithPageFetch<TPageFetch>,
 	IResolveSource<TCreate> {
 	/**
 	 * Name of the source.
@@ -57,5 +53,4 @@ export namespace SourceInfer {
 	export type Create<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
 	export type Patch<T> = T extends ISource<any, any, any, any, infer U> ? UndefinableOptional<U> & IWithIdentity : T;
 	export type Backup<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
-	export type PageFetch<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;
 }
