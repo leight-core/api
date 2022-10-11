@@ -24,7 +24,6 @@ export interface ISource<//
 	IWithContainer<TContainer>,
 	IMutationSource<TCreate, TEntity>,
 	IImportSource<TCreate, TEntity>,
-	IPromiseMapper<TEntity, TItem>,
 	IQuerySource<TEntity, TQuery>,
 	IBackupSource<TEntity, TBackup>,
 	IRestoreSource<TEntity, TBackup>,
@@ -33,6 +32,9 @@ export interface ISource<//
 	 * Name of the source.
 	 */
 	readonly name: string;
+	readonly mapper: {
+		toItem: IPromiseMapper<TEntity, TItem>;
+	};
 
 	/**
 	 * Generates hash string for the given query; it's useful for generating cache key for example.
