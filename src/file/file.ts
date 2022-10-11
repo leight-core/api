@@ -1,4 +1,5 @@
 import {
+	IContainer,
 	IQuery,
 	ISource
 } from "@leight-core/api";
@@ -73,7 +74,12 @@ export interface IFileService {
 export interface IFileSource<//
 	TFileEntity extends Record<string, any>,
 	TFileQuery extends IQuery,
-	> extends ISource<IFileCreate, TFileEntity, IFile, TFileQuery> {
+	> extends ISource<//
+	IContainer,
+	TFileEntity,
+	IFile,
+	TFileQuery,
+	IFileCreate> {
 	store(store: IFileStoreRequest): Promise<TFileEntity>;
 
 	refresh(fileId: string): Promise<TFileEntity>;

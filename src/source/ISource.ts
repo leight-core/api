@@ -1,57 +1,42 @@
 import {
 	IBackupSource,
+	IContainer,
 	IImportSource,
 	IMutationSource,
-	IPageEntity,
-	IPrismaTransaction,
+	IPageFetch,
 	IPromiseMapper,
 	IQuery,
 	IQuerySource,
 	IResolveSource,
 	IRestoreSource,
-	IUser,
+	IWithContainer,
 	IWithIdentity,
+	IWithPageFetch,
 	UndefinableOptional
-}                       from "@leight-core/api";
-import {ParsedUrlQuery} from "querystring";
+} from "@leight-core/api";
 
 export interface ISource<//
-	TCreate extends Record<string, any>,
+	TContainer extends IContainer<any>,
 	TEntity extends Record<string, any>,
 	TItem extends Record<string, any>,
 	TQuery extends IQuery = IQuery,
-	TWithFetch extends Record<string, any> = any,
-	TWithFetchParams extends ParsedUrlQuery = any,
+	TCreate extends Record<string, any> = any,
 	TBackup extends Record<string, any> = TEntity,
+	TPageFetch extends IPageFetch = any,
 	> extends //
+	IWithContainer<TContainer>,
 	IMutationSource<TCreate, TEntity>,
 	IImportSource<TCreate, TEntity>,
 	IPromiseMapper<TEntity, TItem>,
 	IQuerySource<TEntity, TQuery>,
 	IBackupSource<TEntity, TBackup>,
 	IRestoreSource<TEntity, TBackup>,
-	IPageEntity<TWithFetch, TWithFetchParams>,
+	IWithPageFetch<TPageFetch>,
 	IResolveSource<TCreate> {
+	/**
+	 * Name of the source.
+	 */
 	readonly name: string;
-	prisma: IPrismaTransaction;
-	user: IUser;
-
-	/**
-	 * Set the given user as a context; user requirement is based on the source's internals.
-	 */
-	withUser(user: IUser): this;
-
-	/**
-	 * Sets prisma context; useful when there is a transaction.
-	 */
-	withPrisma(prisma: IPrismaTransaction): this;
-
-	/**
-	 * Get some things from the given source (prisma, user, ...).
-	 *
-	 * If nothing provided, nothing happens, it's just for convenience to prevent unnecessary conditions on the caller's side.
-	 */
-	ofSource(source?: ISource<any, any, any>): this;
 
 	/**
 	 * Generates hash string for the given query; it's useful for generating cache key for example.
@@ -65,12 +50,12 @@ export interface ISource<//
 }
 
 export namespace SourceInfer {
-	export type Create<T> = T extends ISource<infer U, any, any, any> ? U : T;
-	export type Patch<T> = T extends ISource<infer U, any, any, any> ? UndefinableOptional<U> & IWithIdentity : T;
-	export type Entity<T> = T extends ISource<any, infer U, any, any> ? U : T;
-	export type Item<T> = T extends ISource<any, any, infer U, any> ? U : T;
+	export type Container<T> = T extends ISource<infer U, any, any> ? U : T;
+	export type Entity<T> = T extends ISource<any, infer U, any> ? U : T;
+	export type Item<T> = T extends ISource<any, any, infer U> ? U : T;
 	export type Query<T> = T extends ISource<any, any, any, infer U> ? U : T;
-	export type Fetch<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
-	export type FetchParams<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
-	export type Backup<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;
+	export type Create<T> = T extends ISource<any, any, any, any, infer U> ? U : T;
+	export type Patch<T> = T extends ISource<any, any, any, any, infer U> ? UndefinableOptional<U> & IWithIdentity : T;
+	export type Backup<T> = T extends ISource<any, any, any, any, any, infer U> ? U : T;
+	export type PageFetch<T> = T extends ISource<any, any, any, any, any, any, infer U> ? U : T;
 }
