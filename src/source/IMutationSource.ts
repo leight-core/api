@@ -21,6 +21,14 @@ export interface IMutationSource<//
 	 * Delete given entities by the list of given ids.
 	 */
 	remove(ids: string[]): Promise<TEntity[]>;
+
+	/**
+	 * Remove all the data from this source and all dependant sources.
+	 *
+	 * The original use case for this method is an ability to restore data (thus clean
+	 * sources used for restoring and importing fresh data).
+	 */
+	truncate(): Promise<void>;
 }
 
 export namespace MutationSourceInfer {
