@@ -46,6 +46,4 @@ export interface IImportSource<//
 	 * Internally, it should use create() with patch() in unique handler.
 	 */
 	import(create: TCreate): Promise<TEntity>;
-
-	importers(): IImportHandlers;
 }
