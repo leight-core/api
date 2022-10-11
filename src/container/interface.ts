@@ -29,4 +29,6 @@ export interface IContainer<TFileSource extends IFileSource<any, any> = IFileSou
 
 export interface IWithContainer<TContainer extends IContainer<any>> {
 	container: TContainer;
+
+	withContainer(container: TContainer): this;
 }
