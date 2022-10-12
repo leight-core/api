@@ -37,6 +37,8 @@ export interface IEndpointHandler<//
 	TResponse,
 	TQueryParams extends IQueryParams = any,
 	> {
+	name: string;
+
 	container(): Promise<TContainer>;
 
 	handler(params: IEndpointRequest<TContainer, TRequest, TResponse, TQueryParams>): Promise<TResponse | void>;
