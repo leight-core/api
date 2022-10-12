@@ -21,5 +21,5 @@ export interface INextApiRequest<//
 export type IApiHandler<//
 	TRequest,
 	TResponse,
-	TQueryParams extends IQueryParams = any,
+	TQueryParams extends IQueryParams,
 	> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
