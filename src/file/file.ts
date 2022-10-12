@@ -72,10 +72,11 @@ export interface IFileService {
 }
 
 export interface IFileSource<//
+	TContainer extends IContainer,
 	TFileEntity extends Record<string, any>,
 	TFileQuery extends IQuery,
 	> extends ISource<//
-	IContainer,
+	TContainer,
 	TFileEntity,
 	IFile,
 	TFileQuery,

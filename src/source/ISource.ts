@@ -14,7 +14,7 @@ import {
 } from "@leight-core/api";
 
 export interface ISource<//
-	TContainer extends IContainer<any>,
+	TContainer extends IContainer,
 	TEntity extends Record<string, any>,
 	TItem extends Record<string, any>,
 	TQuery extends IQuery = IQuery,
