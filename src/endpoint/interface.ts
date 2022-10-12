@@ -1,4 +1,5 @@
 import {
+	IContainer,
 	IQuery,
 	IQueryParams,
 	IUser
@@ -20,12 +21,14 @@ export interface IEndpointParams<//
 	TRequest,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
+	TContainer extends IContainer = IContainer,
 	> {
 	readonly req: INextApiRequest<TQueryParams, TRequest>;
 	readonly res: NextApiResponse<TResponse>;
 	readonly request: TRequest;
 	readonly query: TQueryParams;
 	readonly user: IUser;
+	readonly container: TContainer;
 
 	toBody(): Promise<Buffer>;
 
@@ -40,8 +43,11 @@ export interface IEndpoint<// eslint-disable-next-line @typescript-eslint/no-unu
 	TRequest,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
+	TContainer extends IContainer = IContainer,
 	> {
-	handler(params: IEndpointParams<TRequest, TResponse, TQueryParams>): Promise<TResponse | void>;
+	container(): Promise<TContainer>;
+
+	handler(params: IEndpointParams<TRequest, TResponse, TQueryParams, TContainer>): Promise<TResponse | void>;
 
 	/**
 	 * Optional ACLs an endpoint would require on an user.
