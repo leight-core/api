@@ -1,4 +1,7 @@
-import {IEndpointParams} from "@leight-core/api";
+import {
+	IContainer,
+	IEndpointRequest
+}                        from "@leight-core/api";
 import {QueueAddOptions} from "p-queue/dist/options";
 import {Logger}          from "winston";
 
@@ -61,7 +64,7 @@ export interface IJobHandlerRequest<TParams> {
 }
 
 export interface IJobProcessor<TParams = any> {
-	request(params: IEndpointParams<TParams, IJob<TParams>>, queue?: QueueAddOptions): Promise<IJob<TParams>>;
+	request<TContainer extends IContainer>(params: IEndpointRequest<TContainer, TParams, IJob<TParams>>, queue?: QueueAddOptions): Promise<IJob<TParams>>;
 
 	async(params: TParams, userId?: string | null, queue?: QueueAddOptions): Promise<IJob<TParams>>;
 

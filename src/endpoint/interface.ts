@@ -1,27 +1,20 @@
 import {
 	IContainer,
+	INextApiRequest,
 	IQuery,
 	IQueryParams,
 	IUser
-} from "@leight-core/api";
-import {
-	NextApiRequest,
-	NextApiResponse
-} from "next";
+}                        from "@leight-core/api";
+import {NextApiResponse} from "next";
 
-export interface INextApiRequest<//
-	TQuery extends IQueryParams = any,
-	TRequest = undefined,
-	> extends Omit<NextApiRequest, "query"> {
-	readonly query: TQuery;
-	readonly body: TRequest;
-}
-
-export interface IEndpointParams<//
+/**
+ * This is what an Endpoint get when processing a request.
+ */
+export interface IEndpointRequest<//
+	TContainer extends IContainer,
 	TRequest,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
-	TContainer extends IContainer = IContainer,
 	> {
 	readonly req: INextApiRequest<TQueryParams, TRequest>;
 	readonly res: NextApiResponse<TResponse>;
@@ -38,16 +31,15 @@ export interface IEndpointParams<//
 /**
  * Generic endpoint; SDK generates as POST by default.
  */
-export interface IEndpoint<// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	TName extends string,
+export interface IEndpointHandler<//
+	TContainer extends IContainer,
 	TRequest,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
-	TContainer extends IContainer = IContainer,
 	> {
 	container(): Promise<TContainer>;
 
-	handler(params: IEndpointParams<TRequest, TResponse, TQueryParams, TContainer>): Promise<TResponse | void>;
+	handler(params: IEndpointRequest<TContainer, TRequest, TResponse, TQueryParams>): Promise<TResponse | void>;
 
 	/**
 	 * Optional ACLs an endpoint would require on an user.
@@ -55,30 +47,23 @@ export interface IEndpoint<// eslint-disable-next-line @typescript-eslint/no-unu
 	acl?: string[];
 }
 
-export type IEndpointCallback<// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	TName extends string,
-	TRequest,
-	TResponse,
-	TQueryParams extends IQueryParams = any,
-	> = (req: INextApiRequest<TQueryParams, TRequest>, res: NextApiResponse<TResponse>) => void;
-
 /**
  * When fetching an individual item, done by GET.
  */
 export type IGetEndpoint<//
-	TName extends string,
+	TContainer extends IContainer,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
-	> = IEndpoint<TName, undefined, TResponse, TQueryParams>;
+	> = IEndpointHandler<TContainer, undefined, TResponse, TQueryParams>;
 
 /**
  * When fetching a list of items (arrayed by default), done by GET.
  */
 export type IListEndpoint<//
-	TName extends string,
+	TContainer extends IContainer,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
-	> = IEndpoint<TName, undefined, TResponse, TQueryParams>;
+	> = IEndpointHandler<TContainer, undefined, TResponse, TQueryParams>;
 
 /**
  * Mutation endpoint is a general endpoint used to do some server-side effect (some updated data or so).
@@ -86,28 +71,28 @@ export type IListEndpoint<//
  * Defaults to POST.
  */
 export type IMutationEndpoint<//
-	TName extends string,
+	TContainer extends IContainer,
 	TRequest,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
-	> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
+	> = IEndpointHandler<TContainer, TRequest, TResponse, TQueryParams>;
 
 export type IEntityEndpoint<//
-	TName extends string,
+	TContainer extends IContainer,
 	TRequest extends IQuery | undefined,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
-	> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
+	> = IEndpointHandler<TContainer, TRequest, TResponse, TQueryParams>;
 
 /**
  * Generic request/response.
  */
-export type IRequestEndpoint<// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	TName extends string,
+export type IRequestEndpoint<//
+	TContainer extends IContainer,
 	TRequest,
 	TResponse,
 	TQueryParams extends IQueryParams = any,
-	> = IEndpoint<TName, TRequest, TResponse, TQueryParams>;
+	> = IEndpointHandler<TContainer, TRequest, TResponse, TQueryParams>;
 
 export class ClientError extends Error {
 	readonly code: number;

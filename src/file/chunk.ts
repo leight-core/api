@@ -1,5 +1,6 @@
 import {
-	IEndpointParams,
+	IContainer,
+	IEndpointRequest,
 	IFile,
 	IFileService,
 	IQueryParams
@@ -31,7 +32,8 @@ export interface IChunkService {
 export type IChunkServiceFactory = (deps: IChunkServiceDeps) => IChunkService;
 
 export type IChunkCommitEvent = <//
+	TContainer extends IContainer,
 	TRequest,
 	TResponse,
 	TQuery extends IQueryParams = any,
-	>(file: IFile, params: IEndpointParams<TRequest, TResponse, TQuery>) => Promise<IFile>;
+	>(file: IFile, params: IEndpointRequest<TContainer, TRequest, TResponse, TQuery>) => Promise<IFile>;
