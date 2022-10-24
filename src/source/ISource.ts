@@ -47,7 +47,7 @@ export interface ISource<//
 	clearCache(): Promise<any>;
 }
 
-export namespace SourceInfer {
+export namespace InferSource {
 	export type Container<T> = T extends ISource<infer U, any, any> ? U : T;
 	export type Entity<T> = T extends ISource<any, infer U, any> ? U : T;
 	export type Item<T> = T extends ISource<any, any, infer U> ? U : T;

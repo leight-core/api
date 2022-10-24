@@ -13,7 +13,7 @@ export interface IQuery<TFilter = any, TOrderBy = any> {
 	readonly orderBy?: TOrderBy;
 }
 
-export namespace QueryInfer {
+export namespace InferQuery {
 	export type Filter<T> = T extends IQuery<infer TFilter> ? TFilter : T;
 	export type OrderBy<T> = T extends IQuery<any, infer TOrderBy> ? TOrderBy : T;
 }
